@@ -4,6 +4,13 @@ import importlib.util
 import sys
 from pathlib import Path
 
+# profiler module
+import cProfile
+import io
+import pstats
+import time
+
+
 default_layout = {
     "rankdir": "TB",
     "splines": "spline",
@@ -168,6 +175,72 @@ def compile(input_file, term_name, output):
 
     except Exception as e:
         click.echo(f"Error: {e}", err=True)
+
+
+@cli.command()
+@click.argument('input_file', type=click.Path(exists=True, dir_okay=False))
+@click.option('--term-name', default='main', help='The name of the Term object to evaluate.')
+@click.option('--steps', '-s', help='maximum number of evaluation steps', type=int, default=1000000)
+@click.option('--sort', 'sort_key', default='cumulative',
+              type=click.Choice(['cumulative', 'time', 'calls']),
+              help='The way to sort the profiler result.')
+@click.option('--limit', default=30, type=int, help='The number of profiler lines to show.')
+@click.option('--output', '-o', default=None, help='The output filename for raw profiler data.')
+def profile(input_file, term_name, steps, sort_key, limit, output):
+    """Profiles a PGSN term and shows which functions take time."""
+
+    phase_times = {}
+
+    def run_target():
+        # Step 1: Load the file.
+        # If the file is XML, this also compiles XML to a PGSN term.
+        start = time.perf_counter()
+        term = load_term(input_file, term_name)
+        phase_times['load/compile'] = time.perf_counter() - start
+
+        # Step 2: Evaluate the PGSN term.
+        # This is probably the main part of the interpreter.
+        start = time.perf_counter()
+        evaluated_gsn = term.fully_eval(steps=steps)
+        phase_times['fully_eval'] = time.perf_counter() - start
+
+        # Step 3: Make a GSN tree from the evaluated result.
+        start = time.perf_counter()
+        tree = gsn.gsn_tree(evaluated_gsn)
+        phase_times['gsn_tree'] = time.perf_counter() - start
+
+        # Step 4: Make the plain text document.
+        # We do this to profile almost the same work as the doc command.
+        start = time.perf_counter()
+        document = tree.show(stdout=False)
+        phase_times['tree.show'] = time.perf_counter() - start
+
+        return document
+
+    try:
+        profiler = cProfile.Profile()
+        profiler.runcall(run_target)
+
+        click.echo('Phase time summary:', err=True)
+        for name, elapsed in phase_times.items():
+            click.echo(f'  {name}: {elapsed:.6f} sec', err=True)
+
+        if output and output != '-':
+            profiler.dump_stats(output)
+            click.echo(f"Saved raw profiler data to '{output}'", err=True)
+
+        stream = io.StringIO()
+        stats = pstats.Stats(profiler, stream=stream)
+        stats.strip_dirs().sort_stats(sort_key).print_stats(limit)
+
+        click.echo('', err=True)
+        click.echo('Profiler result:', err=True)
+        click.echo(stream.getvalue(), err=True)
+
+        click.echo('Done.', err=True)
+
+    except Exception as e:
+        click.echo(f'Error: {e}', err=True)
 
 
 if __name__ == '__main__':
