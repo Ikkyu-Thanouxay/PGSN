@@ -1,3 +1,12 @@
-*/__pycache__
-.idea
-.DStore
+# Python generated files
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+
+# Editor / OS files
+.idea/
+.DS_Store
