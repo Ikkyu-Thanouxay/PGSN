@@ -1,0 +1,28 @@
+<PGSN>
+    <def name="inputGoal">
+        <Goal>
+            Input validated
+            <Evidence>Static analysis passed</Evidence>
+        </Goal> 
+    </def>
+
+    <def name="outputGoal">
+        <Goal>
+            Output sanitized
+            <Evidence>Fuzzing test succeeded</Evidence>
+        </Goal>
+    </def>
+
+    <Goal>
+        System is secure
+        <Strategy>
+            Break into sub-goals
+            <subGoals>
+                <ul>
+                    <li var="inputGoal"/>
+                    <li var="outputGoal"/>
+                </ul>
+            </subGoals>
+        </Strategy>
+    </Goal>
+</PGSN>
