@@ -22,7 +22,11 @@ try:
     from pgsn import dsl
     from pgsn import gsn
     from pgsn import pgsn_xml
-    from pgsn.pgsn_term import Term
+    from pgsn.pgsn_term import (
+        Term,
+        start_evaluation_metrics,
+        stop_evaluation_metrics,
+    )
 except ImportError as e:
     print(f"Error: Could not import PGSN modules: {e}")
     print("Please ensure gsn.py, dsl.py, pgsn_term.py, and pgsn_xml.py are accessible.")
@@ -190,8 +194,10 @@ def profile(input_file, term_name, steps, sort_key, limit, output):
     """Profiles a PGSN term and shows which functions take time."""
 
     phase_times = {}
+    evaluation_metrics = None
 
     def run_target():
+        nonlocal evaluation_metrics
         # Step 1: Load the file.
         # If the file is XML, this also compiles XML to a PGSN term.
         start = time.perf_counter()
@@ -201,8 +207,12 @@ def profile(input_file, term_name, steps, sort_key, limit, output):
         # Step 2: Evaluate the PGSN term.
         # This is probably the main part of the interpreter.
         start = time.perf_counter()
-        evaluated_gsn = term.fully_eval(steps=steps)
-        phase_times['fully_eval'] = time.perf_counter() - start
+        start_evaluation_metrics()
+        try:
+            evaluated_gsn = term.fully_eval(steps=steps)
+        finally:
+            evaluation_metrics = stop_evaluation_metrics()
+            phase_times['fully_eval'] = time.perf_counter() - start
 
         # Step 3: Make a GSN tree from the evaluated result.
         start = time.perf_counter()
@@ -224,6 +234,36 @@ def profile(input_file, term_name, steps, sort_key, limit, output):
         click.echo('Phase time summary:', err=True)
         for name, elapsed in phase_times.items():
             click.echo(f'  {name}: {elapsed:.6f} sec', err=True)
+
+        if evaluation_metrics is not None:
+            beta_reductions = evaluation_metrics.beta_reductions
+            if beta_reductions == 0:
+                shift_per_beta = 0.0
+                subst_per_beta = 0.0
+            else:
+                shift_per_beta = evaluation_metrics.shift_node_visits / beta_reductions
+                subst_per_beta = evaluation_metrics.subst_node_visits / beta_reductions
+
+            click.echo('', err=True)
+            click.echo('Evaluation metrics:', err=True)
+            click.echo(
+                f'  evaluation steps:  {evaluation_metrics.evaluation_steps:,}',
+                err=True,
+            )
+            click.echo(
+                f'  beta reductions:   {evaluation_metrics.beta_reductions:,}',
+                err=True,
+            )
+            click.echo(
+                f'  shift node visits: {evaluation_metrics.shift_node_visits:,}',
+                err=True,
+            )
+            click.echo(
+                f'  subst node visits: {evaluation_metrics.subst_node_visits:,}',
+                err=True,
+            )
+            click.echo(f'  shift visits/beta: {shift_per_beta:,.2f}', err=True)
+            click.echo(f'  subst visits/beta: {subst_per_beta:,.2f}', err=True)
 
         if output and output != '-':
             profiler.dump_stats(output)
