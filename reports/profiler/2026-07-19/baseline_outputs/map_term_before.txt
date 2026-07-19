@@ -1,0 +1,9 @@
+Goal: Security requirements fulfilled
+└── Strategy: immediate
+    ├── Goal: Access control active
+    │   └── Evidence: Access control active
+    ├── Goal: Encrypted communication
+    │   └── Evidence: Encrypted communication
+    └── Goal: Firewall enabled
+        └── Evidence: Firewall enabled
+

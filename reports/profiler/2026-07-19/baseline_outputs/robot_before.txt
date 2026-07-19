@@ -1,0 +1,15 @@
+Goal: The robot does not make unintended movements
+└── Strategy: Argument over the robot and the server
+    ├── Goal: The robot behaves according to commands
+    │   └── Strategy: Argument over each threat
+    │       └── Goal: There is no known vulnerability in the robot
+    │           └── Strategy: Argument over each vulnerability
+    │               ├── Goal: Vulnerability A is not exploited
+    │               │   └── Evidence: Test results
+    │               └── Goal: Vulnerability B is not exploited
+    │                   └── Evidence: Test results
+    └── Goal: The server gives correct commands to the robot
+        └── Strategy: Argument over each threat
+            └── Goal: The server can deal with DoS attacks on the server
+                └── Evidence: Access restriction
+
