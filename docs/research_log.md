@@ -66,3 +66,19 @@ Both the substitution evaluator and CEK evaluator return the same results.
 ### Git note
 
 Commit `c6f8f49` is named `Fix mini CEK substitution evaluator`, but it also includes most of the first mini CEK implementation because the broken version was never committed separately.
+
+## Test status
+
+Command:
+
+`python -m pytest --ignore=tests/test_objects.py`
+
+Result:
+
+- 112 tests passed.
+- `tests/test_objects.py` could not be collected because pytest attempted
+  to inspect a PGSN `App` object and encountered a wrapper loop.
+- This happens during test collection, before evaluator execution.
+- It is treated as a separate pre-existing compatibility issue and is
+  outside the baseline-metrics change.
+  
