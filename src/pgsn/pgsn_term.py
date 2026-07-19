@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import functools
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from typing import Any
 from typing import TypeAlias
 from typing import TypeVar
@@ -13,6 +14,37 @@ from cattrs.strategies import include_subclasses, configure_tagged_union
 from pgsn import helpers
 
 Term: TypeAlias = "Term"
+
+
+@dataclass
+class EvaluationMetrics:
+    evaluation_steps: int = 0
+    beta_reductions: int = 0
+    shift_node_visits: int = 0
+    subst_node_visits: int = 0
+
+
+_active_evaluation_metrics: EvaluationMetrics | None = None
+
+
+def start_evaluation_metrics() -> EvaluationMetrics:
+    """Reset the evaluator counters and start collecting metrics."""
+    global _active_evaluation_metrics
+    _active_evaluation_metrics = EvaluationMetrics()
+    return _active_evaluation_metrics
+
+
+def get_evaluation_metrics() -> EvaluationMetrics | None:
+    """Return the active evaluator metrics, or None when collection is off."""
+    return _active_evaluation_metrics
+
+
+def stop_evaluation_metrics() -> EvaluationMetrics | None:
+    """Stop collecting metrics and return the counters that were collected."""
+    global _active_evaluation_metrics
+    metrics = _active_evaluation_metrics
+    _active_evaluation_metrics = None
+    return metrics
 
 
 def is_named(instance, attribute, value):
@@ -133,6 +165,8 @@ class Term(ABC):
             assert t_reduced is None or t_reduced != t  # should progress
             if t_reduced is None:
                 return t
+            if _active_evaluation_metrics is not None:
+                _active_evaluation_metrics.evaluation_steps += 1
             t = t_reduced
         raise LambdaInterpreterError('Reduction did not terminate', t)
 
@@ -141,6 +175,8 @@ class Term(ABC):
         pass
 
     def shift_or_none(self, num: int, cutoff: int) -> Term | None:
+        if _active_evaluation_metrics is not None:
+            _active_evaluation_metrics.shift_node_visits += 1
         assert not self.is_named
         shifted = self._shift_or_none(num, cutoff)
         if shifted is None:
@@ -156,6 +192,8 @@ class Term(ABC):
         pass
 
     def subst_or_none(self, variable: int, term: Term) -> Term | None:
+        if _active_evaluation_metrics is not None:
+            _active_evaluation_metrics.subst_node_visits += 1
         assert not self.is_named
         assert not term.is_named
         substituted = self._subst_or_none(variable, term)
@@ -1375,6 +1413,8 @@ class Context:
     # outermost leftmost reduction.
     def reduce_or_none(self) -> Context | None:
         if isinstance(self.head, Abs) and len(self.args) > 0:
+            if _active_evaluation_metrics is not None:
+                _active_evaluation_metrics.beta_reductions += 1
             head_substituted = (self.head.t.subst(0, self.args[0].shift(1, 0))
                                 .shift(-1, 0))
             return self.evolve(head=head_substituted, args=self.args[1:])
