@@ -1,0 +1,55 @@
+Phase time summary:
+  load/compile: 0.003085 sec
+  fully_eval: 322.338548 sec
+  gsn_tree: 0.005544 sec
+  tree.show: 0.002167 sec
+
+Evaluation metrics:
+  evaluation steps:  448
+  beta reductions:   1,426
+  shift node visits: 483,384,975
+  subst node visits: 1,044,353
+  shift visits/beta: 338,979.65
+  subst visits/beta: 732.37
+
+Profiler result:
+         1925378642 function calls (932559849 primitive calls) in 322.349 seconds
+
+   Ordered by: cumulative time
+   List reduced from 310 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  322.349  322.349 cli.py:199(run_target)
+        1    0.001    0.001  322.339  322.339 pgsn_term.py:161(fully_eval)
+581339/449    0.111    0.000  322.314    0.718 pgsn_term.py:144(eval_or_none)
+6013/1110    0.005    0.000  321.843    0.290 pgsn_term.py:404(_eval_or_none)
+6013/1110    0.006    0.000  321.828    0.290 pgsn_term.py:1414(reduce_or_none)
+483384975/90655   98.678    0.000  320.092    0.004 pgsn_term.py:177(shift_or_none)
+126609431/90714   29.519    0.000  320.062    0.004 pgsn_term.py:415(_shift_or_none)
+70018810/240261   69.547    0.000  319.582    0.001 pgsn_term.py:598(_shift_or_none)
+229335162/983585   30.036    0.000  319.192    0.000 pgsn_term.py:599(<genexpr>)
+     1426    0.001    0.000  318.631    0.223 pgsn_term.py:203(subst)
+1044353/1426    0.254    0.000  318.630    0.223 pgsn_term.py:194(subst_or_none)
+87803/3711    0.045    0.000  318.585    0.086 pgsn_term.py:339(_subst_or_none)
+271618/1426    0.078    0.000  318.174    0.223 pgsn_term.py:424(_subst_or_none)
+153751/4832    0.171    0.000  315.050    0.065 pgsn_term.py:607(_subst_or_none)
+502856/20366    0.075    0.000  315.033    0.015 pgsn_term.py:608(<genexpr>)
+41796593/1812615    6.015    0.000  314.858    0.000 pgsn_term.py:333(_shift_or_none)
+43189036/2389538   16.107    0.000  305.553    0.000 pgsn_term.py:539(_shift_or_none)
+94032/20570    0.038    0.000  302.450    0.015 pgsn_term.py:546(_subst_or_none)
+76702/409    0.016    0.000  205.542    0.503 pgsn_term.py:887(_eval_or_none)
+76702/409    0.135    0.000  205.542    0.503 pgsn_term.py:874(_traverse)
+239465/2045    0.034    0.000  205.536    0.101 pgsn_term.py:888(<lambda>)
+111373/3200    0.037    0.000  121.527    0.038 pgsn_term.py:531(_eval_or_none)
+ 12331151    2.611    0.000   25.443    0.000 pgsn_term.py:717(_shift_or_none)
+12639098/12409403   14.374    0.000   23.657    0.000 pgsn_term.py:698(_traverse)
+ 70192042    7.845    0.000   13.298    0.000 pgsn_term.py:584(attributes)
+229335162   11.220    0.000   11.220    0.000 pgsn_term.py:600(<genexpr>)
+ 95672081    7.000    0.000    7.000    0.000 {method 'copy' of 'dict' objects}
+ 95441919    5.632    0.000    5.632    0.000 {method 'values' of 'dict' objects}
+134374479    5.473    0.000    5.473    0.000 pgsn_term.py:94(_shift_or_none)
+ 95769567    5.223    0.000    5.223    0.000 {method 'items' of 'dict' objects}
+
+
+
+Done.
