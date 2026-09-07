@@ -1,6 +1,7 @@
 # Scope of the PGSN Environment-Based Evaluator
 
 Date: 2026-07-19
+Updated: 2026-09-07 (Change Vision internship Day 1)
 
 Branch: `research/cek-baseline-metrics`
 
@@ -61,7 +62,7 @@ A standard CEK machine is normally call-by-value. It evaluates the argument befo
 
 Therefore, directly implementing a standard call-by-value CEK machine may change PGSN behavior.
 
-The first prototype must investigate how to preserve the current behavior. It may require storing an unevaluated argument together with its environment, similar to a thunk or delayed closure.
+To preserve the current behavior, the first prototype will test storing an unevaluated argument together with its environment, similar to a thunk or delayed closure.
 
 For this reason, the implementation may be described initially as a:
 
@@ -69,24 +70,27 @@ For this reason, the implementation may be described initially as a:
 
 The exact machine design will be decided after testing the basic lambda subset.
 
+Note: the current PGSN evaluator can also reduce expressions inside an `Abs` body. Preserving this behavior is a known compatibility issue, but it is outside the first internship prototype.
+
 ## 4. First prototype scope
 
-| PGSN term or feature | First prototype | Reason |
-|---|---|---|
-| `Variable` | Required | Must retrieve a binding from the environment |
-| `Abs` | Required | Must produce a closure |
-| `App` | Required | Must evaluate function application |
-| `String` | Required | Basic constant value |
-| `Integer` | Required | Basic constant value |
-| `Boolean` | Required | Basic constant value |
-| Environment | Required | Stores variable bindings |
-| Closure | Required | Stores an abstraction together with its environment |
-| Continuation/frame | Required | Records what evaluation should do next |
-| `Builtin` | Later | Requires PGSN-specific argument and application behavior |
-| `List` | Later | Requires container traversal and evaluation-order handling |
-| `Record` | Later | Requires attribute evaluation |
-| `PGSNClass` | Later | Requires inheritance, defaults, attributes, and methods |
-| `PGSNObject` | Later | Requires object construction and attribute lookup |
+| PGSN term or feature     | First prototype | Reason                                                       |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| `Variable`               | Required        | Must retrieve a binding from the environment                 |
+| `Abs`                    | Required        | Must produce a closure                                       |
+| `App`                    | Required        | Must evaluate function application                           |
+| `String`                 | Required        | Basic constant value                                         |
+| `Integer`                | Required        | Basic constant value                                         |
+| `Boolean`                | Required        | Basic constant value                                         |
+| Environment              | Required        | Stores variable bindings                                     |
+| Closure                  | Required        | Stores an abstraction together with its environment          |
+| Delayed argument binding | Required        | Preserves PGSN behavior without eagerly evaluating arguments |
+| Continuation/frame       | Required        | Records what evaluation should do next                       |
+| `Builtin`                | Later           | Requires PGSN-specific argument and application behavior     |
+| `List`                   | Later           | Requires container traversal and evaluation-order handling   |
+| `Record`                 | Later           | Requires attribute evaluation                                |
+| `PGSNClass`              | Later           | Requires inheritance, defaults, attributes, and methods      |
+| `PGSNObject`             | Later           | Requires object construction and attribute lookup            |
 
 ## 5. Proposed machine components
 
@@ -125,16 +129,32 @@ Closure = function body + saved environment
 
 The saved environment allows free variables in the function body to retain their original meanings.
 
+### Delayed argument binding
+
+The current PGSN evaluator does not always evaluate an argument before applying an abstraction.
+
+The first prototype will therefore test storing an argument without evaluating it immediately.
+
+Conceptually:
+
+```text
+Delayed argument = argument expression + saved environment
+```
+
+The saved environment is needed so that variables appearing inside the argument retain the meanings they had where the argument was created.
+
+If the corresponding function parameter is never used, the delayed argument should not need to be evaluated.
+
 ### Continuation
 
 A representation of the remaining work.
 
 For an application, it may need to remember:
 
-- That a function is being evaluated.
-- Which argument belongs to the application.
-- Which environment belongs to that argument.
-- What computation should continue afterward.
+* That a function is being evaluated.
+* Which argument belongs to the application.
+* Which environment belongs to that argument.
+* What computation should continue afterward.
 
 ## 6. Initial correctness examples
 
@@ -200,23 +220,29 @@ Use a constant function with an argument that requires additional evaluation:
 
 The current evaluator may return `1` without evaluating the unused argument.
 
-This test will help determine whether a standard call-by-value CEK machine can reproduce the existing evaluator’s behavior.
+The environment-based prototype should reproduce this behavior for the lambda subset.
+
+This test determines whether delayed argument handling can preserve the existing evaluator's application behavior.
 
 ## 7. First prototype stopping point
 
 The first prototype is complete when:
 
-- Variables are resolved through an environment.
-- An abstraction produces a closure.
-- Applications work without beta substitution.
-- The identity example works.
-- The constant-function example works.
-- The captured-variable example works.
-- The nested-application example works.
-- Results are compared with the current evaluator.
-- The evaluation-order difference is documented.
+* Variables are resolved through an environment.
+* An abstraction produces a closure.
+* Applications work without beta substitution.
+* Arguments can be stored as delayed computations instead of always being evaluated before application.
+* The identity example works.
+* The constant-function example works.
+* The captured-variable example works.
+* The nested-application example works.
+* The evaluation-order test confirms that an unused argument is not evaluated before function application.
+* Results are compared with the current evaluator.
+* The evaluation-order difference is documented.
 
 The first prototype does not need to evaluate complete XML PGSN examples.
+
+Preserving evaluation inside an unapplied `Abs` body is not required for this first prototype.
 
 ## 8. Later implementation stages
 
@@ -224,30 +250,30 @@ The first prototype does not need to evaluate complete XML PGSN examples.
 
 Add:
 
-- `Builtin`
-- Applicable-argument checks
-- Multiple arguments
-- Current built-in evaluation behavior
+* `Builtin`
+* Applicable-argument checks
+* Multiple arguments
+* Current built-in evaluation behavior
 
 ### Stage 3: Containers
 
 Add:
 
-- `List`
-- `Record`
-- Left-to-right traversal
-- Conversion to Python values
+* `List`
+* `Record`
+* Left-to-right traversal
+* Conversion to Python values
 
 ### Stage 4: PGSN-specific objects
 
 Add:
 
-- `PGSNClass`
-- `PGSNObject`
-- Inheritance
-- Defaults
-- Attributes
-- Methods
+* `PGSNClass`
+* `PGSNObject`
+* Inheritance
+* Defaults
+* Attributes
+* Methods
 
 ### Stage 5: CLI integration
 
@@ -260,23 +286,23 @@ pgsn profile input.xml --engine environment
 
 Both evaluators must:
 
-- Receive the same input.
-- Produce the same output.
-- Be measured under comparable conditions.
+* Receive the same input.
+* Produce the same output.
+* Be measured under comparable conditions.
 
 ## 9. Final comparison requirements
 
 The final comparison should measure:
 
-- Correctness
-- Evaluation time
-- Evaluation steps
-- Current evaluator beta reductions
-- Current shift and substitution visits
-- Environment lookups
-- Closure creation
-- Continuation transitions
-- Memory usage, if practical
+* Correctness
+* Evaluation time
+* Evaluation steps
+* Current evaluator beta reductions
+* Current shift and substitution visits
+* Environment lookups
+* Closure creation
+* Continuation transitions
+* Memory usage, if practical
 
 Detailed counters should be disabled when measuring clean execution time.
 
@@ -286,4 +312,6 @@ The baseline results justify implementing an environment-based evaluator because
 
 However, the new evaluator must preserve PGSN semantics. In particular, the current evaluator applies lambda abstractions before fully evaluating their arguments, while a standard CEK machine is normally call-by-value.
 
-Therefore, the next technical task is to design and test the smallest environment-based evaluator that can reproduce the current lambda-subset behavior.
+Therefore, the first internship prototype will test a CEK-style environment-based evaluator with delayed argument handling on the basic PGSN lambda subset.
+
+A complete replacement evaluator for all PGSN features is outside the scope of the first prototype.
