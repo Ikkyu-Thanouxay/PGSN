@@ -315,3 +315,86 @@ However, the new evaluator must preserve PGSN semantics. In particular, the curr
 Therefore, the first internship prototype will test a CEK-style environment-based evaluator with delayed argument handling on the basic PGSN lambda subset.
 
 A complete replacement evaluator for all PGSN features is outside the scope of the first prototype.
+
+
+## 11. Change Vision internship Day 2 findings
+
+Date: 2026-09-08
+
+Day 2 began implementing the first environment-based evaluator using the real PGSN term classes in `src/pgsn/pgsn_term.py`.
+
+The prototype is currently implemented in `experiments/cek_machine/pgsn_env_eval.py`.
+
+### Environment representation
+
+PGSN removes variable names before evaluation and uses de Bruijn indices.
+
+The prototype uses an ordered environment where:
+
+- `env[0]` is the nearest lambda binding.
+- `env[1]` is the next outer binding.
+- Higher indices refer to progressively outer bindings.
+
+The initial prototype currently tests closed terms, so evaluation begins with an empty environment. Free-variable handling is deferred.
+
+### Runtime representations
+
+A `Closure` stores the function body together with the environment captured when the abstraction is encountered.
+
+A `DelayedArgument` stores the unevaluated argument term together with the environment where that argument appeared.
+
+Delayed arguments are not memoized in the current prototype.
+
+### Basic application behavior
+
+For a lambda application, the prototype:
+
+1. Evaluates the function expression.
+2. Produces a `Closure`.
+3. Stores the argument as a `DelayedArgument` without evaluating it first.
+4. Adds the delayed binding at environment index 0.
+5. Evaluates the original function body under the extended environment.
+
+The prototype lambda-application path does not perform beta substitution using `subst()` or beta-related `shift()` rewriting.
+
+### Current successful tests
+
+Using the real PGSN `Variable`, `Abs`, `App`, and `Integer` classes:
+
+- `(lambda x. x) 5` -> environment evaluator: `5`; current evaluator: `5`
+- `(lambda x. 1) 5` -> environment evaluator: `1`; current evaluator: `1`
+- `((lambda x. lambda y. x) 5) 10` -> environment evaluator: `5`; current evaluator: `5`
+
+The captured-variable test confirms that an inner closure can retain an outer binding through its captured environment.
+
+These tests show matching observable results for the basic lambda subset tested so far. They do not establish full PGSN semantic compatibility.
+
+### Current limitations and deferred issues
+
+The prototype currently supports only:
+
+- `Variable`
+- `Abs`
+- `App`
+- Basic constants used by the prototype
+
+The following remain unsupported:
+
+- `Builtin`
+- `List`
+- `Record`
+- `PGSNClass`
+- `PGSNObject`
+- Complete XML PGSN documents
+- SolarWinds
+- CLI evaluator selection
+
+Known or deferred issues:
+
+- Current PGSN can reduce expressions inside an unapplied `Abs` body, while the prototype currently turns an `Abs` directly into a closure.
+- Free-variable environment handling has not yet been implemented.
+- Delayed arguments currently do not use memoization.
+- Only small closed lambda terms have been compared so far.
+- A stronger unused-argument test with a reducible or unsupported argument would verify delayed evaluation more directly.
+
+The next stage should extend the prototype carefully while continuing to compare its behavior with the current PGSN evaluator.
