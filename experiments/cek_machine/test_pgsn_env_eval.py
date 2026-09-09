@@ -43,6 +43,7 @@ def test_identity():
         expected=5,
     )
 
+
 def test_constant_function():
     x = Variable.from_name("x")
 
@@ -91,4 +92,92 @@ def test_captured_variable():
         expression="((λx. λy. x) 5) 10",
         term=term,
         expected=5,
+    )
+
+
+def test_function_argument():
+    f = Variable.from_name("f")
+    x = Variable.from_name("x")
+
+    identity = Abs.named(
+        v=x,
+        t=x,
+    )
+
+    apply_f_to_5 = Abs.named(
+        v=f,
+        t=App.term(
+            f,
+            Integer.named(value=5),
+        ),
+    )
+
+    term = App.term(
+        apply_f_to_5,
+        identity,
+    )
+
+    compare_results(
+        name="Function argument",
+        expression="(λf. f 5) (λx. x)",
+        term=term,
+        expected=5,
+    )
+
+
+def test_unused_argument():
+    x = Variable.from_name("x")
+
+    constant_function = Abs.named(
+        v=x,
+        t=Integer.named(value=1),
+    )
+
+    invalid_argument = App.term(
+        Integer.named(value=1),
+        Integer.named(value=2),
+    )
+
+    term = App.term(
+        constant_function,
+        invalid_argument,
+    )
+
+    compare_results(
+        name="Unused argument",
+        expression="(λx. 1) (1 2)",
+        term=term,
+        expected=1,
+    )
+
+
+def test_used_delayed_argument():
+    x = Variable.from_name("x")
+    z = Variable.from_name("z")
+
+    identity_x = Abs.named(
+        v=x,
+        t=x,
+    )
+
+    identity_z = Abs.named(
+        v=z,
+        t=z,
+    )
+
+    delayed_argument = App.term(
+        identity_z,
+        Integer.named(value=7),
+    )
+
+    term = App.term(
+        identity_x,
+        delayed_argument,
+    )
+
+    compare_results(
+        name="Used delayed argument",
+        expression="(λx. x) ((λz. z) 7)",
+        term=term,
+        expected=7,
     )

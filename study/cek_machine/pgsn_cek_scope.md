@@ -1,7 +1,7 @@
 # Scope of the PGSN Environment-Based Evaluator
 
 Date: 2026-07-19
-Updated: 2026-09-07 (Change Vision internship Day 1)
+Updated: 2026-09-09 (Change Vision internship Day 3)
 
 Branch: `research/cek-baseline-metrics`
 
@@ -316,7 +316,6 @@ Therefore, the first internship prototype will test a CEK-style environment-base
 
 A complete replacement evaluator for all PGSN features is outside the scope of the first prototype.
 
-
 ## 11. Change Vision internship Day 2 findings
 
 Date: 2026-09-08
@@ -398,3 +397,90 @@ Known or deferred issues:
 - A stronger unused-argument test with a reducible or unsupported argument would verify delayed evaluation more directly.
 
 The next stage should extend the prototype carefully while continuing to compare its behavior with the current PGSN evaluator.
+
+## 12. Change Vision internship Day 3 findings
+
+Date: 2026-09-09
+
+Day 3 focused on checking whether the current minimum environment-based prototype preserves important PGSN evaluation behavior.
+
+### New comparison tests
+
+Three new examples were compared using both the current PGSN evaluator and `eval_env()`.
+
+    (lambda f. f 5) (lambda x. x) -> 5
+    (lambda x. 1) (1 2) -> 1
+    (lambda x. x) ((lambda z. z) 7) -> 7
+
+All three produced the same result with both evaluators.
+
+The unused-argument test is especially important:
+
+    (lambda x. 1) (1 2) -> 1
+
+The argument `(1 2)` would fail if evaluated because `1` is not a function.
+
+Both evaluators returned `1`.
+
+For `eval_env()`, this shows that an unused argument can remain delayed and does not need to be evaluated.
+
+The used delayed-argument test:
+
+    (lambda x. x) ((lambda z. z) 7) -> 7
+
+shows the opposite behavior. The argument is delayed first, then evaluated later when `x` is actually needed.
+
+Together:
+
+    unused parameter -> delayed argument is not evaluated
+    used parameter   -> delayed argument is evaluated when needed
+
+### Remaining differences and open questions
+
+#### Evaluation inside an unapplied `Abs`
+
+Current PGSN can evaluate inside the body of an `Abs` before the abstraction is applied.
+
+The prototype currently converts an `Abs` directly into a `Closure` without evaluating its body.
+
+This is a real compatibility difference that must be considered later.
+
+#### Free variables
+
+The current prototype has only been tested with closed terms.
+
+Free-variable behavior has not yet been implemented or verified.
+
+#### Explicit Continuation / K
+
+The prototype does not yet have an explicit Continuation state or continuation frames.
+
+Python recursion currently controls what computation happens next.
+
+Therefore, the current implementation is an:
+
+> environment-based / CEK-style evaluator prototype
+
+not a complete CEK machine.
+
+#### Memoization
+
+`DelayedArgument` does not cache its evaluated result.
+
+This is not currently known to be a semantic difference from the existing PGSN evaluator.
+
+Memoization is a possible future optimization and should be investigated separately.
+
+### Day 3 conclusion
+
+The minimum prototype preserved the tested PGSN application behavior for the supported lambda subset.
+
+It showed that:
+
+- functions can be passed through the environment;
+- unused arguments can remain unevaluated;
+- delayed arguments can be evaluated later when needed;
+- the tested results match the current evaluator;
+- the prototype application path avoids beta substitution and beta-related shift rewriting of the function body.
+
+The next useful step is measurement and analysis rather than adding more PGSN features.
