@@ -296,6 +296,41 @@
   <element name="expr"><text/></element>
 </define>
 
+
+<!-- Conditionals. Each part is a wrapper holding a value, so it accepts the
+     same forms a value does, including the var= and expr= shorthands. -->
+<define name="cond_part_pat">
+  <element name="cond"><ref name="val_pat"/></element>
+</define>
+
+<define name="then_part_pat">
+  <element name="then"><ref name="val_pat"/></element>
+</define>
+
+<define name="else_part_pat">
+  <element name="else"><ref name="val_pat"/></element>
+</define>
+
+<define name="if_pat">
+  <element name="if">
+    <ref name="cond_part_pat"/>
+    <ref name="then_part_pat"/>
+    <ref name="else_part_pat"/>
+  </element>
+</define>
+
+<define name="cases_pat">
+  <element name="cases">
+    <oneOrMore>
+      <element name="case">
+        <ref name="cond_part_pat"/>
+        <ref name="then_part_pat"/>
+      </element>
+    </oneOrMore>
+    <ref name="else_part_pat"/>
+  </element>
+</define>
+
 <define name="expression_pat">
   <choice>
     <text/>
@@ -313,7 +348,10 @@
       </zeroOrMore>
       <ref name="base_val_pat"/>
     </element>
+    <ref name="if_pat"/>
+    <ref name="cases_pat"/>
     <ref name="data_type_pat"/>
+    <ref name="module_pat"/>
     <ref name="GSNNode"/>
   </choice>
 </define>
@@ -330,6 +368,7 @@
   <define name="val_pat">
     <choice>
       <attribute name="var"/>
+      <attribute name="expr"/>
       <ref name="base_val_pat"/>
     </choice>
   </define>
@@ -349,6 +388,7 @@
   </define>
 
 
+  <!-- <from> in a binding position: selected names are brought into scope. -->
   <define name="import_pat">
   <element name="from">
     <attribute name="file"/>
@@ -370,6 +410,21 @@
         </element>
       </oneOrMore>
     </choice>
+    <ref name="module_args_pat"/>
+  </element>
+</define>
+
+
+<!-- <from> in a value position: the module's record, with nothing selected. -->
+<define name="module_pat">
+  <element name="from">
+    <attribute name="file"/>
+    <ref name="module_args_pat"/>
+  </element>
+</define>
+
+
+<define name="module_args_pat">
     <zeroOrMore>
       <!-- var="x" is not repeated here: val_pat already offers it as one of
            its choices, and declaring the attribute twice in one group is what
@@ -383,7 +438,6 @@
         </optional>
       </element>
     </zeroOrMore>
-  </element>
 </define>
 
 <start>

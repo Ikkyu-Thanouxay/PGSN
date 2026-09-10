@@ -126,6 +126,55 @@ The rule is the same one Python uses for identifiers, and deliberately so: an [e
 
 Record labels are a different namespace and are unrestricted: `name` on `<get>` and `<send>`, `name` on `<attribute>`, and `key` on `<dt>` are arbitrary strings.
 
+### Conditionals (if, cases)
+
+`if_then_else` is a builtin and can be applied like any other, but a two-way choice written that way is hard to read. `<if>` says the same thing with the parts named:
+
+```xml
+<if>
+    <cond expr="i &lt; threshold"/>
+    <then>within budget</then>
+    <else>over budget</else>
+</if>
+```
+
+`<else>` is required. The branch not taken is not evaluated, so a conditional can guard a recursion.
+
+For a chain of conditions, `<cases>` takes the first `<case>` whose `<cond>` holds, and falls back to `<else>`:
+
+```xml
+<cases>
+    <case><cond expr="severity == 0"/><then>negligible</then></case>
+    <case><cond expr="severity &lt; 3"/><then>tolerable</then></case>
+    <else>unacceptable</else>
+</cases>
+```
+
+`<else>` is required here too. Without one, a `<cases>` that matched nothing would produce a term that simply gets stuck, and the mistake would surface far from where it was made.
+
+Each of `<cond>`, `<then>` and `<else>` is a wrapper holding a value, so any of the ways of writing a value work inside one, including the `var` and `expr` shorthands.
+
+Both forms are shorthands, expanded before compilation into an application of the `if_then_else` builtin, and both reach it in a way no binding can intercept — `<if>` means a conditional even in a scope that binds the name `if_then_else`.
+
+### Shorthand for Expressions
+
+Where an element's content is a single expression, the `expr` attribute says the same thing as an `<expr>` child. Like `var`, it is expanded by the preprocessor, so the two spellings are the same thing written two ways.
+
+```xml
+<!-- full form -->
+<arg><expr>i + 1</expr></arg>
+
+<!-- shorthand -->
+<arg expr="i + 1"/>
+```
+
+An element may not carry both the attribute and content of its own. Two details of XML are worth remembering: `<` must be written `&lt;` inside an attribute value, and an f-string needs the attribute quoted with `'` so that its own `"` survive.
+
+```xml
+<def name="label" expr='f"component {i}"'/>
+<li expr="i &lt; n"/>
+```
+
 ### Shorthand for Variable References
 
 When an element's content is a single variable reference, the `var` attribute can be used as shorthand.
@@ -184,6 +233,17 @@ Brings names from external PGSN files into scope. A document can only reach file
     <arg name="threshold" var="threshold"/>
 </from>
 ```
+
+### The module itself
+
+A `<from>` written where a value is expected denotes the module's record, with nothing selected out of it. A module is then an ordinary value: bind it with `<def>`, hold it in a list, pass it to a template.
+
+```xml
+<def name="lib"><from file="security.pgsn"/></def>
+<get label="secureGoal" of="lib"/>
+```
+
+Selecting a name at the point of import is what the forms above are for, so the two spellings do not mix: a `<from>` used as a value takes no `import`, and a `<from>` used as a binding needs one.
 
 ### Import paths and jails
 

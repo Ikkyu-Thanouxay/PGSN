@@ -137,6 +137,7 @@ class _Chroot:
 # so the compiler proper never sees them:
 #   1. def-as:          <def as="T">..</def>         ->  <def><T>..</T></def>
 #   2. var-attribute:   <tag var="x"/>               ->  <tag><var name="x"/></tag>
+#   2b. expr-attribute: <tag expr="1 + 2"/>          ->  <tag><expr>1 + 2</expr></tag>
 #   3. GSN text:        <Goal>txt<Strategy/>          ->  <Goal><description>txt</description><Strategy/>
 #   4. apply template:  <apply template="f">...</apply>
 #                                                    ->  <apply><var name="f"/>...</apply>
@@ -169,6 +170,10 @@ _DEFEATER_TAGS = {"Defeater"}
 # ------------------------------------------------------------------ #
 
 _RESERVED_PREFIX = "_"
+
+# The name an imported module's record is bound to. Reserved, so a document
+# can neither read it nor interfere with it.
+_MODULE_VAR = _RESERVED_PREFIX + "module"
 
 # Attributes holding the name of a *variable*, by element. `var` is shorthand
 # for a <var> child and is accepted on any element, so it is checked
@@ -431,6 +436,97 @@ def _expand_expr(elem: ET.Element) -> None:
     elem[:] = list(expansion)
 
 
+def _move_content(src: ET.Element, dst: ET.Element) -> None:
+    """Transplant whatever `src` says its value is into `dst`.
+
+    A value can be given as text, as a child element, or through the `var` and
+    `expr` shorthands, and a wrapper like <cond> is transparent to all four.
+    """
+    dst.text = src.text
+    for shorthand in ("var", "expr"):
+        if shorthand in src.attrib:
+            dst.set(shorthand, src.attrib[shorthand])
+    for child in list(src):
+        dst.append(child)
+
+
+def _one_child(elem: ET.Element, tag: str, owner: str) -> ET.Element:
+    found = [c for c in elem if c.tag == tag]
+    if len(found) != 1:
+        raise PGSNError(
+            f"<{owner}> needs exactly one <{tag}>, found {len(found)}")
+    return found[0]
+
+
+def _expand_if(elem: ET.Element) -> None:
+    """<if><cond/><then/><else/> -> an application of the builtin."""
+    known = {"cond", "then", "else"}
+    unexpected = [c.tag for c in elem if c.tag not in known]
+    if unexpected:
+        raise PGSNError(
+            f"<if> takes <cond>, <then> and <else>; found <{unexpected[0]}>")
+    parts = [_one_child(elem, tag, "if") for tag in ("cond", "then", "else")]
+    _rewrite_as_conditional(elem, parts)
+
+
+def _expand_cases(elem: ET.Element) -> None:
+    """<cases> is a chain of <case>s ending in an <else>, which is required:
+    a conditional with nothing to fall back on would simply get stuck."""
+    known = {"case", "else"}
+    unexpected = [c.tag for c in elem if c.tag not in known]
+    if unexpected:
+        raise PGSNError(
+            f"<cases> takes <case> and <else>; found <{unexpected[0]}>")
+    cases = [c for c in elem if c.tag == "case"]
+    if not cases:
+        raise PGSNError("<cases> needs at least one <case>")
+    if not len(elem) or elem[-1].tag != "else":
+        raise PGSNError("<cases> must end in an <else>")
+
+    fallback = elem[-1]
+    for case in cases:
+        unexpected = [c.tag for c in case if c.tag not in {"cond", "then"}]
+        if unexpected:
+            raise PGSNError(
+                f"<case> takes <cond> and <then>; found <{unexpected[0]}>")
+
+    # Built from the last case outwards, so each conditional is the else of
+    # the one before it. `result` is always a wrapper holding the value, the
+    # shape the rewriting below expects.
+    result = fallback
+    for case in reversed(cases):
+        branch = ET.Element("if")
+        _rewrite_as_conditional(
+            branch, [_one_child(case, "cond", "case"),
+                     _one_child(case, "then", "case"), result])
+        result = ET.Element("else")
+        result.append(branch)
+    _replace_with(elem, result[0])
+
+
+def _rewrite_as_conditional(elem: ET.Element, parts: list[ET.Element]) -> None:
+    """Turn `elem` into `if_then_else` applied to the three parts.
+
+    The builtin is reached through its reserved name, so `<if>` keeps meaning
+    a conditional in a scope that binds `if_then_else` to something else.
+    """
+    application = ET.Element("apply")
+    application.append(_reserved("if_then_else"))
+    for part in parts:
+        arg = ET.SubElement(application, "arg")
+        _move_content(part, arg)
+    _replace_with(elem, application)
+
+
+def _replace_with(elem: ET.Element, replacement: ET.Element) -> None:
+    """Become `replacement`, in place."""
+    elem.tag = replacement.tag
+    elem.attrib.clear()
+    elem.attrib.update(replacement.attrib)
+    elem.text = replacement.text
+    elem[:] = list(replacement)
+
+
 def _preprocess(elem: ET.Element) -> None:
     """Recursively expand shorthand notations in place."""
     # expr: replace with the XML it stands for, before anything else looks at
@@ -438,6 +534,25 @@ def _preprocess(elem: ET.Element) -> None:
     if elem.tag == "expr":
         _expand_expr(elem)
         return
+
+    # Conditionals are rewritten into an application of the builtin, and the
+    # result is preprocessed like any other element.
+    if elem.tag == "if":
+        _expand_if(elem)
+    elif elem.tag == "cases":
+        _expand_cases(elem)
+
+    # expr-attribute: <tag expr="1 + 2"/> -> <tag><expr>1 + 2</expr></tag>
+    # The <expr> this leaves behind is expanded when the recursion below
+    # reaches it, so the two spellings go through the same code.
+    if "expr" in elem.attrib:
+        if len(elem) > 0 or (elem.text and elem.text.strip()):
+            raise PGSNError(
+                f"<{elem.tag}> has both an 'expr' attribute and content of "
+                f"its own; the attribute is shorthand for the content.")
+        source = elem.attrib.pop("expr")
+        expr_elem = ET.SubElement(elem, "expr")
+        expr_elem.text = source
 
     # def-as: wrap the def body in an element named by the `as` attribute
     if elem.tag == "def" and "as" in elem.attrib:
@@ -774,11 +889,12 @@ def _compile_def(elem: ET.Element, chroot: _Chroot,
     return name, term
 
 
-def _compile_from(elem: ET.Element, chroot: _Chroot,
-                  visiting: frozenset[Path]) -> list[tuple[str, Term]]:
-    """
-    File I/O at compile time (path is a static literal).
-    Module application and field access are lazy Terms.
+def _module_record(elem: ET.Element, chroot: _Chroot,
+                   visiting: frozenset[Path]) -> Term:
+    """The record a `<from>` denotes: its module applied to its arguments.
+
+    File I/O happens here, at compile time, because the path is a static
+    literal. The application itself is an ordinary Term and is not evaluated.
     """
     file_path = elem.get("file", "")
     inner, full = chroot.enter(file_path)
@@ -796,13 +912,58 @@ def _compile_from(elem: ET.Element, chroot: _Chroot,
     # Args compiled in the caller's scope — they are Terms, not values yet
     args = {a.get("name"): _content(a, chroot, visiting)
             for a in elem.findall("arg")}
-    applied = module_term(record(args))
+    return module_term(record(args))
 
+
+def _e_from(elem: ET.Element, chroot: _Chroot,
+            visiting: frozenset[Path]) -> Term:
+    """`<from>` in a value position is the module's record.
+
+        <def name="lib"><from file="lib.xml"/></def>
+        <get name="secureGoal" of="lib"/>
+
+    A module is therefore an ordinary value: it can be bound, passed to a
+    template, or held in a list, like anything else. Selecting names out of it
+    at the point of import remains available and is what `<import>` is for,
+    but that form binds names and so belongs in a binding position.
+    """
+    if elem.get("import") is not None or elem.find("import") is not None:
+        raise PGSNError(
+            "<from> used as a value denotes the whole module, so it takes no "
+            "'import'. Either drop the import and select from the record with "
+            "<get>, or move the <from> into a binding position.")
+    if elem.get("as") is not None:
+        raise PGSNError(
+            "'as' renames an imported name, and <from> used as a value "
+            "imports none. Bind the module with <def> instead.")
+    return _module_record(elem, chroot, visiting)
+
+
+def _compile_from(elem: ET.Element, chroot: _Chroot,
+                  visiting: frozenset[Path]) -> list[tuple[str, Term]]:
+    """`<from>` in a binding position: bring selected names into scope.
+
+    The applied module is bound to a name of its own and each import projects
+    a field off that name, so the module occupies one position in the compiled
+    term however many names are taken from it. The name is reserved, so no
+    document can refer to it, and rebinding it for the next `<from>` in the
+    same block is harmless: each projection reads the binding nearest to it.
+    """
     single = elem.get("import")
     if single:
-        return [(elem.get("as", single), applied(string(single)))]
-    return [(imp.get("as", imp.get("name")), applied(string(imp.get("name"))))
-            for imp in elem.findall("import")]
+        wanted = [(elem.get("as", single), single)]
+    else:
+        wanted = [(imp.get("as", imp.get("name")), imp.get("name"))
+                  for imp in elem.findall("import")]
+    if not wanted:
+        raise PGSNError(
+            "<from> in a binding position needs an 'import'. To bind the "
+            "module itself, write it as a value: "
+            '<def name="..."><from file="..."/></def>.')
+
+    module = variable(_MODULE_VAR)
+    return ([(_MODULE_VAR, _module_record(elem, chroot, visiting))]
+            + [(alias, module(string(exported))) for alias, exported in wanted])
 
 
 # ------------------------------------------------------------------ #
@@ -827,6 +988,7 @@ def _expr(elem: ET.Element, chroot: _Chroot,
           visiting: frozenset[Path]) -> Term:
     dispatch = {
         "var":      _e_var,
+        "from":     _e_from,
         "num":      _e_num,
         "str":      _e_str,
         "template": _e_template,
