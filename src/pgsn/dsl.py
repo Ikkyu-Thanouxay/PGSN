@@ -85,6 +85,9 @@ boolean_or = lambda_abs_vars(
 boolean_not = lambda_abs(_x, if_then_else(_x)(false)(true))
 
 equal = Equal.named()
+# Ordering is defined on integers only. The remaining comparisons are derived:
+# a > b is less_than(b)(a), a <= b is boolean_not(less_than(b)(a)).
+less_than = LessThan.named()
 
 
 # Integer related
@@ -132,12 +135,15 @@ concat = lambda_abs_vars(
     (_list1, _list2),
     foldr(lambda_abs_vars((_elem, _acc), cons(_elem)(_acc)), _list2, _list1))
 
+# list_all(predicate, list): does the predicate hold for every element?
+# `fold` takes its arguments as fold(f)(accumulator)(list), so the initial
+# accumulator is `true` and the list being folded is the second parameter.
 list_all = lambda_abs_vars(
     (_x, _y),
     let(
         _f,
         lambda_abs_vars((_z, _w), boolean_and(_x(_z))(_w)),
-        fold(_f)(_y)(true)
+        fold(_f)(true)(_y)
     )
 )
 

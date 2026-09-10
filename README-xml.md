@@ -61,6 +61,71 @@ In PGSN, **everything is a value**. Every element that accepts content expects a
 <inherit><apply template="makeBaseClass"><arg>...</arg></apply></inherit>
 ```
 
+### Literals
+
+Bare text is a string, so the other literal forms are written out.
+
+| Element | Value |
+|---------|-------|
+| bare text | a `String`. Leading and trailing whitespace is removed, and `{name}` fields are interpolated — see [Format Strings in Text](#format-strings-in-text) |
+| `<num>3</num>` | an `Integer`. PGSN has no floating point numbers |
+| `<str> a {b} </str>` | a `String`, taken exactly as written: whitespace is kept and `{...}` is not interpolated |
+
+`<num>` matters because bare text stays a string even when it looks like a number, which is what lets a goal say `2024 audit passed` without the year turning into an integer. The arithmetic builtins only accept integers, so `<arg>3</arg>` gives them a string and leaves the term unreduced; write `<arg><num>3</num></arg>`.
+
+The builtins are ordinary bindings in the outermost scope, so `<var name="plus"/>` reaches the builtin unless something nearer binds that name.
+
+### Expressions (expr)
+
+Writing arithmetic with `<apply>` is heavy, so `<expr>` accepts the usual infix notation:
+
+```xml
+<def name="next"><expr>i + 1</expr></def>
+<def name="label"><expr>f"component {i} of {total}"</expr></def>
+```
+
+`<expr>` is a shorthand and nothing more. It is expanded before compilation begins into an application of the corresponding builtin, so nothing is reachable through an expression that is not reachable without one.
+
+**What may appear in an expression**
+
+| | |
+|---|---|
+| literals | `3`, `"text"`, `True`, `False` |
+| variables | `i` — becomes `<var name="i"/>` |
+| arithmetic | `+`, `-`, `*`, `//`, `%`, and unary `-` |
+| comparison | `==`, `!=`, `<`, `<=`, `>`, `>=` |
+| boolean | `and`, `or`, `not` |
+| f-strings | `f"component {i} of {total}"`, including format specifications such as `{i:>3}` |
+
+Everything else is rejected with an error naming what was found. There are no function calls, no attribute access and no subscripting: use `<apply>`, `<get>` and the list elements, which state plainly what they do.
+
+**Three things to know**
+
+`<` must be escaped in XML. Write `i &lt; n`, or wrap the expression in `CDATA`:
+
+```xml
+<expr>i &lt; n</expr>
+<expr><![CDATA[i < n]]></expr>
+```
+
+`>` needs no escaping, so `n > i` is often the easier way to say the same thing.
+
+`//` is integer division: `7 // 2` is `3`. `/` is rejected rather than treated as a synonym, so that it stays available for true division if PGSN ever gains a floating point type.
+
+Ordering compares integers only. `"a" < "b"` does not reduce; equality, however, works on any value, so `"a" == "a"` is `True`.
+
+**Operators cannot be redefined.** `1 + 2` is addition even inside a scope that binds the name `plus`.
+
+### Names
+
+A *name* is what `<def>` and `<param>` introduce and what `<var>` refers to. The same rule applies to every attribute that holds one: `name` and `instanceOf` on `<def>`, `<param>` and `<var>`, `as` on `<from>` and `<import>`, `template` on `<apply>`, `of` on `<get>`, `to` on `<send>`, `name` on `<arg>`, and the `var` shorthand attribute.
+
+A name must begin with a letter and may continue with letters, digits and underscores. Letters are not restricted to ASCII, so `ゴール` is a name. A name may **not** begin with an underscore; those are reserved by the implementation.
+
+The rule is the same one Python uses for identifiers, and deliberately so: an [expression](#expressions-expr) is parsed by Python's parser, so a name that could not appear in an expression would be unreachable from one.
+
+Record labels are a different namespace and are unrestricted: `name` on `<get>` and `<send>`, `name` on `<attribute>`, and `key` on `<dt>` are arbitrary strings.
+
 ### Shorthand for Variable References
 
 When an element's content is a single variable reference, the `var` attribute can be used as shorthand.
@@ -93,7 +158,7 @@ Parameters are only valid inside `<PGSNModule>` and must appear before any `<fro
 
 ## Import (from)
 
-Brings names from external PGSN files into scope. For security reasons, only relative file paths are allowed.
+Brings names from external PGSN files into scope. A document can only reach files it has been granted access to; see [Import paths and jails](#import-paths-and-jails) below.
 
 ### Single import
 
@@ -120,11 +185,63 @@ Brings names from external PGSN files into scope. For security reasons, only rel
 </from>
 ```
 
+### Import paths and jails
+
+A document is confined to a directory tree, and `file` may only name a file inside it. There are two ways to write a path.
+
+**Relative paths** are resolved against the directory of the document doing the importing:
+
+```xml
+<from file="modules/security.pgsn" import="secureGoal"/>
+<from file="../shared/evidence.pgsn" import="auditEvidence"/>
+```
+
+`..` is permitted, but only as long as the result stays inside the confinement root. The root of a document opened directly by path is the directory that document lives in, so by default a document can reach its neighbours and their subdirectories, and nothing above them.
+
+**Jailed paths** start with `/` and name a *jail* — a directory root registered by whoever runs PGSN:
+
+```xml
+<from file="/lib/security.pgsn" import="secureGoal"/>
+```
+
+Here `lib` is a jail name, not a directory on disk. It is resolved against the jail table supplied on the command line or through the API:
+
+```console
+$ pgsn doc main.xml --jail lib=/opt/pgsn-lib
+```
+
+```python
+import pgsn
+
+cfg = pgsn.Config(jails={"lib": "/opt/pgsn-lib"})
+term = pgsn.load_xml("main.xml", config=cfg)
+```
+
+A document has no way to name a jail that was not registered, and no way to reach the real filesystem layout behind one. Jail names may contain letters, digits, `_` and `-` only.
+
+Once an import crosses into a jail, that jail becomes the confinement root for the imported module. A module inside a jail may import its neighbours relatively, but cannot climb out with `..` — not even back into the tree of the document that imported it. Crossing from one jail to another always requires naming the target jail explicitly.
+
+The following are rejected:
+
+| Path | Reason |
+|------|--------|
+| `../../etc/passwd` | leaves the confinement root |
+| `/etc/passwd` | `etc` is not a registered jail |
+| `/lib/../secret.pgsn` | `..` is not allowed in a jailed path |
+| `/lib/link.pgsn` where `link.pgsn` is a symlink out of the jail | resolves outside the jail root |
+| `C:\lib\mod.pgsn` | absolute paths must name a jail |
+
+Symbolic links are expanded before the containment check, so a link planted inside a jail cannot be used to escape it.
+
 ---
 
 ## Definitions (def)
 
-`def` binds a name to a value. PGSN is purely functional, so rebinding is not allowed.
+`def` binds a name to a value.
+
+A name may be bound more than once in the same block; a later binding shadows an earlier one from that point on. Nothing is mutated — the earlier binding still holds wherever it was already visible — so this is shadowing, not assignment. In particular a binding's own value is read in the scope *before* it, which means `<def name="x"><var name="x"/></def>` refers to the outer `x` rather than to itself; use `recursive="true"` for self-reference.
+
+The builtin names are bound the same way, in the outermost scope, so a document is free to bind `head` or `goal` to something of its own.
 
 ```xml
 <def name="x">expr</def>
@@ -214,17 +331,17 @@ References a previously defined name.
 
 ### Built-ins
 
-The following names are predefined; reference them with `<var name="..."/>` and apply them via `apply`.
+The following names are predefined; reference them with `<var name="..."/>` and apply them via `apply`. They are exactly the term-valued names exported by the `pgsn` Python package, so anything usable from Python is usable here under the same name.
 
-- List operations: `cons`, `head`, `tail`, `index`, `concat`, `map_term`, `fold`
-- Booleans: `true`, `false`, `if_then_else`, `boolean_and`, `boolean_or`, `boolean_not`, `equal`, `guard`
-- Integers: `plus`, `minus`, `times`, `div`, `mod`
-- Records: `has_label`, `list_labels`, `add_attribute`, `remove_attribute`, `overwrite_record`
+- List operations: `cons`, `head`, `tail`, `index`, `concat`, `map_term`, `fold`, `foldr`, `list_all`, `empty`
+- Booleans: `true`, `false`, `if_then_else`, `boolean_and`, `boolean_or`, `boolean_not`, `equal`, `less_than`, `guard`
+- Integers: `plus`, `minus`, `times`, `div`, `mod`, `integer_sum`
+- Records: `has_label`, `list_labels`, `add_attribute`, `remove_attribute`, `overwrite_record`, `empty_record`
 - Strings: `format_string`
-- Classes / objects: `define_class`, `instantiate`, `is_instance`, `is_subclass`, `base_class`
-- Misc: `fix`, `undefined`
-- GSN constructors: `goal`, `strategy`, `evidence`, `context`, `assumption`, `undeveloped`, `immediate`, `evidence_as_goal`
-- GSN classes (long form): `goal_class`, `strategy_class`, `evidence_class`, `context_class`, `assumption_class`, `gsn_class`, `support_class`, `undeveloped_class`
+- Classes / objects: `define_class`, `instantiate`, `instance`, `is_instance`, `is_subclass`, `base_class`
+- Misc: `fix`, `repeat`, `undefined`
+- GSN constructors: `goal`, `strategy`, `evidence`, `context`, `assumption`, `defeater`, `undeveloped`, `immediate`, `evidence_as_goal`
+- GSN classes (long form): `goal_class`, `strategy_class`, `evidence_class`, `context_class`, `assumption_class`, `defeater_class`, `gsn_class`, `support_class`, `undeveloped_class`
 - GSN classes (short aliases): `Goal`, `Strategy`, `Evidence`, `Context`, `Assumption`, `GSN`, `Support`
 
 Example (mapping a template over a list):
@@ -441,6 +558,14 @@ For GSN header elements (`Goal`, `Strategy`, `Evidence`, `Context`, `Assumption`
 </Goal>
 ```
 
+A header with no leading text takes a single value child as its description, so a computed description needs no `<description>` wrapper:
+
+```xml
+<Evidence><expr>f"test report {i}"</expr></Evidence>
+```
+
+A header carrying more than one value child is an error; say which one is the description by writing it out.
+
 ---
 
 ## GSN Nodes
@@ -538,6 +663,37 @@ A set (`ul`) or list (`ol`) can be passed to `subGoals` to specify sub-goals dyn
     <Context>description of the test environment</Context>
 </Evidence>
 ```
+
+### Defeaters
+
+GSN v3 adds a dialectic extension: a *defeater* records a doubt about part of an argument rather than support for it. Any GSN node can hold defeaters, and a defeater is itself a GSN node, so it can be challenged in turn.
+
+```xml
+<Goal>the system is safe
+    <Defeater>hazard H4 is unmitigated
+        <Evidence>incident report 2026-03</Evidence>
+    </Defeater>
+    <Defeater>the test suite is out of date
+        <Defeater>it was refreshed in revision 7</Defeater>
+    </Defeater>
+    <Evidence>test report</Evidence>
+</Goal>
+```
+
+A `<Defeater>` is written like any other GSN node: leading text or a `<description>` gives the description, a nested `<Evidence>`, `<Strategy>`, `<Goal>` or `<supportedBy>` gives its support, and nested `<Defeater>` elements challenge it. Support is optional and defaults to undeveloped: a defeater that argues its case fills it in, one that merely states an objection leaves it out.
+
+Defeaters attach to strategies and to evidence as well as to goals:
+
+```xml
+<Strategy>argue over each hazard
+    <Defeater>the hazard list is incomplete</Defeater>
+    <Goal>H1 is mitigated<Evidence>report H1</Evidence></Goal>
+</Strategy>
+```
+
+The corresponding builtin is `defeater`, with the class value `defeater_class`. In a rendered graph a defeater is drawn as a hexagon with a broken outline, and the challenge is drawn with a dashed arrow, so that it does not read as SupportedBy.
+
+The standard has no Defeater element of its own: a defeater there is an ordinary Goal or Solution joined to its target by a Challenges relationship, and the literature's rebutting/undercutting distinction is read off the argument rather than off the notation. PGSN makes the challenging role a class instead, because a term language has no edges to carry a relationship. One class covers both kinds.
 
 ---
 

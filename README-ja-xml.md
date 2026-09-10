@@ -59,6 +59,71 @@ PGSN では**すべてが値**です。コンテンツを受け取る要素は�
 <inherit><apply template="makeBaseClass"><arg>...</arg></apply></inherit>
 ```
 
+### リテラル
+
+裸のテキストは文字列になるので、それ以外のリテラルは明示的に書きます。
+
+| 要素 | 値 |
+|------|-----|
+| 裸のテキスト | `String`。前後の空白は除去され、`{name}` は補間されます（[テキスト中の書式文字列](#テキスト中の書式文字列)を参照） |
+| `<num>3</num>` | `Integer`。PGSN に浮動小数点数はありません |
+| `<str> a {b} </str>` | `String`。書いたとおりに解釈され、空白は保たれ `{...}` は補間されません |
+
+`<num>` が必要なのは、数字に見えても裸のテキストは文字列のままだからです。おかげでゴールに「2024年度の監査に合格」と書いても年が整数になりません。逆に算術の組み込みは整数しか受け取らないので、`<arg>3</arg>` は文字列を渡すことになり項が簡約されません。`<arg><num>3</num></arg>` と書いてください。
+
+組み込みは最も外側のスコープにある普通の束縛です。したがって `<var name="plus"/>` は、より内側で `plus` を束縛するものがなければ組み込みに解決されます。
+
+### 式（expr）
+
+算術を `<apply>` で書くのは重いので、`<expr>` では通常の中置記法が使えます。
+
+```xml
+<def name="next"><expr>i + 1</expr></def>
+<def name="label"><expr>f"コンポーネント {i} / {total}"</expr></def>
+```
+
+`<expr>` は略記であって、それ以上のものではありません。コンパイルが始まる前に、対応する組み込みの適用へ展開されます。式を通してしか到達できない機能は存在しません。
+
+**式の中に書けるもの**
+
+| | |
+|---|---|
+| リテラル | `3`、`"text"`、`True`、`False` |
+| 変数 | `i` — `<var name="i"/>` になります |
+| 算術 | `+`、`-`、`*`、`//`、`%`、単項の `-` |
+| 比較 | `==`、`!=`、`<`、`<=`、`>`、`>=` |
+| 論理 | `and`、`or`、`not` |
+| f-string | `f"コンポーネント {i} / {total}"`。`{i:>3}` のような書式指定も使えます |
+
+これ以外は、何が見つかったかを示すエラーで拒否されます。関数呼び出し・属性アクセス・添字はありません。`<apply>`・`<get>`・リスト要素を使ってください。そちらのほうが何をしているか明確です。
+
+**注意点が3つ**
+
+XML では `<` をエスケープする必要があります。`i &lt; n` と書くか、`CDATA` で囲みます。
+
+```xml
+<expr>i &lt; n</expr>
+<expr><![CDATA[i < n]]></expr>
+```
+
+`>` はエスケープ不要なので、`n > i` と書き換えるほうが楽なことも多いです。
+
+`//` が整数除算です。`7 // 2` は `3` になります。`/` は同義語として受け付けるのではなくエラーにしています。将来 PGSN に浮動小数点数を導入したとき、`/` を通常の除算に割り当てられるようにするためです。
+
+大小比較は整数のみです。`"a" < "b"` は簡約されません。等価比較はどんな値にも使えるので `"a" == "a"` は `True` です。
+
+**演算子は再定義できません。** `plus` という名前を束縛しているスコープの中でも `1 + 2` は加算のままです。
+
+### 名前
+
+*名前*とは、`<def>` と `<param>` が導入し `<var>` が参照するものです。名前を保持する属性はすべて同じ規則に従います。`<def>`・`<param>`・`<var>` の `name` と `instanceOf`、`<from>`・`<import>` の `as`、`<apply>` の `template`、`<get>` の `of`、`<send>` の `to`、`<arg>` の `name`、そして略記の `var` 属性です。
+
+名前は文字で始まり、以降は文字・数字・アンダースコアを続けられます。文字は ASCII に限りません。`ゴール` は名前として使えます。ただし先頭にアンダースコアは**使えません**。処理系が予約しています。
+
+この規則は Python の識別子と同じで、これは意図的なものです。[式](#式expr)は Python のパーサーで解析されるため、式に書けない名前を許すと、その名前は式から参照できなくなってしまいます。
+
+レコードのラベルは別の名前空間で、制限はありません。`<get>` と `<send>` の `name`、`<attribute>` の `name`、`<dt>` の `key` は任意の文字列です。
+
 ### 変数参照の略記
 
 要素のコンテンツが変数参照のみの場合、`var` 属性で略記できます。
@@ -91,7 +156,7 @@ PGSN では**すべてが値**です。コンテンツを受け取る要素は�
 
 ## import（from）
 
-外部の PGSN ファイルから名前を持ち込みます。セキュリティ上の理由から、ファイルパスは相対パスのみ使用できます。
+外部の PGSN ファイルから名前を持ち込みます。ドキュメントがアクセスできるのは許可された範囲のファイルだけです。詳しくは下の [import パスと jail](#import-パスと-jail) を参照してください。
 
 ### 単一 import
 
@@ -118,11 +183,63 @@ PGSN では**すべてが値**です。コンテンツを受け取る要素は�
 </from>
 ```
 
+### import パスと jail
+
+ドキュメントはあるディレクトリツリーに閉じ込められており、`file` にはその中のファイルしか書けません。パスの書き方は 2 通りあります。
+
+**相対パス**は、import する側のドキュメントがあるディレクトリを基準に解決されます。
+
+```xml
+<from file="modules/security.pgsn" import="secureGoal"/>
+<from file="../shared/evidence.pgsn" import="auditEvidence"/>
+```
+
+`..` は使えますが、結果が封じ込めルートの内側に留まる場合に限ります。パスを指定して直接開いたドキュメントのルートは、そのドキュメント自身が置かれているディレクトリです。つまり既定では、隣接するファイルとその配下には届き、それより上には届きません。
+
+**jail パス**は `/` で始まり、先頭の要素が *jail* の名前になります。jail は PGSN を実行する側が登録するディレクトリルートです。
+
+```xml
+<from file="/lib/security.pgsn" import="secureGoal"/>
+```
+
+ここで `lib` はディスク上のディレクトリ名ではなく jail 名です。コマンドラインまたは API で与えた jail テーブルを使って解決されます。
+
+```console
+$ pgsn doc main.xml --jail lib=/opt/pgsn-lib
+```
+
+```python
+import pgsn
+
+cfg = pgsn.Config(jails={"lib": "/opt/pgsn-lib"})
+term = pgsn.load_xml("main.xml", config=cfg)
+```
+
+ドキュメント側から未登録の jail を指定する手段はなく、jail の背後にある実際のディレクトリ構成を知る手段もありません。jail 名に使えるのは英数字と `_`、`-` のみです。
+
+import が jail に入ると、その jail が import 先モジュールの封じ込めルートになります。jail 内のモジュールは相対パスで近傍を import できますが、`..` で外に出ることはできません。import 元のドキュメントがあるツリーに戻ることもできません。ある jail から別の jail へ移るには、必ず対象の jail 名を明示する必要があります。
+
+以下はいずれも拒否されます。
+
+| パス | 理由 |
+|------|------|
+| `../../etc/passwd` | 封じ込めルートの外に出る |
+| `/etc/passwd` | `etc` は登録された jail ではない |
+| `/lib/../secret.pgsn` | jail パスに `..` は使えない |
+| `/lib/link.pgsn`（`link.pgsn` が jail 外へのシンボリックリンク） | 解決結果が jail の外になる |
+| `C:\lib\mod.pgsn` | 絶対パスは jail 名で始まらなければならない |
+
+シンボリックリンクは封じ込め検証の前に展開されるため、jail 内に仕込まれたリンクで脱獄することはできません。
+
 ---
 
 ## 定義（def）
 
-`def` は名前に値を束縛します。純粋関数型なので再代入はありません。
+`def` は名前に値を束縛します。
+
+同じブロックで同じ名前を複数回束縛できます。後の束縛がその位置から先で前の束縛を覆い隠します。書き換えは起きません。前の束縛は、それが既に見えていた場所ではそのまま有効です。つまり代入ではなくシャドーイングです。とくに束縛の値はその束縛が入る*前*のスコープで読まれるので、`<def name="x"><var name="x"/></def>` は自分自身ではなく外側の `x` を指します。自己参照には `recursive="true"` を使ってください。
+
+組み込みの名前も同じ仕組みで最外スコープに束縛されているだけなので、ドキュメントが `head` や `goal` を自分の値に束縛しても構いません。
 
 ```xml
 <def name="x">expr</def>
@@ -212,17 +329,17 @@ PGSN では**すべてが値**です。コンテンツを受け取る要素は�
 
 ### 組み込み（builtin）
 
-以下の名前はあらかじめ定義済みで、`<var name="..."/>` で参照し `apply` に適用できます。
+以下の名前はあらかじめ定義済みで、`<var name="..."/>` で参照し `apply` に適用できます。これは `pgsn` パッケージが公開する項値の名前とちょうど一致しており、Python から使えるものは同じ名前で XML からも使えます。
 
-- リスト操作: `cons`・`head`・`tail`・`index`・`concat`・`map_term`・`fold`
-- 真偽値: `true`・`false`・`if_then_else`・`boolean_and`・`boolean_or`・`boolean_not`・`equal`・`guard`
-- 整数: `plus`・`minus`・`times`・`div`・`mod`
-- レコード: `has_label`・`list_labels`・`add_attribute`・`remove_attribute`・`overwrite_record`
+- リスト操作: `cons`・`head`・`tail`・`index`・`concat`・`map_term`・`fold`・`foldr`・`list_all`・`empty`
+- 真偽値: `true`・`false`・`if_then_else`・`boolean_and`・`boolean_or`・`boolean_not`・`equal`・`less_than`・`guard`
+- 整数: `plus`・`minus`・`times`・`div`・`mod`・`integer_sum`
+- レコード: `has_label`・`list_labels`・`add_attribute`・`remove_attribute`・`overwrite_record`・`empty_record`
 - 文字列: `format_string`
-- クラス／オブジェクト: `define_class`・`instantiate`・`is_instance`・`is_subclass`・`base_class`
-- その他: `fix`・`undefined`
-- GSN コンストラクタ: `goal`・`strategy`・`evidence`・`context`・`assumption`・`undeveloped`・`immediate`・`evidence_as_goal`
-- GSN クラス（長い名前）: `goal_class`・`strategy_class`・`evidence_class`・`context_class`・`assumption_class`・`gsn_class`・`support_class`・`undeveloped_class`
+- クラス／オブジェクト: `define_class`・`instantiate`・`instance`・`is_instance`・`is_subclass`・`base_class`
+- その他: `fix`・`repeat`・`undefined`
+- GSN コンストラクタ: `goal`・`strategy`・`evidence`・`context`・`assumption`・`defeater`・`undeveloped`・`immediate`・`evidence_as_goal`
+- GSN クラス（長い名前）: `goal_class`・`strategy_class`・`evidence_class`・`context_class`・`assumption_class`・`defeater_class`・`gsn_class`・`support_class`・`undeveloped_class`
 - GSN クラス（短いエイリアス）: `Goal`・`Strategy`・`Evidence`・`Context`・`Assumption`・`GSN`・`Support`
 
 例（リストにテンプレートを写像する）:
@@ -438,6 +555,14 @@ GSN ヘッダー要素（`Goal`・`Strategy`・`Evidence`・`Context`・`Assumpt
 </Goal>
 ```
 
+先頭の地テキストが無い場合、値を表す子要素が1つだけあればそれが description になります。計算した description に `<description>` を被せる必要はありません。
+
+```xml
+<Evidence><expr>f"テスト報告書 {i}"</expr></Evidence>
+```
+
+値を表す子要素が複数ある場合はエラーになります。どれが description なのかを明示してください。
+
 ---
 
 ## GSN ノード
@@ -533,6 +658,37 @@ Goal・Strategy・Evidence はすべて共通のヘッダ構造を持ちます�
     <Context>テスト環境の説明</Context>
 </Evidence>
 ```
+
+### 反証（Defeater）
+
+GSN v3 で追加された dialectic extension では、*defeater* が議論の一部に対する疑いを記録します。支持ではなく攻撃を表す点が他のノードと違います。どの GSN ノードも defeater を持てます。defeater 自身も GSN ノードなので、さらに反証されることもあります。
+
+```xml
+<Goal>システムは安全である
+    <Defeater>ハザード H4 が未対応である
+        <Evidence>インシデント報告 2026-03</Evidence>
+    </Defeater>
+    <Defeater>テストスイートが仕様に追従していない
+        <Defeater>改訂 7 で更新済みである</Defeater>
+    </Defeater>
+    <Evidence>試験報告書</Evidence>
+</Goal>
+```
+
+書き方は他の GSN ノードと同じで、先頭テキストか `<description>` が description になり、入れ子の `<Evidence>`・`<Strategy>`・`<Goal>`・`<supportedBy>` が support に、入れ子の `<Defeater>` がそれ自身への反証になります。support は省略でき、既定は undeveloped です。対抗論拠を伴う反証は support を埋め、異議を述べるだけの反証は空のままにします。
+
+defeater はゴールだけでなく、戦略やエビデンスにも付きます。
+
+```xml
+<Strategy>ハザードごとに議論する
+    <Defeater>ハザード一覧が網羅的でない</Defeater>
+    <Goal>H1 は緩和されている<Evidence>試験報告書 H1</Evidence></Goal>
+</Strategy>
+```
+
+対応する組み込みは `defeater`、クラス値は `defeater_class` です。図では破線の六角形で描かれ、challenge の辺も破線になります。SupportedBy と読み違えないためです。
+
+なお規格そのものには Defeater 要素はありません。規格上の defeater は、Challenges 関係で対象に繋がった普通の Goal または Solution であり、rebutting と undercutting の区別も記法ではなく議論の中身から読み取るものです。PGSN は項の言語で辺を持たないため、攻撃するという役割をクラスとして表現しています。区別は 1 クラスで足ります。
 
 ---
 

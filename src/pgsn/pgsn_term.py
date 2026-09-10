@@ -246,6 +246,13 @@ class Term(ABC):
         return self(item)
 
     def __getattr__(self, name):
+        # Attribute access is sugar for record lookup: `t.description` means
+        # `t("description")`. Dunder names are excluded, because returning a
+        # Term for any `__x__` makes every introspection protocol misbehave —
+        # `inspect.unwrap` follows `__wrapped__` forever, and copy, pickle and
+        # pytest's collector are misled the same way.
+        if name.startswith("__") and name.endswith("__"):
+            raise AttributeError(name)
         return self(name)
 
     def pretty(self):
@@ -357,8 +364,6 @@ class Abs(Term):
 
 @frozen
 class App(Term):
-    def _shit_or_none(self, num: int, cutoff: int) -> Term | None:
-        pass
 
     t1: Term = field(validator=helpers.not_none)
     t2: Term = field(validator=helpers.not_none)
@@ -367,7 +372,7 @@ class App(Term):
     def _check_t1(self, _, v):
         assert v.is_named == self.is_named
 
-    @t1.validator
+    @t2.validator
     def _check_t2(self, _, v):
         assert v.is_named == self.is_named
 
@@ -833,7 +838,10 @@ class IsSubclass(ConstMixin, Builtin):
         else:
             return False
 
-    def _apply_args(self, args: tuple[PGSNClass, PGSNClass]) -> Term:
+    # `apply_args` hands over every pending argument, not just the ones this
+    # builtin consumes, so the tuple is variadic. `_applicable_args` is what
+    # checks that args[0] and args[1] are classes.
+    def _apply_args(self, args: tuple[Term, ...]) -> Term:
         cls1 = args[0]
         cls2 = args[1]
 
@@ -953,7 +961,9 @@ class Cons(ConstMixin, Builtin):
     def _applicable_args(self, args: tuple[Term,...]):
         return isinstance(args[1], List)
 
-    def _apply_args(self, args: tuple[Term, List]):
+    # Variadic for the same reason as IsSubclass._apply_args above; that args[1]
+    # is a List has already been established by _applicable_args.
+    def _apply_args(self, args: tuple[Term, ...]):
         return evolve(args[1], terms=(args[0],) + args[1].terms)
 
 @frozen
@@ -1150,6 +1160,24 @@ class Guard(ConstMixin, Builtin):
         return terms[1]
 
 
+# Ordering. Only integers are ordered; the other comparisons in the expression
+# syntax are derived from this one and from Equal.
+@frozen
+class LessThan(ConstMixin, Builtin):
+
+    @classmethod
+    def build(cls, is_named: bool, **kwarg) -> Term:
+        return super().build(arity=2, is_named=is_named, **kwarg)
+
+    def _applicable_args(self, args: tuple[Term, ...]):
+        return (len(args) >= 2
+                and isinstance(args[0], Integer) and isinstance(args[1], Integer))
+
+    def _apply_args(self, args: tuple[Term, ...]):
+        return Boolean.build(is_named=self.is_named,
+                             value=args[0].value < args[1].value)
+
+
 # Comparison. does not compare App and Abs
 @frozen
 class Equal(ConstMixin, Builtin):
@@ -1175,7 +1203,9 @@ class HasLabel(ConstMixin, Builtin):
     def _applicable_args(self, terms: tuple[Term,...]):
         return isinstance(terms[0], Record) and isinstance(terms[1], String)
 
-    def _apply_args(self, terms: tuple[Record, String]):
+    # Variadic: see IsSubclass._apply_args. _applicable_args has already
+    # established that terms[0] is a Record and terms[1] a String.
+    def _apply_args(self, terms: tuple[Term, ...]):
         k = terms[1].value
         b = k in terms[0].attributes()
         return Boolean.build(is_named=self.is_named, value=b)
