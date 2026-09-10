@@ -81,4 +81,83 @@ Result:
 - This happens during test collection, before evaluator execution.
 - It is treated as a separate pre-existing compatibility issue and is
   outside the baseline-metrics change.
-  
+
+## 2026-09-10: Environment evaluator scaling and Builtin checkpoint
+
+### Purpose
+
+Evaluate whether environment-based evaluation is promising for reducing
+the repeated `shift` / `subst` traversal observed in the current PGSN evaluator.
+
+### Correctness
+
+The environment evaluator was compared with the current evaluator.
+
+13 comparison tests now pass, including:
+
+- basic lambda application
+- captured variables
+- delayed and unused arguments
+- a deep nested-lambda stress case
+- arithmetic Builtins: `plus`, `minus`, `times`, and `div`
+- Builtin arguments obtained through an environment
+- a Builtin passed through the environment as a function
+
+The tested expressions produced the same final results in both evaluators.
+
+### Scaling result
+
+A synthetic captured-variable expression was tested at depths:
+
+- 10
+- 25
+- 50
+- 100
+- 200
+
+For this workload, `shift` and `subst` node visits in the current evaluator
+grew approximately quadratically with nesting depth.
+
+The environment evaluator instead used closures, delayed arguments, and
+environment lookup without rewriting the lambda body during beta reduction.
+
+Repeated timing measurements showed that the performance difference became
+larger as nesting depth increased.
+
+This result applies only to the tested synthetic lambda workload and does
+not establish the performance of full PGSN programs.
+
+### Arithmetic Builtin extension
+
+The prototype was extended with `BuiltinClosure`.
+
+The same mechanism supports:
+
+- `plus`
+- `minus`
+- `times`
+- `div`
+
+It also works when an arithmetic argument comes from an environment and
+when the Builtin itself is passed as a function.
+
+### Current conclusion
+
+Environment-based evaluation appears promising for reducing the
+substitution/shift bottleneck identified in the current evaluator.
+
+The prototype is still incomplete. General Builtins, lists, records,
+PGSN classes/objects, real XML workloads, and an explicit continuation
+structure remain future work.
+
+Detailed Day 4 measurements:
+
+`experiments/cek_machine/day4_results.md`
+
+Reproducible benchmark:
+
+`experiments/cek_machine/benchmark_pgsn_env_eval.py`
+
+Raw final benchmark output:
+
+`experiments/cek_machine/day4_benchmark_output.txt`

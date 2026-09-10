@@ -1,0 +1,70 @@
+
+=== Small comparison benchmarks ===
+
+=== Identity ===
+Runs per batch: 1000
+Current evaluator:     0.014374 ms
+Environment evaluator: 0.011530 ms
+Current / Environment: 1.25x
+
+=== Constant function ===
+Runs per batch: 1000
+Current evaluator:     0.010399 ms
+Environment evaluator: 0.010777 ms
+Current / Environment: 0.97x
+
+=== Captured variable ===
+Runs per batch: 1000
+Current evaluator:     0.024010 ms
+Environment evaluator: 0.020872 ms
+Current / Environment: 1.15x
+
+=== Function argument ===
+Runs per batch: 1000
+Current evaluator:     0.024665 ms
+Environment evaluator: 0.021358 ms
+Current / Environment: 1.15x
+
+=== Unused argument ===
+Runs per batch: 1000
+Current evaluator:     0.015270 ms
+Environment evaluator: 0.015604 ms
+Current / Environment: 0.98x
+
+=== Used delayed argument ===
+Runs per batch: 1000
+Current evaluator:     0.021963 ms
+Environment evaluator: 0.020887 ms
+Current / Environment: 1.05x
+
+=== Deep captured-variable scaling ===
+
+=== Deep captured variable (depth=10) ===
+Runs per batch: 100
+Current evaluator:     0.264394 ms
+Environment evaluator: 0.095573 ms
+Current / Environment: 2.77x
+
+=== Deep captured variable (depth=25) ===
+Runs per batch: 100
+Current evaluator:     1.131799 ms
+Environment evaluator: 0.218175 ms
+Current / Environment: 5.19x
+
+=== Deep captured variable (depth=50) ===
+Runs per batch: 100
+Current evaluator:     3.900322 ms
+Environment evaluator: 0.428438 ms
+Current / Environment: 9.10x
+
+=== Deep captured variable (depth=100) ===
+Runs per batch: 100
+Current evaluator:     14.850440 ms
+Environment evaluator: 0.834660 ms
+Current / Environment: 17.79x
+
+=== Deep captured variable (depth=200) ===
+Runs per batch: 100
+Current evaluator:     57.522224 ms
+Environment evaluator: 1.682803 ms
+Current / Environment: 34.18x
