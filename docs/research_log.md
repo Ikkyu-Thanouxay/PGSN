@@ -161,3 +161,48 @@ Reproducible benchmark:
 Raw final benchmark output:
 
 `experiments/cek_machine/day4_benchmark_output.txt`
+
+## 2026-09-12: Python example milestone — baseline and plan
+
+- Goal: evaluate the existing `examples/cli.py` `main` end-to-end and compare
+  the complete result with the current evaluator; stop at the Python milestone.
+- Starting commit: `c693a8f10e6d765684e0b64ad5524fbe580eb2e7`.
+  Branch: `research/env-evaluator-py-support`; working tree initially clean.
+- Inspected: AGENTS.md, prototype, comparison tests, benchmark implementation
+  (not executed), this log, recent git history, evaluator Term/Context/Builtin
+  implementations, DSL keyword/class constructors, GSN constructors, existing
+  Python examples, and record/object tests.
+- Baseline: `.venv/bin/python -m pytest experiments/cek_machine/test_pgsn_env_eval.py`
+  **13 passed in 0.08s**; `.venv/bin/python -m pytest` **352 passed in 0.71s**.
+  `python` was absent and system `python3` lacked pytest; use the existing venv.
+  The old collection problem in test_objects.py does not reproduce.
+- Selection: `examples/cli.py` is the smallest standalone GSN entry-point
+  example: a goal, strategy, two child goals and evidence. `gsn.py`/`secure.py`
+  duplicate this graph with extra imports/display; custom_goal adds a custom
+  class, map_term adds mapping, and other examples add templates, external
+  inputs or rendering. No example source will be rewritten or pre-evaluated.
+- Exact initial syntax inventory: App 101, Variable 84, String 83, Record 60,
+  List 41, Abs 34, DefineClass 24, PGSNClass 9, OverwriteRecord 6.
+  Current evaluator returns PGSNObject; prototype first fails on DefineClass.
+  Blockers: Record construction/projection, List values, PGSNClass values and
+  application, PGSNObject values, DefineClass and OverwriteRecord. PGSNObject
+  is generated at runtime. No other Builtin family is needed.
+- Semantic finding: Context checks Builtin applicability before reducing the
+  head or arguments. Record projection and overwrite can discard erroneous
+  fields. Container normalization advances each child one reduction per pass;
+  fully evaluating children in sequence can change which error occurs first.
+  Invalid applications may remain stuck Terms in the current evaluator,
+  whereas the prototype raises TypeError. Preserve stuck results for the new
+  path; do not silently manufacture successful values.
+- Plan: add an environment-backed structured evaluation path, with suspended
+  children and one-step reduction matching Context/container order. Preserve
+  delayed beta arguments using environments, reuse only the selected Builtin
+  predicates/operations, and materialize ordinary Terms at the result boundary.
+  Do not delegate evaluation to fully_eval, eval_or_none, shift or subst.
+  Compare projection/overwrite laziness, captured variables, error order,
+  class defaults/overrides and complete GSN output. Keep the existing scalar
+  path/tests as a baseline. Commit stable related support with tests, then add
+  the unchanged Python entry-point integration check and reproduction command.
+- Limits: this establishes correctness on the selected program and focused
+  cases, not general PGSN support or real-program speedups. No benchmarks,
+  explicit K implementation, or XML feature work is planned.
