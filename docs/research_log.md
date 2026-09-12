@@ -243,3 +243,63 @@ Raw final benchmark output:
   compare complete Terms, Python values and GSN tree content, and verify no
   reference evaluator traversal is used. Record the support commit SHA in the
   next checkpoint. No production evaluator or existing example was modified.
+
+### Python milestone complete
+
+- Support checkpoint: `d1a946a` (pushed), following plan checkpoint `4d5e75b`.
+  This final entry and the integration test form the checkpoint titled
+  `Verify existing Python GSN example end-to-end` (its SHA is available with
+  `git log -1 --format=%H` at the milestone checkout and in the session handoff).
+- Selected program: unchanged `examples/cli.py`, entry-point Term `main`.
+  Loaded with runpy, without pre-evaluating or rewriting the program. Both
+  evaluators produce the same full PGSNObject, including class/default data,
+  the same Python value with inheritance chains, and the same GSN tree:
+  Goal "System is secure" -> Strategy "Break into sub-goals" -> Goals
+  "Input validated" / "Output sanitized", supported by Evidence
+  "Static analysis passed" / "Fuzzing test succeeded" respectively.
+- Integration verification patches Term.fully_eval, eval, eval_or_none, shift,
+  shift_or_none, subst and subst_or_none to raise during eval_env. The program
+  still evaluates successfully: no reference evaluation/shift/subst fallback.
+- Exact reproduction, from the repository root:
+
+  ```sh
+  .venv/bin/python -m pytest -q -s experiments/cek_machine/test_pgsn_env_eval.py::test_existing_python_cli_example
+  .venv/bin/python -m pytest experiments/cek_machine/test_pgsn_env_eval.py
+  .venv/bin/python -m pytest
+  ```
+
+  Results: **1 passed in 0.10s**, **30 passed in 0.12s**, and
+  **369 passed in 0.78s**, respectively, with Python 3.14.7 / pytest 8.4.2.
+  Full suite includes existing XML tests; no XML evaluation feature work was
+  performed. No expensive benchmark or SolarWinds workload was run.
+- Files changed across the milestone: this log, pgsn_env_eval.py,
+  new pgsn_env_structured.py, and test_pgsn_env_eval.py, all evaluator files
+  under experiments/cek_machine. Production evaluator and examples unchanged.
+- Failed attempts and resolutions: no rejected implementation or failed
+  comparison test. Initial shell `python` was unavailable; system `python3`
+  lacked pytest; the existing .venv resolved this. The initial plan git add
+  was denied by the sandbox's read-only .git access; an approved escalated
+  commit/push resolved it. Initial example failure on unsupported DefineClass
+  was the expected baseline, resolved by the bounded structured path.
+- What this proves: one existing representative Python GSN program matches
+  end-to-end, and the focused cases preserve data results, captures, delayed
+  arguments, primitive order, errors and stuck applications on the new path.
+  Beta reduction in that path uses captured environments without shift/subst.
+- What it does not prove: complete evaluator equivalence, speedup on this or
+  other real programs, lower total traversal/allocation cost, bounded stack
+  use, general higher-order structured values, or full CEK semantics. The
+  new shape-inspection traversal and slot allocations need separate accounting.
+- Remaining unsupported: escaping lambdas/function-valued structured fields
+  and class methods; free variables; general Builtins (including Map/Fold,
+  Cons/Head/Tail/Index, conditionals/comparisons, formatting and other record
+  operations, Instance/IsSubclass), and XML workloads. Direct list application
+  is supported; the separate Index Builtin is not. The scalar/structured paths
+  retain different conventions outside their tested intersection, as noted above.
+- Recommended next research step, only after user review: instrument shape
+  inspection, slots and final materialization on this same Python example,
+  then make a modest reproducible comparison of total work with shift/subst
+  traversal counts. Do not infer real speedups from the synthetic experiment.
+  Review the bounded semantic gaps before selecting another Python workload.
+- Stop after committing/pushing this final checkpoint and verifying clean git
+  status. No further feature work or XML progression is authorized by this
+  milestone; provide the complete handoff for user review.

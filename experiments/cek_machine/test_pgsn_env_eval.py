@@ -465,3 +465,39 @@ def test_structured_builtin_argument_order(monkeypatch):
         events.clear()
         evaluate(term)
         assert events == [(1, 2), (3, 4), (3, 7)]
+
+
+def test_existing_python_cli_example(monkeypatch):
+    """Load the unchanged entry point; evaluate its complete GSN with both paths."""
+    import runpy
+    from pathlib import Path
+    from pgsn.dsl import python_value
+    from pgsn.gsn import gsn_tree
+    from pgsn.pgsn_term import Term, PGSNObject
+
+    example = Path(__file__).resolve().parents[2] / 'examples' / 'cli.py'
+    term = runpy.run_path(str(example))['main']
+    expected = term.fully_eval()
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError('Environment path called reference evaluation/shift/subst')
+
+    with monkeypatch.context() as patch:
+        for method in ('fully_eval', 'eval', 'eval_or_none', 'shift', 'shift_or_none', 'subst', 'subst_or_none'):
+            patch.setattr(Term, method, forbidden)
+        actual = eval_env(term)
+
+    assert isinstance(actual, PGSNObject)
+    assert actual == expected
+    actual_python = python_value(actual, with_inherit_chain=True)
+    assert actual_python == python_value(expected, with_inherit_chain=True)
+    assert actual_python['description'] == 'System is secure'
+    children = actual_python['support']['sub_goals']
+    assert [child['description'] for child in children] == ['Input validated', 'Output sanitized']
+    assert [child['support']['description'] for child in children] == ['Static analysis passed', 'Fuzzing test succeeded']
+    actual_tree = gsn_tree(actual)
+    assert actual_tree.to_dict() == gsn_tree(expected).to_dict()
+    print('\nExample: examples/cli.py (main)')
+    print('Complete Term, Python value (including inheritance), and GSN tree match.')
+    print('Reference evaluation/shift/subst calls during eval_env: 0 (guarded).')
+    actual_tree.show()
