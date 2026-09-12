@@ -206,3 +206,40 @@ Raw final benchmark output:
 - Limits: this establishes correctness on the selected program and focused
   cases, not general PGSN support or real-program speedups. No benchmarks,
   explicit K implementation, or XML feature work is planned.
+
+### Structured support checkpoint
+
+- Plan checkpoint: `4d5e75b` (pushed). Added
+  `experiments/cek_machine/pgsn_env_structured.py`, dispatched from eval_env when
+  the input syntax contains the selected structured families. Kept the original
+  scalar evaluator and its metrics path intact. Internal immutable Term slots
+  retain environments; beta reduction extends the environment without rewriting
+  the body. A separate reduction loop follows Context order and advances all
+  container children one step per pass. Shape inspection resolves bindings but
+  does not reduce applications; selected existing Builtin predicates/operations
+  retain slots through record merging and object construction. Final materialization
+  returns ordinary Terms. No reference reduction/shift/substitution is called.
+- Added 16 comparisons (29 focused tests total): full structural equality,
+  lazy record projection/overwrite/list indexing, needed division errors,
+  captures/shadowing, unused arguments, class inheritance/defaults/override,
+  object projection, stuck invalid applications, and primitive event traces.
+- Observed subtle reference behavior: an overridden erroneous class default is
+  skipped by immediate object projection but still raises when normalizing the
+  entire object, because the object retains its class. Both cases now match.
+  Round-robin error test confirms the second field's division error occurs
+  before the first field's delayed addition, matching the current evaluator.
+- Tests: focused **29 passed in 0.08s**; full **368 passed in 0.70s**;
+  `git diff --check` passed. No failed implementation/test attempts so far.
+- Limits: the new path deliberately rejects escaping lambdas in structured
+  normal forms (including function-valued fields/methods), free variables and
+  unselected Terms/Builtins. General higher-order structured data is not claimed.
+  The scalar path retains its pre-existing closure return convention and
+  TypeError behavior for invalid applications; the structured path preserves
+  reference stuck Terms. This is a bounded extension, not universal parity.
+  Structured slots/shape traversals are not included in the old prototype
+  metrics, and shape inspection can traverse data repeatedly. No performance
+  conclusions follow from this implementation.
+- Next: run the unchanged selected Python program through both evaluators,
+  compare complete Terms, Python values and GSN tree content, and verify no
+  reference evaluator traversal is used. Record the support commit SHA in the
+  next checkpoint. No production evaluator or existing example was modified.

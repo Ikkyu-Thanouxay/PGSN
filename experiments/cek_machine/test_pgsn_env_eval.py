@@ -340,3 +340,128 @@ def test_builtin_passed_as_function():
         term=term,
         expected=10,
     )
+
+
+# Structured comparisons use full Terms, including class identities/defaults.
+import pytest
+from pgsn.dsl import (
+    base_class, define_class, lambda_abs, list_term, overwrite_record, record,
+    string, variable,
+)
+
+
+def compare_term(term):
+    expected = term.fully_eval()
+    actual = eval_env(term)
+    assert actual == expected
+    return actual
+
+
+def boom():
+    return div(integer(1), integer(0))
+
+
+def test_record_projection_skips_unused_error():
+    assert compare_term(record({'ok': integer(7), 'bad': boom()})(string('ok'))).value == 7
+
+
+def test_overwrite_discards_error():
+    assert compare_term(overwrite_record(record({'x': boom()}), record({'x': integer(3)}))('x')).value == 3
+
+
+def test_record_captured_delayed_value_and_shadowing():
+    x, y = variable('x'), variable('y')
+    captured = lambda_abs(x, lambda_abs(y, record({'x': x, 'y': y})))
+    assert compare_term(captured(plus(integer(2), integer(5)))(integer(9))).attributes() == record({'x': integer(7), 'y': integer(9)}).remove_name().attributes()
+    shadowed = lambda_abs(x, lambda_abs(x, record({'x': x})))
+    assert compare_term(shadowed(boom())(integer(4))('x')).value == 4
+
+
+def test_structured_unused_lambda_argument():
+    assert compare_term(lambda_abs(variable('x'), record({'ok': integer(1)}))(boom())) == record({'ok': integer(1)}).remove_name()
+
+
+def test_list_values_and_lazy_index():
+    assert compare_term(list_term((integer(1), plus(integer(2), integer(3))))).terms[1].value == 5
+    assert compare_term(list_term((integer(7), boom()))(integer(0))).value == 7
+
+
+@pytest.mark.parametrize('term', [
+    record({'x': boom()}),
+    list_term((boom(),)),
+    record({'x': boom()})(string('x')),
+    overwrite_record(record({'x': integer(1)}), record({'x': boom()})),
+])
+def test_structured_needed_errors(term):
+    for evaluate in (lambda t: t.fully_eval(), eval_env):
+        with pytest.raises(ZeroDivisionError):
+            evaluate(term)
+
+
+@pytest.mark.parametrize('term', [
+    record({'x': integer(1)})(string('missing')),
+    list_term((integer(1),))(integer(8)),
+    define_class(inherit=base_class, attributes=['x'])(record({})),
+])
+def test_structured_invalid_applications_stay_stuck(term):
+    assert isinstance(compare_term(term), App)
+
+
+def test_class_defaults_override_and_inheritance():
+    parent = define_class(inherit=base_class, name='Parent', attributes=['x'], defaults={'x': 2})
+    child = define_class(inherit=parent, name='Child', attributes=['y'])
+    compare_term(child)
+    assert compare_term(child(x=7, y=9)).attributes()['x'].value == 7
+    assert compare_term(child(y=9)).attributes()['x'].value == 2
+    assert compare_term(child(y=9)('y')).value == 9
+
+
+def test_class_application_discards_overridden_default_error():
+    cls = define_class(inherit=base_class, name='C', attributes=['x'], defaults={'x': boom()})
+    # Projection discards the instance/defaults before normalizing the object.
+    assert compare_term(cls(x=7)('x')).value == 7
+    for evaluate in (lambda t: t.fully_eval(), eval_env):
+        with pytest.raises(ZeroDivisionError):
+            evaluate(cls(x=7))
+
+
+def test_container_round_robin_error_order(monkeypatch):
+    from pgsn.pgsn_term import Plus, Div
+    events = []
+    original_plus, original_div = Plus._apply_args, Div._apply_args
+
+    def track_plus(self, args):
+        events.append('plus')
+        return original_plus(self, args)
+
+    def track_div(self, args):
+        events.append('div')
+        return original_div(self, args)
+
+    monkeypatch.setattr(Plus, '_apply_args', track_plus)
+    monkeypatch.setattr(Div, '_apply_args', track_div)
+    x = variable('x')
+    # The first field needs beta then plus; the second errors in the first pass.
+    term = record({'slow': lambda_abs(x, plus(x, integer(1)))(integer(2)), 'bad': boom()})
+    for evaluate in (lambda t: t.fully_eval(), eval_env):
+        events.clear()
+        with pytest.raises(ZeroDivisionError):
+            evaluate(term)
+        assert events == ['div']
+
+
+def test_structured_builtin_argument_order(monkeypatch):
+    from pgsn.pgsn_term import Plus
+    events = []
+    original = Plus._apply_args
+
+    def track(self, args):
+        events.append(tuple(arg.value for arg in args[:2]))
+        return original(self, args)
+
+    monkeypatch.setattr(Plus, '_apply_args', track)
+    term = record({'x': plus(plus(integer(1), integer(2)), plus(integer(3), integer(4)))})
+    for evaluate in (lambda t: t.fully_eval(), eval_env):
+        events.clear()
+        evaluate(term)
+        assert events == [(1, 2), (3, 4), (3, 7)]

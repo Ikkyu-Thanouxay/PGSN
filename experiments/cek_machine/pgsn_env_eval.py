@@ -111,7 +111,7 @@ def make_closure(abs_term: Abs, env: Environment) -> Closure:
 RuntimeValue: TypeAlias = "Term | Closure | BuiltinClosure"
 
 
-def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
+def _eval_scalar(term: Term, env: Environment = ()) -> RuntimeValue:
     global _delayed_argument_creation_count
     global _delayed_argument_evaluation_count
 
@@ -130,13 +130,13 @@ def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
         if _metrics_enabled:
             _delayed_argument_evaluation_count += 1
 
-        return eval_env(delayed.term, delayed.env)
+        return _eval_scalar(delayed.term, delayed.env)
 
     if isinstance(term, Abs):
         return make_closure(term, env)
 
     if isinstance(term, App):
-        fn = eval_env(term.t1, env)
+        fn = _eval_scalar(term.t1, env)
 
         if _metrics_enabled:
             _delayed_argument_creation_count += 1
@@ -148,7 +148,7 @@ def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
 
         if isinstance(fn, Closure):
             body_env = (delayed_arg,) + fn.env
-            return eval_env(fn.body, body_env)
+            return _eval_scalar(fn.body, body_env)
 
         if isinstance(fn, BuiltinClosure):
             args = fn.args + (delayed_arg,)
@@ -166,7 +166,7 @@ def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
                 if _metrics_enabled:
                     _delayed_argument_evaluation_count += 1
 
-                value = eval_env(arg.term, arg.env)
+                value = _eval_scalar(arg.term, arg.env)
 
                 if not isinstance(value, Term):
                     raise TypeError(
@@ -190,8 +190,16 @@ def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
                     f"Unexpected remaining Builtin arguments: {rest}"
                 )
 
-            return eval_env(result)
+            return _eval_scalar(result)
 
         raise TypeError(f"Cannot apply non-function value: {fn}")
 
     raise TypeError(f"Unsupported term in environment evaluator: {term}")
+
+
+def eval_env(term: Term, env: Environment = ()) -> RuntimeValue:
+    from pgsn_env_structured import eval_structured, needs_structured
+
+    if needs_structured(term):
+        return eval_structured(term, env)
+    return _eval_scalar(term, env)
