@@ -262,9 +262,10 @@ def test_format():
 
 # Conditionals are lazy in their branches.  `undefined` is a constant, so
 # applying it to anything leaves an application no rule fires on: a condition
-# built from it never becomes a boolean.  `fix` of the identity reduces forever.
+# built from it never becomes a boolean. Z of identity is a lambda value;
+# applying it forces the recursive self-application and reduces forever.
 _stuck = undefined(integer(0))
-_diverging = fix(lambda_abs(variable('x'), variable('x')))
+_diverging = fix(lambda_abs(variable('x'), variable('x')))(integer(0))
 
 
 def test_conditional_still_selects_a_branch():

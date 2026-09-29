@@ -52,8 +52,12 @@ def lambda_abs(v: Variable, t: Term) -> Term:
     return Abs.named(v=v, t=t)
 
 
+# Z: the extra lambda delays self-application until a recursive argument arrives.
+# This is CBV-compatible; the production evaluator still substitutes lazily.
+_fix_arg = variable('_fix_arg')
 fix = lambda_abs(_f,
-                 lambda_abs(_x, _f(_x(_x)))(lambda_abs(_x, _f(_x(_x))))
+                 lambda_abs(_x, _f(lambda_abs(_fix_arg, _x(_x)(_fix_arg))))
+                 (lambda_abs(_x, _f(lambda_abs(_fix_arg, _x(_x)(_fix_arg)))))
                  )
 
 # Boolean related

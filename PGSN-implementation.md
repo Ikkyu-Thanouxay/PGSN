@@ -138,10 +138,11 @@ shifting. Krivine with updatable thunks (call by need) keeps the present
 meaning exactly; CEK (call by value) is simpler but changes it, and needs three
 things:
 
-- **Recursion.** The fixed-point combinator in `dsl.py` diverges under call by
-  value. Either use the call-by-value fixed-point combinator, or compile a
-  recursive binding to a closure whose environment refers to itself, as
-  `let rec` does.
+- **Recursion.** `dsl.fix` now uses Z, whose extra lambda delays
+  self-application until a recursive argument arrives. Milestone 3 verifies
+  this on pure-lambda Scott countdowns with the experimental strict-CBV CEK;
+  see [the results](docs/cbv_cek_milestone3_results.md). The production
+  evaluator still substitutes arguments without first evaluating them.
 - **Conditionals.** Under call by value, a conditional must not evaluate both
   branches, or the base case of every recursion is lost. This one is already
   settled: `if_then_else` wraps its branches and applies the one that wins

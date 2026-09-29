@@ -116,3 +116,40 @@ only of this log, the research plan, cbv_cek.py and test_cbv_cek.py.
 ## 2026-09-22 — Milestone 2: optimized evaluator measurements
 
 Fetched upstream/main at `1afc1909cee32dfc6c686e5e665b07fdd355b639`. Preserved Milestone 1 source commit `57b288cd78ec552cf1e1fee638ed6b3136824338` on its old branch. Clean upstream baseline: Python 3.14.7, pytest 8.4.2, `python -m pytest -q`: 534 passed, 4 deselected in 6.89s. PR #68 changed the builtin API; current stuck terms and free-bound pruning informed this research-only update. The benchmark and full results are in [Milestone 2 results](cbv_cek_milestone2_results.md). All experiment code stays under `experiments/cek_machine`; no production evaluator source changed.
+
+## 2026-09-29 — Milestone 3: Z-based pure-lambda recursion
+
+Fetched both remotes and verified unchanged upstream/main
+`1afc1909cee32dfc6c686e5e665b07fdd355b639`, Milestone 1
+`57b288cd78ec552cf1e1fee638ed6b3136824338`, and Milestone 2
+`9ad56c65d7ff6297bc01a6971db1d33246fabcd8`. Started from the latter on new branch
+`research/cbv-cek-recursion`, with a clean working tree and no applicable
+AGENTS.md files. Origin remains `Ikkyu-Thanouxay/PGSN`; upstream push is disabled.
+No old research history or Milestone 2 numbers were rewritten.
+
+Changed shared `dsl.fix` from Y to Z with reserved delayed binder `_fix_arg`.
+Current remains the rewriting evaluator; the strict-CBV CEK needed no change.
+The old Y-specific lazy-branch fixture now applies the fixed identity to force
+actual divergence. The new Scott countdown uses the real DSL fix and only
+Variable/Abs/App, returning identity after n predecessor traversals. Its tests
+cover small inputs, bounded Y-versus-Z behavior, shared fix usage, and no fallback.
+
+[Milestone 3 results](cbv_cek_milestone3_results.md) records commands, methodology,
+timings, counters, and limits. Reused the existing timing helpers and metrics:
+3 warm-ups and 11 recorded runs on the same nameless object, conversion outside
+timing, separate instrumentation. Sizes 1, 2, 5, 10, 20, 50, 100, 150 succeeded;
+200 hit RecursionError during construction/name removal, before either evaluator.
+No larger probe or recursion-limit change followed. CEK was faster in this
+controlled local run, with zero Builtin applications; this is no full-PGSN claim.
+
+Python 3.14.7 / pytest 8.4.2: focused production tests 192 passed; new recursion
+tests 7 passed; all research tests 40 passed; default suite 574 passed with
+4 slow tests deselected. Full suite including slow tests:
+`.venv/bin/python -m pytest -q -m ''` — **578 passed in 766.18s**, no deselections
+or failures.
+Compilation and whitespace checks passed. The checkpoint title is
+`Add CBV-compatible recursion benchmark`; its exact SHA is resolved from the
+branch and included in the handoff. Push only this new branch to origin.
+
+Stopped before general Builtins, List/Record, XML/GSN CEK, recursive environments,
+SolarWinds CEK, eu_ai_act_full CEK, or Milestone 4.
