@@ -73,3 +73,25 @@ def test_workload_uses_shared_dsl_fix(monkeypatch):
     monkeypatch.setattr(dsl, 'fix', reached)
     with pytest.raises(RuntimeError, match='shared fix reached'):
         countdown(1)
+
+
+def test_benchmark_configurable_repetitions():
+    import json
+    from benchmark_recursion import run_case
+
+    row = run_case(0, warmups=0, runs=5)
+    assert row['status'] == 'ok'
+    for evaluator in ('current', 'cek'):
+        samples = json.loads(row[f'{evaluator}_samples_ms'])
+        assert len(samples) == 5
+        assert all(value > 0 for value in samples)
+        assert row[f'{evaluator}_stdev_ms'] >= 0
+        assert row[f'{evaluator}_iqr_ms'] >= 0
+
+
+@pytest.mark.parametrize('warmups,runs', [(-1, 5), (0, 1)])
+def test_benchmark_rejects_invalid_repetitions(warmups, runs):
+    from benchmark_recursion import run_case
+
+    with pytest.raises(ValueError):
+        run_case(0, warmups=warmups, runs=runs)
