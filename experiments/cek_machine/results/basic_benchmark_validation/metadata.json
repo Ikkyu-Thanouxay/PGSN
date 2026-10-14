@@ -1,0 +1,40 @@
+{
+  "branch": "research/cbv-cek-basic-benchmark-validation",
+  "starting_commit_sha": "a5fccab2f2fe99677eae58fe86ee21a57ff71990",
+  "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "python_executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "warmups": 20,
+  "measured_runs": 500,
+  "sizes": [
+    10,
+    100,
+    200
+  ],
+  "workloads": [
+    "identity",
+    "captured",
+    "arithmetic"
+  ],
+  "timing_function": "time.perf_counter",
+  "clock_info": {
+    "implementation": "mach_absolute_time()",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution": 4.166666666666666e-08
+  },
+  "construction_outside_timing": true,
+  "metrics_outside_timing": true,
+  "evaluation_order": "Current then CEK in every warmup and measured iteration",
+  "cek_timing": "Existing time_cek total, including initial_state and its intermediate perf_counter call",
+  "quartile_method": "statistics.quantiles(n=4, method=\"inclusive\")",
+  "stdev_method": "statistics.stdev (sample standard deviation, n-1)",
+  "command": "python experiments/cek_machine/benchmark_basic_validation.py --warmups 20 --runs 500 --sizes 10 100 200 --output experiments/cek_machine/results/basic_benchmark_validation",
+  "cwd": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN",
+  "started_at_utc": "2026-10-14T05:33:19.060708+00:00",
+  "status": "ok",
+  "completed_at_utc": "2026-10-14T05:38:21.820783+00:00",
+  "all_evaluation_results_checked": true,
+  "raw_summary_verification": "passed"
+}
