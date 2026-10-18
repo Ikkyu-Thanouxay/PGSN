@@ -1,0 +1,55 @@
+Phase time summary:
+  load/compile: 0.000256 sec
+  fully_eval: 0.052063 sec
+  gsn_tree: 0.000226 sec
+  tree.show: 0.000052 sec
+
+Evaluation metrics:
+  evaluation steps:  41
+  beta reductions:   28
+  shift node visits: 60,720
+  subst node visits: 3,633
+  shift visits/beta: 2,168.57
+  subst visits/beta: 129.75
+
+Profiler result:
+         306284 function calls (173780 primitive calls) in 0.053 seconds
+
+   Ordered by: cumulative time
+   List reduced from 284 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.053    0.053 cli.py:199(run_target)
+        1    0.000    0.000    0.052    0.052 pgsn_term.py:161(fully_eval)
+  1234/42    0.000    0.000    0.050    0.001 pgsn_term.py:144(eval_or_none)
+   114/90    0.000    0.000    0.046    0.001 pgsn_term.py:404(_eval_or_none)
+   114/90    0.000    0.000    0.045    0.001 pgsn_term.py:1414(reduce_or_none)
+60720/299    0.012    0.000    0.040    0.000 pgsn_term.py:177(shift_or_none)
+15904/297    0.004    0.000    0.040    0.000 pgsn_term.py:415(_shift_or_none)
+ 9354/614    0.009    0.000    0.039    0.000 pgsn_term.py:598(_shift_or_none)
+29902/2314    0.004    0.000    0.038    0.000 pgsn_term.py:599(<genexpr>)
+       28    0.000    0.000    0.036    0.001 pgsn_term.py:203(subst)
+  3633/28    0.001    0.000    0.036    0.001 pgsn_term.py:194(subst_or_none)
+   243/47    0.000    0.000    0.035    0.001 pgsn_term.py:339(_subst_or_none)
+   903/28    0.000    0.000    0.034    0.001 pgsn_term.py:424(_subst_or_none)
+4689/1060    0.001    0.000    0.034    0.000 pgsn_term.py:333(_shift_or_none)
+   592/62    0.001    0.000    0.030    0.000 pgsn_term.py:607(_subst_or_none)
+5858/1818    0.002    0.000    0.030    0.000 pgsn_term.py:539(_shift_or_none)
+ 1922/250    0.000    0.000    0.030    0.000 pgsn_term.py:608(<genexpr>)
+  353/213    0.000    0.000    0.023    0.000 pgsn_term.py:546(_subst_or_none)
+   134/33    0.000    0.000    0.017    0.001 pgsn_term.py:887(_eval_or_none)
+   134/33    0.000    0.000    0.017    0.001 pgsn_term.py:874(_traverse)
+  462/165    0.000    0.000    0.016    0.000 pgsn_term.py:888(<lambda>)
+  248/154    0.000    0.000    0.008    0.000 pgsn_term.py:531(_eval_or_none)
+       56    0.000    0.000    0.008    0.000 pgsn_term.py:187(shift)
+2128/1735    0.002    0.000    0.005    0.000 pgsn_term.py:698(_traverse)
+      541    0.000    0.000    0.003    0.000 pgsn_term.py:131(evolve)
+     1534    0.000    0.000    0.003    0.000 pgsn_term.py:717(_shift_or_none)
+     1082    0.001    0.000    0.003    0.000 _make.py:587(evolve)
+        1    0.000    0.000    0.002    0.002 pgsn_term.py:230(remove_name)
+    345/1    0.000    0.000    0.002    0.002 pgsn_term.py:220(remove_name_with_context)
+     89/1    0.000    0.000    0.002    0.002 pgsn_term.py:436(_remove_name_with_context)
+
+
+
+Done.

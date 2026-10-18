@@ -1,0 +1,19 @@
+Goal: GD3: Security test is ...
+├── Context: N.D. devel. info. ...
+│   └── value: 
+└── Strategy: immediate
+    ├── Goal: E3.1...
+    │   └── Evidence: E3.1...
+    ├── Goal: Test doc for C1
+    │   └── Evidence: Test doc for C1
+    ├── Goal: Test doc for C2
+    │   └── Evidence: Test doc for C2
+    ├── Goal: Test doc for C3
+    │   └── Evidence: Test doc for C3
+    ├── Goal: Test resources for C1
+    │   └── Evidence: Test resources for C1
+    ├── Goal: Test resources for C2
+    │   └── Evidence: Test resources for C2
+    └── Goal: Test resources for C3
+        └── Evidence: Test resources for C3
+
