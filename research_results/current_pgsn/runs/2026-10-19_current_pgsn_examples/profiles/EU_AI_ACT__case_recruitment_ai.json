@@ -1,0 +1,770 @@
+{
+  "path": "examples/EU_AI_ACT/case_recruitment_ai.xml",
+  "mode": "profile",
+  "status": "ok",
+  "step_budget": 1000000,
+  "profile": {
+    "top_cumulative": [
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 142,
+        "function": "fully_eval",
+        "primitive_calls": 1,
+        "total_calls": 1,
+        "self_seconds": 0.34138435100000003,
+        "cumulative_seconds": 530.652319583
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 125,
+        "function": "eval_or_none",
+        "primitive_calls": 124805,
+        "total_calls": 164692067,
+        "self_seconds": 37.848742218000005,
+        "cumulative_seconds": 526.375107863
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 893,
+        "function": "_eval_or_none",
+        "primitive_calls": 124758,
+        "total_calls": 15297091,
+        "self_seconds": 4.136747779,
+        "cumulative_seconds": 522.194066341
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 880,
+        "function": "_traverse",
+        "primitive_calls": 124758,
+        "total_calls": 15297091,
+        "self_seconds": 32.776726007,
+        "cumulative_seconds": 522.140813586
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 894,
+        "function": "<lambda>",
+        "primitive_calls": 748548,
+        "total_calls": 55695503,
+        "self_seconds": 10.711052616,
+        "cumulative_seconds": 519.795617578
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 408,
+        "function": "_eval_or_none",
+        "primitive_calls": 124847,
+        "total_calls": 3158853,
+        "self_seconds": 2.8256745110000003,
+        "cumulative_seconds": 500.002692174
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1451,
+        "function": "reduce_or_none",
+        "primitive_calls": 124847,
+        "total_calls": 3158853,
+        "self_seconds": 4.590770716000001,
+        "cumulative_seconds": 496.586432161
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 717,
+        "function": "_eval_or_none",
+        "primitive_calls": 10442485,
+        "total_calls": 55839395,
+        "self_seconds": 13.108010922,
+        "cumulative_seconds": 232.874095487
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 701,
+        "function": "_traverse",
+        "primitive_calls": 10442540,
+        "total_calls": 55839450,
+        "self_seconds": 90.46439891200001,
+        "cumulative_seconds": 230.33899135000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 530,
+        "function": "_eval_or_none",
+        "primitive_calls": 23541315,
+        "total_calls": 65090074,
+        "self_seconds": 19.200165266000003,
+        "cumulative_seconds": 218.744400122
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 718,
+        "function": "<lambda>",
+        "primitive_calls": 31906739,
+        "total_calls": 96960983,
+        "self_seconds": 16.988271173,
+        "cumulative_seconds": 200.213222438
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py",
+        "line": 1697,
+        "function": "__ne__",
+        "primitive_calls": 3981218,
+        "total_calls": 3981218,
+        "self_seconds": 1.012483322,
+        "cumulative_seconds": 63.234508316
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 3901045,
+        "total_calls": 107409551,
+        "self_seconds": 30.744655620000003,
+        "cumulative_seconds": 60.909709016
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1440,
+        "function": "to_term",
+        "primitive_calls": 3158853,
+        "total_calls": 3158853,
+        "self_seconds": 2.2179646720000004,
+        "cumulative_seconds": 60.21952670300001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 226,
+        "function": "__call__",
+        "primitive_calls": 6027171,
+        "total_calls": 6027171,
+        "self_seconds": 8.162346503,
+        "cumulative_seconds": 58.104706184
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 94,
+        "function": "build",
+        "primitive_calls": 12132352,
+        "total_calls": 12132352,
+        "self_seconds": 4.843963332,
+        "cumulative_seconds": 41.584846121000005
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 463,
+        "function": "apply_args_or_none",
+        "primitive_calls": 2952313,
+        "total_calls": 2952313,
+        "self_seconds": 2.616007658,
+        "cumulative_seconds": 41.294788483000005
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.PGSNObject>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 14995057,
+        "total_calls": 25065639,
+        "self_seconds": 6.891780150000001,
+        "cumulative_seconds": 37.453476846
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1287,
+        "function": "_apply_args",
+        "primitive_calls": 12951,
+        "total_calls": 12951,
+        "self_seconds": 0.017363242,
+        "cumulative_seconds": 34.413689435
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1354,
+        "function": "to_python",
+        "primitive_calls": 12951,
+        "total_calls": 38619,
+        "self_seconds": 0.051333035000000006,
+        "cumulative_seconds": 34.390729004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.repr>",
+        "primitive_calls": 12382,
+        "total_calls": 12382,
+        "self_seconds": 0.0060426690000000005,
+        "cumulative_seconds": 34.302311656
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 12382,
+        "total_calls": 6527603,
+        "self_seconds": 8.650743211,
+        "cumulative_seconds": 34.296268987000005
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Abs>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 43151,
+        "total_calls": 3436217,
+        "self_seconds": 4.019318389,
+        "cumulative_seconds": 33.748947384000004
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 478,
+        "function": "build",
+        "primitive_calls": 6103602,
+        "total_calls": 6103602,
+        "self_seconds": 3.082376067,
+        "cumulative_seconds": 28.214471000000003
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 588,
+        "function": "_eval_or_none",
+        "primitive_calls": 57932,
+        "total_calls": 421703,
+        "self_seconds": 0.831113396,
+        "cumulative_seconds": 27.735676530000003
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Record>",
+        "line": 31,
+        "function": "__init__",
+        "primitive_calls": 6648823,
+        "total_calls": 6648823,
+        "self_seconds": 7.5846875240000005,
+        "cumulative_seconds": 26.794606811
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 112,
+        "function": "evolve",
+        "primitive_calls": 2593586,
+        "total_calls": 2593586,
+        "self_seconds": 1.400868623,
+        "cumulative_seconds": 25.855006131000003
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py",
+        "line": 587,
+        "function": "evolve",
+        "primitive_calls": 5187468,
+        "total_calls": 5187468,
+        "self_seconds": 5.4456240330000005,
+        "cumulative_seconds": 23.498459404000002
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 195,
+        "function": "subst",
+        "primitive_calls": 206540,
+        "total_calls": 206540,
+        "self_seconds": 0.09170861500000001,
+        "cumulative_seconds": 22.893100917
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 185,
+        "function": "subst_or_none",
+        "primitive_calls": 206540,
+        "total_calls": 3720711,
+        "self_seconds": 1.4309482530000002,
+        "cumulative_seconds": 22.785475982
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 431,
+        "function": "_subst_or_none",
+        "primitive_calls": 173112,
+        "total_calls": 1064236,
+        "self_seconds": 0.95914595,
+        "cumulative_seconds": 21.498262139
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Record>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 367924,
+        "total_calls": 1822993,
+        "self_seconds": 3.171872864,
+        "cumulative_seconds": 20.13276159
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 345,
+        "function": "_subst_or_none",
+        "primitive_calls": 130365,
+        "total_calls": 772192,
+        "self_seconds": 0.5768955450000001,
+        "cumulative_seconds": 19.309698279000003
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 31,
+        "function": "__init__",
+        "primitive_calls": 8158157,
+        "total_calls": 8158157,
+        "self_seconds": 9.544246668000001,
+        "cumulative_seconds": 18.926334485
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.PGSNClass>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 25221522,
+        "total_calls": 75705005,
+        "self_seconds": 17.307358450000002,
+        "cumulative_seconds": 17.323007849
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 574,
+        "function": "__attrs_post_init__",
+        "primitive_calls": 6648823,
+        "total_calls": 6648823,
+        "self_seconds": 8.054445081,
+        "cumulative_seconds": 15.409544114000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1426,
+        "function": "build",
+        "primitive_calls": 9333685,
+        "total_calls": 9531001,
+        "self_seconds": 4.499168786,
+        "cumulative_seconds": 15.191711530000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 665,
+        "function": "defaults",
+        "primitive_calls": 55926609,
+        "total_calls": 55926609,
+        "self_seconds": 7.807236364,
+        "cumulative_seconds": 13.071552636000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'copy' of 'dict' objects>",
+        "primitive_calls": 159562599,
+        "total_calls": 159562599,
+        "self_seconds": 12.958138989,
+        "cumulative_seconds": 12.958138989
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py",
+        "line": 3321,
+        "function": "__call__",
+        "primitive_calls": 25476389,
+        "total_calls": 25476389,
+        "self_seconds": 8.329422382,
+        "cumulative_seconds": 12.160515664
+      }
+    ],
+    "top_self": [
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 701,
+        "function": "_traverse",
+        "primitive_calls": 10442540,
+        "total_calls": 55839450,
+        "self_seconds": 90.46439891200001,
+        "cumulative_seconds": 230.33899135000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 125,
+        "function": "eval_or_none",
+        "primitive_calls": 124805,
+        "total_calls": 164692067,
+        "self_seconds": 37.848742218000005,
+        "cumulative_seconds": 526.375107863
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 880,
+        "function": "_traverse",
+        "primitive_calls": 124758,
+        "total_calls": 15297091,
+        "self_seconds": 32.776726007,
+        "cumulative_seconds": 522.140813586
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 3901045,
+        "total_calls": 107409551,
+        "self_seconds": 30.744655620000003,
+        "cumulative_seconds": 60.909709016
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 530,
+        "function": "_eval_or_none",
+        "primitive_calls": 23541315,
+        "total_calls": 65090074,
+        "self_seconds": 19.200165266000003,
+        "cumulative_seconds": 218.744400122
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.PGSNClass>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 25221522,
+        "total_calls": 75705005,
+        "self_seconds": 17.307358450000002,
+        "cumulative_seconds": 17.323007849
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 718,
+        "function": "<lambda>",
+        "primitive_calls": 31906739,
+        "total_calls": 96960983,
+        "self_seconds": 16.988271173,
+        "cumulative_seconds": 200.213222438
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 717,
+        "function": "_eval_or_none",
+        "primitive_calls": 10442485,
+        "total_calls": 55839395,
+        "self_seconds": 13.108010922,
+        "cumulative_seconds": 232.874095487
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'copy' of 'dict' objects>",
+        "primitive_calls": 159562599,
+        "total_calls": 159562599,
+        "self_seconds": 12.958138989,
+        "cumulative_seconds": 12.958138989
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'values' of 'dict' objects>",
+        "primitive_calls": 148619758,
+        "total_calls": 148619758,
+        "self_seconds": 12.029487176,
+        "cumulative_seconds": 12.029487176
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 894,
+        "function": "<lambda>",
+        "primitive_calls": 748548,
+        "total_calls": 55695503,
+        "self_seconds": 10.711052616,
+        "cumulative_seconds": 519.795617578
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'items' of 'dict' objects>",
+        "primitive_calls": 149441824,
+        "total_calls": 149441824,
+        "self_seconds": 10.705361106,
+        "cumulative_seconds": 10.705361106
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 31,
+        "function": "__init__",
+        "primitive_calls": 8158157,
+        "total_calls": 8158157,
+        "self_seconds": 9.544246668000001,
+        "cumulative_seconds": 18.926334485
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.App>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 12382,
+        "total_calls": 6527603,
+        "self_seconds": 8.650743211,
+        "cumulative_seconds": 34.296268987000005
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py",
+        "line": 3321,
+        "function": "__call__",
+        "primitive_calls": 25476389,
+        "total_calls": 25476389,
+        "self_seconds": 8.329422382,
+        "cumulative_seconds": 12.160515664
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 226,
+        "function": "__call__",
+        "primitive_calls": 6027171,
+        "total_calls": 6027171,
+        "self_seconds": 8.162346503,
+        "cumulative_seconds": 58.104706184
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 574,
+        "function": "__attrs_post_init__",
+        "primitive_calls": 6648823,
+        "total_calls": 6648823,
+        "self_seconds": 8.054445081,
+        "cumulative_seconds": 15.409544114000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 665,
+        "function": "defaults",
+        "primitive_calls": 55926609,
+        "total_calls": 55926609,
+        "self_seconds": 7.807236364,
+        "cumulative_seconds": 13.071552636000002
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Record>",
+        "line": 31,
+        "function": "__init__",
+        "primitive_calls": 6648823,
+        "total_calls": 6648823,
+        "self_seconds": 7.5846875240000005,
+        "cumulative_seconds": 26.794606811
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 671,
+        "function": "methods",
+        "primitive_calls": 55958138,
+        "total_calls": 55958138,
+        "self_seconds": 7.529358297000001,
+        "cumulative_seconds": 11.172897683
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 708,
+        "function": "<genexpr>",
+        "primitive_calls": 112258129,
+        "total_calls": 112258129,
+        "self_seconds": 7.480855131,
+        "cumulative_seconds": 7.480855131
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.PGSNObject>",
+        "line": 16,
+        "function": "__eq__",
+        "primitive_calls": 14995057,
+        "total_calls": 25065639,
+        "self_seconds": 6.891780150000001,
+        "cumulative_seconds": 37.453476846
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py",
+        "line": 587,
+        "function": "evolve",
+        "primitive_calls": 5187468,
+        "total_calls": 5187468,
+        "self_seconds": 5.4456240330000005,
+        "cumulative_seconds": 23.498459404000002
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Context>",
+        "line": 29,
+        "function": "__init__",
+        "primitive_calls": 9333685,
+        "total_calls": 9333685,
+        "self_seconds": 5.21920796,
+        "cumulative_seconds": 6.400287303000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 94,
+        "function": "build",
+        "primitive_calls": 12132352,
+        "total_calls": 12132352,
+        "self_seconds": 4.843963332,
+        "cumulative_seconds": 41.584846121000005
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.isinstance>",
+        "primitive_calls": 34869102,
+        "total_calls": 34869102,
+        "self_seconds": 4.795791289,
+        "cumulative_seconds": 11.317297809000001
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1451,
+        "function": "reduce_or_none",
+        "primitive_calls": 124847,
+        "total_calls": 3158853,
+        "self_seconds": 4.590770716000001,
+        "cumulative_seconds": 496.586432161
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 1426,
+        "function": "build",
+        "primitive_calls": 9333685,
+        "total_calls": 9531001,
+        "self_seconds": 4.499168786,
+        "cumulative_seconds": 15.191711530000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _abc._abc_instancecheck>",
+        "primitive_calls": 29860814,
+        "total_calls": 29860814,
+        "self_seconds": 4.20483716,
+        "cumulative_seconds": 4.20483716
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 893,
+        "function": "_eval_or_none",
+        "primitive_calls": 124758,
+        "total_calls": 15297091,
+        "self_seconds": 4.136747779,
+        "cumulative_seconds": 522.194066341
+      },
+      {
+        "file": "<frozen abc>",
+        "line": 117,
+        "function": "__instancecheck__",
+        "primitive_calls": 29860814,
+        "total_calls": 29860814,
+        "self_seconds": 4.1247891,
+        "cumulative_seconds": 8.329626260000001
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Abs>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 43151,
+        "total_calls": 3436217,
+        "self_seconds": 4.019318389,
+        "cumulative_seconds": 33.748947384000004
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/helpers.py",
+        "line": 1,
+        "function": "not_none",
+        "primitive_calls": 70030427,
+        "total_calls": 70030427,
+        "self_seconds": 4.0007904960000005,
+        "cumulative_seconds": 4.0007904960000005
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 532,
+        "function": "<genexpr>",
+        "primitive_calls": 68592989,
+        "total_calls": 68592989,
+        "self_seconds": 3.9676622440000004,
+        "cumulative_seconds": 3.9676622440000004
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 884,
+        "function": "<genexpr>",
+        "primitive_calls": 55514838,
+        "total_calls": 55514838,
+        "self_seconds": 3.892416324,
+        "cumulative_seconds": 3.892416324
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Variable>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 4495098,
+        "total_calls": 4495098,
+        "self_seconds": 3.7930611680000004,
+        "cumulative_seconds": 5.7418363160000006
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.id>",
+        "primitive_calls": 65568512,
+        "total_calls": 65568512,
+        "self_seconds": 3.5575306500000003,
+        "cumulative_seconds": 3.5575306500000003
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 709,
+        "function": "<genexpr>",
+        "primitive_calls": 55837758,
+        "total_calls": 55837758,
+        "self_seconds": 3.5231887160000004,
+        "cumulative_seconds": 3.5231887160000004
+      },
+      {
+        "file": "<attrs generated methods pgsn.pgsn_term.Record>",
+        "line": 1,
+        "function": "__repr__",
+        "primitive_calls": 367924,
+        "total_calls": 1822993,
+        "self_seconds": 3.171872864,
+        "cumulative_seconds": 20.13276159
+      },
+      {
+        "file": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py",
+        "line": 478,
+        "function": "build",
+        "primitive_calls": 6103602,
+        "total_calls": 6103602,
+        "self_seconds": 3.082376067,
+        "cumulative_seconds": 28.214471000000003
+      }
+    ],
+    "total_calls": 2350176827,
+    "primitive_calls": 1700653352,
+    "total_self_seconds": 530.652344249,
+    "readable_report": "         2350176827 function calls (1700653352 primitive calls) in 530.652 seconds\n\n   Ordered by: cumulative time\n   List reduced from 220 to 40 due to restriction <40>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.341    0.341  530.652  530.652 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:142(fully_eval)\n164692067/124805   37.849    0.000  526.375    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:125(eval_or_none)\n15297091/124758    4.137    0.000  522.194    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:893(_eval_or_none)\n15297091/124758   32.777    0.000  522.141    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:880(_traverse)\n55695503/748548   10.711    0.000  519.796    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:894(<lambda>)\n3158853/124847    2.826    0.000  500.003    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:408(_eval_or_none)\n3158853/124847    4.591    0.000  496.586    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1451(reduce_or_none)\n55839395/10442485   13.108    0.000  232.874    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:717(_eval_or_none)\n55839450/10442540   90.464    0.000  230.339    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:701(_traverse)\n65090074/23541315   19.200    0.000  218.744    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:530(_eval_or_none)\n96960983/31906739   16.988    0.000  200.213    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:718(<lambda>)\n  3981218    1.012    0.000   63.235    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:1697(__ne__)\n107409551/3901045   30.745    0.000   60.910    0.000 <attrs generated methods pgsn.pgsn_term.App>:16(__eq__)\n  3158853    2.218    0.000   60.220    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1440(to_term)\n  6027171    8.162    0.000   58.105    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:226(__call__)\n 12132352    4.844    0.000   41.585    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:94(build)\n  2952313    2.616    0.000   41.295    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:463(apply_args_or_none)\n25065639/14995057    6.892    0.000   37.453    0.000 <attrs generated methods pgsn.pgsn_term.PGSNObject>:16(__eq__)\n    12951    0.017    0.000   34.414    0.003 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1287(_apply_args)\n38619/12951    0.051    0.000   34.391    0.003 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1354(to_python)\n    12382    0.006    0.000   34.302    0.003 {built-in method builtins.repr}\n6527603/12382    8.651    0.000   34.296    0.003 <attrs generated methods pgsn.pgsn_term.App>:1(__repr__)\n3436217/43151    4.019    0.000   33.749    0.001 <attrs generated methods pgsn.pgsn_term.Abs>:1(__repr__)\n  6103602    3.082    0.000   28.214    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:478(build)\n421703/57932    0.831    0.000   27.736    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:588(_eval_or_none)\n  6648823    7.585    0.000   26.795    0.000 <attrs generated methods pgsn.pgsn_term.Record>:31(__init__)\n  2593586    1.401    0.000   25.855    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:112(evolve)\n  5187468    5.446    0.000   23.498    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:587(evolve)\n   206540    0.092    0.000   22.893    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:195(subst)\n3720711/206540    1.431    0.000   22.785    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:185(subst_or_none)\n1064236/173112    0.959    0.000   21.498    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:431(_subst_or_none)\n1822993/367924    3.172    0.000   20.133    0.000 <attrs generated methods pgsn.pgsn_term.Record>:1(__repr__)\n772192/130365    0.577    0.000   19.310    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:345(_subst_or_none)\n  8158157    9.544    0.000   18.926    0.000 <attrs generated methods pgsn.pgsn_term.App>:31(__init__)\n75705005/25221522   17.307    0.000   17.323    0.000 <attrs generated methods pgsn.pgsn_term.PGSNClass>:16(__eq__)\n  6648823    8.054    0.000   15.410    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:574(__attrs_post_init__)\n9531001/9333685    4.499    0.000   15.192    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1426(build)\n 55926609    7.807    0.000   13.072    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:665(defaults)\n159562599   12.958    0.000   12.958    0.000 {method 'copy' of 'dict' objects}\n 25476389    8.329    0.000   12.161    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:3321(__call__)\n\n\n         2350176827 function calls (1700653352 primitive calls) in 530.652 seconds\n\n   Ordered by: internal time\n   List reduced from 220 to 40 due to restriction <40>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n55839450/10442540   90.464    0.000  230.339    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:701(_traverse)\n164692067/124805   37.849    0.000  526.375    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:125(eval_or_none)\n15297091/124758   32.777    0.000  522.141    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:880(_traverse)\n107409551/3901045   30.745    0.000   60.910    0.000 <attrs generated methods pgsn.pgsn_term.App>:16(__eq__)\n65090074/23541315   19.200    0.000  218.744    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:530(_eval_or_none)\n75705005/25221522   17.307    0.000   17.323    0.000 <attrs generated methods pgsn.pgsn_term.PGSNClass>:16(__eq__)\n96960983/31906739   16.988    0.000  200.213    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:718(<lambda>)\n55839395/10442485   13.108    0.000  232.874    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:717(_eval_or_none)\n159562599   12.958    0.000   12.958    0.000 {method 'copy' of 'dict' objects}\n148619758   12.029    0.000   12.029    0.000 {method 'values' of 'dict' objects}\n55695503/748548   10.711    0.000  519.796    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:894(<lambda>)\n149441824   10.705    0.000   10.705    0.000 {method 'items' of 'dict' objects}\n  8158157    9.544    0.000   18.926    0.000 <attrs generated methods pgsn.pgsn_term.App>:31(__init__)\n6527603/12382    8.651    0.000   34.296    0.003 <attrs generated methods pgsn.pgsn_term.App>:1(__repr__)\n 25476389    8.329    0.000   12.161    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:3321(__call__)\n  6027171    8.162    0.000   58.105    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:226(__call__)\n  6648823    8.054    0.000   15.410    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:574(__attrs_post_init__)\n 55926609    7.807    0.000   13.072    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:665(defaults)\n  6648823    7.585    0.000   26.795    0.000 <attrs generated methods pgsn.pgsn_term.Record>:31(__init__)\n 55958138    7.529    0.000   11.173    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:671(methods)\n112258129    7.481    0.000    7.481    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:708(<genexpr>)\n25065639/14995057    6.892    0.000   37.453    0.000 <attrs generated methods pgsn.pgsn_term.PGSNObject>:16(__eq__)\n  5187468    5.446    0.000   23.498    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:587(evolve)\n  9333685    5.219    0.000    6.400    0.000 <attrs generated methods pgsn.pgsn_term.Context>:29(__init__)\n 12132352    4.844    0.000   41.585    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:94(build)\n 34869102    4.796    0.000   11.317    0.000 {built-in method builtins.isinstance}\n3158853/124847    4.591    0.000  496.586    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1451(reduce_or_none)\n9531001/9333685    4.499    0.000   15.192    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1426(build)\n 29860814    4.205    0.000    4.205    0.000 {built-in method _abc._abc_instancecheck}\n15297091/124758    4.137    0.000  522.194    0.004 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:893(_eval_or_none)\n 29860814    4.125    0.000    8.330    0.000 <frozen abc>:117(__instancecheck__)\n3436217/43151    4.019    0.000   33.749    0.001 <attrs generated methods pgsn.pgsn_term.Abs>:1(__repr__)\n 70030427    4.001    0.000    4.001    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/helpers.py:1(not_none)\n 68592989    3.968    0.000    3.968    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:532(<genexpr>)\n 55514838    3.892    0.000    3.892    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:884(<genexpr>)\n  4495098    3.793    0.000    5.742    0.000 <attrs generated methods pgsn.pgsn_term.Variable>:1(__repr__)\n 65568512    3.558    0.000    3.558    0.000 {built-in method builtins.id}\n 55837758    3.523    0.000    3.523    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:709(<genexpr>)\n1822993/367924    3.172    0.000   20.133    0.000 <attrs generated methods pgsn.pgsn_term.Record>:1(__repr__)\n  6103602    3.082    0.000   28.214    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:478(build)\n\n\n"
+  },
+  "output_sha256": "0a9902c921b193da3c99f37f92795134b9b6736fc791f83c4c399e440c664026",
+  "output_bytes": 12334,
+  "output_type": "treelib Tree.show UTF-8",
+  "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+  "diagnostic_load_seconds": 0.06373345945030451,
+  "diagnostic_gsn_seconds": 0.0019245827570557594,
+  "diagnostic_output_seconds": 0.0005014585331082344,
+  "diagnostic_worker_total_seconds": 530.722962167114,
+  "environment": {
+    "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "package_version": "0.0.3",
+    "perf_counter": {
+      "implementation": "mach_absolute_time()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 4.166666666666666e-08
+    },
+    "gc_enabled": true,
+    "gc_thresholds": [
+      2000,
+      10,
+      10
+    ],
+    "recursion_limit": 1000
+  },
+  "started_at": "2026-10-18T20:25:02.805100+00:00",
+  "completed_at": "2026-10-18T20:33:53.601002+00:00",
+  "timeout_seconds": 3600,
+  "diagnostic_process_wall_seconds": 530.7960297502577,
+  "source_commit": "607b369274276d40283597b6e0bea1a6a9ffeb76",
+  "profiler_scope": "fully_eval only, including name removal; no counters"
+}

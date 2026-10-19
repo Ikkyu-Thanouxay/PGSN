@@ -1,0 +1,1290 @@
+[
+  {
+    "path": "examples/Componentwise_Hazard_Analysis/System.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 116,
+      "beta_reductions": 228,
+      "shift_visits": 695,
+      "subst_visits": 2148,
+      "shift_pruned": 695,
+      "subst_pruned": 932
+    },
+    "output_sha256": "af4535249a2bdfdf15bf15182dd4cbd16323b65d98629978ae551c7f251590d5",
+    "output_bytes": 1551,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.052391999401152134,
+    "diagnostic_gsn_seconds": 0.0003550006076693535,
+    "diagnostic_output_seconds": 7.037539035081863e-05,
+    "diagnostic_worker_total_seconds": 0.08894045930355787,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T18:58:44.117883+00:00",
+    "completed_at": "2026-10-18T18:58:44.265479+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.14754991699010134
+  },
+  {
+    "path": "examples/EU_AI_ACT/case_gpai_system.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 137920,
+      "beta_reductions": 225464,
+      "shift_visits": 1294003,
+      "subst_visits": 4060971,
+      "shift_pruned": 1294003,
+      "subst_pruned": 1582836
+    },
+    "output_sha256": "0b95b92e27f1bc748622739254da49a29af09963db1ef8e7a4a9aade594926b5",
+    "output_bytes": 11516,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.056242916733026505,
+    "diagnostic_gsn_seconds": 0.0007995832711458206,
+    "diagnostic_output_seconds": 0.0001987917348742485,
+    "diagnostic_worker_total_seconds": 151.64379983395338,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T18:58:44.266057+00:00",
+    "completed_at": "2026-10-18T19:01:15.970603+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 151.70390199963003
+  },
+  {
+    "path": "examples/EU_AI_ACT/case_medical_ai.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 124940,
+      "beta_reductions": 204856,
+      "shift_visits": 1176877,
+      "subst_visits": 3694918,
+      "shift_pruned": 1176877,
+      "subst_pruned": 1440731
+    },
+    "output_sha256": "29b7404935f15e1e4878bdc3453a29d069455a472f625cae390cf23975f75bae",
+    "output_bytes": 12394,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05738000012934208,
+    "diagnostic_gsn_seconds": 0.0010153744369745255,
+    "diagnostic_output_seconds": 0.0002532927319407463,
+    "diagnostic_worker_total_seconds": 166.88494829181582,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:01:15.971326+00:00",
+    "completed_at": "2026-10-18T19:34:27.915942+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 166.94766070786864
+  },
+  {
+    "path": "examples/EU_AI_ACT/case_proctoring.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 237620,
+      "beta_reductions": 395683,
+      "shift_visits": 2273157,
+      "subst_visits": 7137585,
+      "shift_pruned": 2273157,
+      "subst_pruned": 2783677
+    },
+    "output_sha256": "70e50b157b2cda48e26534d8943c45d081ce70740512e37604c7b6a8b938a6cb",
+    "output_bytes": 25945,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.07015558332204819,
+    "diagnostic_gsn_seconds": 0.0017574578523635864,
+    "diagnostic_output_seconds": 0.0005240002647042274,
+    "diagnostic_worker_total_seconds": 421.0102635836229,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:34:27.916597+00:00",
+    "completed_at": "2026-10-18T19:41:29.000902+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 421.08157979138196
+  },
+  {
+    "path": "examples/EU_AI_ACT/case_proctoring_simplified.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 8092,
+      "beta_reductions": 11536,
+      "shift_visits": 85404,
+      "subst_visits": 272657,
+      "shift_pruned": 85404,
+      "subst_pruned": 108609
+    },
+    "output_sha256": "169ef5ddefadce484ae9b78b171617c3d7ea7b792d0384f5fbf4d5c0fbc0f144",
+    "output_bytes": 4437,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06798829138278961,
+    "diagnostic_gsn_seconds": 0.0005827080458402634,
+    "diagnostic_output_seconds": 0.00011866725981235504,
+    "diagnostic_worker_total_seconds": 6.120543833822012,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:41:29.001567+00:00",
+    "completed_at": "2026-10-18T19:41:35.193808+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 6.19213870819658
+  },
+  {
+    "path": "examples/EU_AI_ACT/case_recruitment_ai.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 124804,
+      "beta_reductions": 206540,
+      "shift_visits": 1185272,
+      "subst_visits": 3720711,
+      "shift_pruned": 1185272,
+      "subst_pruned": 1450632
+    },
+    "output_sha256": "0a9902c921b193da3c99f37f92795134b9b6736fc791f83c4c399e440c664026",
+    "output_bytes": 12334,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06774391699582338,
+    "diagnostic_gsn_seconds": 0.0010345419868826866,
+    "diagnostic_output_seconds": 0.0002500424161553383,
+    "diagnostic_worker_total_seconds": 179.4788924176246,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:41:35.194517+00:00",
+    "completed_at": "2026-10-18T19:44:34.746460+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 179.55080325063318
+  },
+  {
+    "path": "examples/Figure6/figure6_plain.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 73,
+      "beta_reductions": 125,
+      "shift_visits": 365,
+      "subst_visits": 1092,
+      "shift_pruned": 365,
+      "subst_pruned": 455
+    },
+    "output_sha256": "9140cd48577464e8ec236efe179669c15872771a56a2e36d3a5777a0fbbf3f18",
+    "output_bytes": 1660,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06314066611230373,
+    "diagnostic_gsn_seconds": 0.0003264574334025383,
+    "diagnostic_output_seconds": 6.624963134527206e-05,
+    "diagnostic_worker_total_seconds": 0.08418220933526754,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:34.747124+00:00",
+    "completed_at": "2026-10-18T19:44:34.902410+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1552330832928419
+  },
+  {
+    "path": "examples/Figure6/figure6_programmatic.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 97,
+      "beta_reductions": 161,
+      "shift_visits": 487,
+      "subst_visits": 1548,
+      "shift_pruned": 487,
+      "subst_pruned": 655
+    },
+    "output_sha256": "9140cd48577464e8ec236efe179669c15872771a56a2e36d3a5777a0fbbf3f18",
+    "output_bytes": 1660,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05983758345246315,
+    "diagnostic_gsn_seconds": 0.0003182496875524521,
+    "diagnostic_output_seconds": 6.354134529829025e-05,
+    "diagnostic_worker_total_seconds": 0.08286791760474443,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:34.903115+00:00",
+    "completed_at": "2026-10-18T19:44:35.054516+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.15133866667747498
+  },
+  {
+    "path": "examples/SolarWinds.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 517,
+      "beta_reductions": 1769,
+      "shift_visits": 5562,
+      "subst_visits": 18349,
+      "shift_pruned": 5562,
+      "subst_pruned": 8097
+    },
+    "output_sha256": "8b50e61a0d662084de1ff516b666b8618ea0568e2ac58501803f4d5d5f34d37b",
+    "output_bytes": 22496,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06282458361238241,
+    "diagnostic_gsn_seconds": 0.002622208558022976,
+    "diagnostic_output_seconds": 0.0007540006190538406,
+    "diagnostic_worker_total_seconds": 0.8163800835609436,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:35.055243+00:00",
+    "completed_at": "2026-10-18T19:44:35.941247+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.8859345000237226
+  },
+  {
+    "path": "examples/Tracability/trace.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 90,
+      "beta_reductions": 122,
+      "shift_visits": 353,
+      "subst_visits": 1114,
+      "shift_pruned": 353,
+      "subst_pruned": 466
+    },
+    "output_sha256": "5e3b04c72cec4858067ebb39b29e57826734fab53e2f187d0b142559e8bd521f",
+    "output_bytes": 391,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06088079232722521,
+    "diagnostic_gsn_seconds": 0.00017245765775442123,
+    "diagnostic_output_seconds": 3.108382225036621e-05,
+    "diagnostic_worker_total_seconds": 0.07599529158324003,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:35.942046+00:00",
+    "completed_at": "2026-10-18T19:44:36.086603+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.14449216704815626
+  },
+  {
+    "path": "examples/cap-a.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 246,
+      "beta_reductions": 196,
+      "shift_visits": 593,
+      "subst_visits": 1821,
+      "shift_pruned": 593,
+      "subst_pruned": 701
+    },
+    "output_sha256": "73eb0ffae09fd8ced5ee7d73d700aa0cccaad369f168c9b89194405936421914",
+    "output_bytes": 695,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05846737511456013,
+    "diagnostic_gsn_seconds": 0.0002442505210638046,
+    "diagnostic_output_seconds": 4.595797508955002e-05,
+    "diagnostic_worker_total_seconds": 0.09631041623651981,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.087414+00:00",
+    "completed_at": "2026-10-18T19:44:36.250904+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1634268332272768
+  },
+  {
+    "path": "examples/custom_goal.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 18,
+      "beta_reductions": 8,
+      "shift_visits": 18,
+      "subst_visits": 45,
+      "shift_pruned": 18,
+      "subst_pruned": 17
+    },
+    "output_sha256": "69ab066945f6f9240d41adb91e0cacd9cc54fc102c9590283e6c0779953e095e",
+    "output_bytes": 99,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05960304196923971,
+    "diagnostic_gsn_seconds": 0.000116666778922081,
+    "diagnostic_output_seconds": 1.912470906972885e-05,
+    "diagnostic_worker_total_seconds": 0.06136912479996681,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.251699+00:00",
+    "completed_at": "2026-10-18T19:44:36.378273+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.12652316689491272
+  },
+  {
+    "path": "examples/defeaters.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 71,
+      "beta_reductions": 67,
+      "shift_visits": 199,
+      "subst_visits": 611,
+      "shift_pruned": 199,
+      "subst_pruned": 252
+    },
+    "output_sha256": "dbbefcb70f020e420c661b07911a85bd24b93164f3e482041c6edbc25d8c460d",
+    "output_bytes": 920,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05689704045653343,
+    "diagnostic_gsn_seconds": 0.00022791698575019836,
+    "diagnostic_output_seconds": 4.462525248527527e-05,
+    "diagnostic_worker_total_seconds": 0.07252783328294754,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.379055+00:00",
+    "completed_at": "2026-10-18T19:44:36.519490+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1403715843334794
+  },
+  {
+    "path": "examples/gsn-ja.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 52,
+      "beta_reductions": 53,
+      "shift_visits": 156,
+      "subst_visits": 505,
+      "shift_pruned": 156,
+      "subst_pruned": 220
+    },
+    "output_sha256": "41a3a17c805719a7ed7c44e5e341aae57849d1329541775b9a73f4ec927e14a4",
+    "output_bytes": 477,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.057430749759078026,
+    "diagnostic_gsn_seconds": 0.00017920788377523422,
+    "diagnostic_output_seconds": 3.366731107234955e-05,
+    "diagnostic_worker_total_seconds": 0.06530358269810677,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.520298+00:00",
+    "completed_at": "2026-10-18T19:44:36.651290+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13093079067766666
+  },
+  {
+    "path": "examples/gsn.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 47,
+      "beta_reductions": 36,
+      "shift_visits": 114,
+      "subst_visits": 354,
+      "shift_pruned": 114,
+      "subst_pruned": 150
+    },
+    "output_sha256": "bd387dc3eb218b0e6136f1f2af700e110d86140047b51ddb3f87a8529c1406bd",
+    "output_bytes": 241,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.059182291850447655,
+    "diagnostic_gsn_seconds": 0.000162624754011631,
+    "diagnostic_output_seconds": 3.0375085771083832e-05,
+    "diagnostic_worker_total_seconds": 0.06535370741039515,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.652086+00:00",
+    "completed_at": "2026-10-18T19:44:36.784137+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13198891654610634
+  },
+  {
+    "path": "examples/map_term.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 55,
+      "beta_reductions": 55,
+      "shift_visits": 167,
+      "subst_visits": 560,
+      "shift_pruned": 167,
+      "subst_pruned": 240
+    },
+    "output_sha256": "266f578bfcb2461c337cd4d90c2c6dd1b60e5b2a8ac9c4e5c83f9d429f231254",
+    "output_bytes": 342,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.060959999449551105,
+    "diagnostic_gsn_seconds": 0.00017166603356599808,
+    "diagnostic_output_seconds": 3.054179251194e-05,
+    "diagnostic_worker_total_seconds": 0.06830737460404634,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.785019+00:00",
+    "completed_at": "2026-10-18T19:44:36.921314+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13623366691172123
+  },
+  {
+    "path": "examples/robot.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 99,
+      "beta_reductions": 91,
+      "shift_visits": 296,
+      "subst_visits": 978,
+      "shift_pruned": 296,
+      "subst_pruned": 433
+    },
+    "output_sha256": "4fc4a2692dd40b5e8aa1583248bcfdd1e2bc41ac30cb3d4daa65726cc0669592",
+    "output_bytes": 889,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05664858315140009,
+    "diagnostic_gsn_seconds": 0.00023187510669231415,
+    "diagnostic_output_seconds": 4.408322274684906e-05,
+    "diagnostic_worker_total_seconds": 0.07593737449496984,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:36.922197+00:00",
+    "completed_at": "2026-10-18T19:44:37.063668+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.14140583388507366
+  },
+  {
+    "path": "examples/secure.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 47,
+      "beta_reductions": 36,
+      "shift_visits": 114,
+      "subst_visits": 354,
+      "shift_pruned": 114,
+      "subst_pruned": 150
+    },
+    "output_sha256": "bd387dc3eb218b0e6136f1f2af700e110d86140047b51ddb3f87a8529c1406bd",
+    "output_bytes": 241,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05728829186409712,
+    "diagnostic_gsn_seconds": 0.00015358440577983856,
+    "diagnostic_output_seconds": 2.6125460863113403e-05,
+    "diagnostic_worker_total_seconds": 0.06324583292007446,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.064603+00:00",
+    "completed_at": "2026-10-18T19:44:37.193613+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.12895024940371513
+  },
+  {
+    "path": "examples/secure_with_template.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 57,
+      "beta_reductions": 60,
+      "shift_visits": 178,
+      "subst_visits": 617,
+      "shift_pruned": 178,
+      "subst_pruned": 271
+    },
+    "output_sha256": "82de609f3e44034d3b884218cd38d6199789f36bc40969fd81ff104a3b5cce68",
+    "output_bytes": 327,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05643341690301895,
+    "diagnostic_gsn_seconds": 0.00015875045210123062,
+    "diagnostic_output_seconds": 2.9291026294231415e-05,
+    "diagnostic_worker_total_seconds": 0.06427570804953575,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.194536+00:00",
+    "completed_at": "2026-10-18T19:44:37.323774+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.12917095888406038
+  },
+  {
+    "path": "examples/ssl_lib/factory_hmi.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 59,
+      "beta_reductions": 100,
+      "shift_visits": 286,
+      "subst_visits": 902,
+      "shift_pruned": 286,
+      "subst_pruned": 397
+    },
+    "output_sha256": "5d9fd78e716acf3bf83e333248e75f426fbe28379ceda3a531fd8573f5a39a9c",
+    "output_bytes": 1431,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.056962584145367146,
+    "diagnostic_gsn_seconds": 0.0002472922205924988,
+    "diagnostic_output_seconds": 4.637520760297775e-05,
+    "diagnostic_worker_total_seconds": 0.07040516566485167,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.324737+00:00",
+    "completed_at": "2026-10-18T19:44:37.460248+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13544774986803532
+  },
+  {
+    "path": "examples/ssl_lib/medical_app.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 87,
+      "beta_reductions": 148,
+      "shift_visits": 438,
+      "subst_visits": 1404,
+      "shift_pruned": 438,
+      "subst_pruned": 624
+    },
+    "output_sha256": "f4ea53efcc80bac28b9108db9138ecf4d46239e76e5f1911b2e9645c932d3228",
+    "output_bytes": 1777,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.058595625683665276,
+    "diagnostic_gsn_seconds": 0.0003025420010089874,
+    "diagnostic_output_seconds": 8.55419784784317e-05,
+    "diagnostic_worker_total_seconds": 0.08179424982517958,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.461254+00:00",
+    "completed_at": "2026-10-18T19:44:37.609263+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.14794704038649797
+  },
+  {
+    "path": "examples/syntax-ja.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 66,
+      "beta_reductions": 66,
+      "shift_visits": 201,
+      "subst_visits": 593,
+      "shift_pruned": 201,
+      "subst_pruned": 252
+    },
+    "output_sha256": "048ad492af94b351ecc295b4f43378dac7c958ec7bd4a5f819fd8957183ad974",
+    "output_bytes": 432,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.057979040779173374,
+    "diagnostic_gsn_seconds": 0.00017858389765024185,
+    "diagnostic_output_seconds": 3.2250769436359406e-05,
+    "diagnostic_worker_total_seconds": 0.066749625839293,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.610275+00:00",
+    "completed_at": "2026-10-18T19:44:37.742151+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13180933333933353
+  },
+  {
+    "path": "examples/syntax.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 66,
+      "beta_reductions": 66,
+      "shift_visits": 201,
+      "subst_visits": 593,
+      "shift_pruned": 201,
+      "subst_pruned": 252
+    },
+    "output_sha256": "59d3ca2b482fcb3a12bd2601102b3cd539d3ceccd778bae87c4a162eb8705906",
+    "output_bytes": 377,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05686341691762209,
+    "diagnostic_gsn_seconds": 0.00016974937170743942,
+    "diagnostic_output_seconds": 3.091525286436081e-05,
+    "diagnostic_worker_total_seconds": 0.06556408293545246,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.743205+00:00",
+    "completed_at": "2026-10-18T19:44:37.874219+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13095016591250896
+  },
+  {
+    "path": "examples/undeveloped.xml",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 47,
+      "beta_reductions": 32,
+      "shift_visits": 105,
+      "subst_visits": 329,
+      "shift_pruned": 105,
+      "subst_pruned": 141
+    },
+    "output_sha256": "34d8a13b481ce4991412e67431f2ae185b24335a51b0724ead3b9c74163531e6",
+    "output_bytes": 222,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05609804205596447,
+    "diagnostic_gsn_seconds": 0.00015345774590969086,
+    "diagnostic_output_seconds": 2.6209279894828796e-05,
+    "diagnostic_worker_total_seconds": 0.06181233283132315,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:37.875284+00:00",
+    "completed_at": "2026-10-18T19:44:38.001842+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1264925841242075
+  },
+  {
+    "path": "examples/cap-a.py",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 238,
+      "beta_reductions": 185,
+      "shift_visits": 530,
+      "subst_visits": 1613,
+      "shift_pruned": 530,
+      "subst_pruned": 621
+    },
+    "output_sha256": "ed5d6aaf117981d08b366f022b36ee77d99164d98863a85ecea538e5f965b28b",
+    "output_bytes": 654,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06984566524624825,
+    "diagnostic_gsn_seconds": 0.00027475040405988693,
+    "diagnostic_output_seconds": 5.358457565307617e-05,
+    "diagnostic_worker_total_seconds": 0.10747325047850609,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:38.002935+00:00",
+    "completed_at": "2026-10-18T19:44:38.177994+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1749970419332385
+  },
+  {
+    "path": "examples/cli.py",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 47,
+      "beta_reductions": 36,
+      "shift_visits": 114,
+      "subst_visits": 354,
+      "shift_pruned": 114,
+      "subst_pruned": 150
+    },
+    "output_sha256": "bd387dc3eb218b0e6136f1f2af700e110d86140047b51ddb3f87a8529c1406bd",
+    "output_bytes": 241,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.06012300029397011,
+    "diagnostic_gsn_seconds": 0.00015562493354082108,
+    "diagnostic_output_seconds": 2.870894968509674e-05,
+    "diagnostic_worker_total_seconds": 0.06632379163056612,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:38.179168+00:00",
+    "completed_at": "2026-10-18T19:44:38.314156+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1349262921139598
+  },
+  {
+    "path": "examples/gsn.py",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 47,
+      "beta_reductions": 36,
+      "shift_visits": 114,
+      "subst_visits": 354,
+      "shift_pruned": 114,
+      "subst_pruned": 150
+    },
+    "output_sha256": "bd387dc3eb218b0e6136f1f2af700e110d86140047b51ddb3f87a8529c1406bd",
+    "output_bytes": 241,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.05910395830869675,
+    "diagnostic_gsn_seconds": 0.0001622093841433525,
+    "diagnostic_output_seconds": 2.6875175535678864e-05,
+    "diagnostic_worker_total_seconds": 0.06521404162049294,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:38.315344+00:00",
+    "completed_at": "2026-10-18T19:44:38.447693+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.1322821257635951
+  },
+  {
+    "path": "examples/map_term.py",
+    "mode": "counters",
+    "status": "ok",
+    "step_budget": 1000000,
+    "counts": {
+      "root_reductions": 50,
+      "beta_reductions": 51,
+      "shift_visits": 155,
+      "subst_visits": 484,
+      "shift_pruned": 155,
+      "subst_pruned": 200
+    },
+    "output_sha256": "266f578bfcb2461c337cd4d90c2c6dd1b60e5b2a8ac9c4e5c83f9d429f231254",
+    "output_bytes": 342,
+    "output_type": "treelib Tree.show UTF-8",
+    "serialization": "stdout=False; sorting=False; idhidden=True; line_type=ascii-ex",
+    "diagnostic_load_seconds": 0.060154625214636326,
+    "diagnostic_gsn_seconds": 0.00017745792865753174,
+    "diagnostic_output_seconds": 3.1791627407073975e-05,
+    "diagnostic_worker_total_seconds": 0.06706691719591618,
+    "environment": {
+      "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+      "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+      "machine": "arm64",
+      "package_version": "0.0.3",
+      "perf_counter": {
+        "implementation": "mach_absolute_time()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 4.166666666666666e-08
+      },
+      "gc_enabled": true,
+      "gc_thresholds": [
+        2000,
+        10,
+        10
+      ],
+      "recursion_limit": 1000
+    },
+    "started_at": "2026-10-18T19:44:38.448905+00:00",
+    "completed_at": "2026-10-18T19:44:38.583959+00:00",
+    "timeout_seconds": 3600,
+    "diagnostic_process_wall_seconds": 0.13498741574585438
+  }
+]

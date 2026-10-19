@@ -1,7 +1,8 @@
 # PGSN performance research evidence index
 
-This index organizes retained evidence by evaluator provenance. No measurements
-were run during consolidation. [manifest.csv](manifest.csv) identifies datasets,
+This index organizes retained evidence by evaluator provenance. Phase 1 archived
+existing evidence without new measurements; Phase 2 adds fresh current-PGSN data.
+[manifest.csv](manifest.csv) identifies datasets,
 source/evaluator checkpoints, artifact commits, instrumentation, timing scope,
 sample retention and limitations. Unknown values are explicitly unknown or
 not-retained. Artifact commits identify retained versions, not necessarily the
@@ -30,9 +31,12 @@ commit or date when measurements were executed.
   [the M2 report](../docs/cbv_cek_milestone2_results.md). These are distinct from
   July's instrumented 322.338548 s figure. No full SolarWinds or EU AI Act CEK
   comparison exists yet.
-- [Current PGSN placeholder](current_pgsn/README.md): reserved for future fresh
-  current-PGSN real-example profiling and clean timing datasets in the next phase.
-  No fresh consolidated benchmark has been run or result file fabricated.
+- [Fresh current PGSN dataset](current_pgsn/README.md): 24 XML programs and four
+  Python inputs measured in isolated processes, with 29 pilots, 1,142 measured
+  clean samples and 115 warmups. All 53 sources retain metadata and status.
+  Clean timings, counters and cProfile diagnostics remain separate; see the run
+  README for errors, policy, output hashes and limitations. No full-program CEK
+  comparison is implied.
 
 [Branch provenance](branch_provenance.md) records exact ancestry/checkpoints and
 why historical evaluator code was not merged. Archive READMEs record original

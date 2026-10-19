@@ -1,0 +1,99 @@
+Input: examples/SolarWinds.xml
+Source/harness: 607b369274276d40283597b6e0bea1a6a9ffeb76
+Status: ok
+Scope: fully_eval only, including name removal; no counters
+
+         11431558 function calls (8099558 primitive calls) in 2.466 seconds
+
+   Ordered by: cumulative time
+   List reduced from 164 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.002    0.002    2.466    2.466 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:142(fully_eval)
+1030368/518    0.227    0.000    2.420    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:125(eval_or_none)
+88596/476    0.024    0.000    2.398    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:893(_eval_or_none)
+88596/476    0.211    0.000    2.398    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:880(_traverse)
+382788/2856    0.070    0.000    2.390    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:894(<lambda>)
+487595/15806    0.141    0.000    2.284    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:530(_eval_or_none)
+7146/1347    0.007    0.000    1.604    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:408(_eval_or_none)
+7146/1347    0.008    0.000    1.576    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1451(reduce_or_none)
+324224/58847    0.075    0.000    1.387    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:717(_eval_or_none)
+324287/58910    0.515    0.000    1.373    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:701(_traverse)
+609165/225854    0.102    0.000    1.189    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:718(<lambda>)
+    24630    0.014    0.000    0.272    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:112(evolve)
+    49284    0.056    0.000    0.249    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:587(evolve)
+    23464    0.006    0.000    0.120    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:1697(__ne__)
+     1769    0.001    0.000    0.110    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:195(subst)
+18349/1769    0.007    0.000    0.109    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:185(subst_or_none)
+68011/13678    0.029    0.000    0.105    0.000 <attrs generated methods pgsn.pgsn_term.PGSNObject>:16(__eq__)
+     7146    0.004    0.000    0.091    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1440(to_term)
+4306/1769    0.004    0.000    0.088    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:431(_subst_or_none)
+     8677    0.013    0.000    0.087    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:226(__call__)
+    15422    0.018    0.000    0.082    0.000 <attrs generated methods pgsn.pgsn_term.Record>:31(__init__)
+    20425    0.009    0.000    0.078    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:94(build)
+29078/11723    0.008    0.000    0.076    0.000 <attrs generated methods pgsn.pgsn_term.List>:16(__eq__)
+   939940    0.076    0.000    0.076    0.000 {method 'copy' of 'dict' objects}
+   328934    0.045    0.000    0.076    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:665(defaults)
+   833400    0.064    0.000    0.064    0.000 {method 'values' of 'dict' objects}
+   328523    0.043    0.000    0.064    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:671(methods)
+    11748    0.007    0.000    0.060    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:478(build)
+ 2024/822    0.002    0.000    0.059    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:345(_subst_or_none)
+ 1438/548    0.003    0.000    0.058    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:588(_eval_or_none)
+237404/72070    0.056    0.000    0.058    0.000 <attrs generated methods pgsn.pgsn_term.PGSNClass>:16(__eq__)
+   841872    0.057    0.000    0.057    0.000 {method 'items' of 'dict' objects}
+    15422    0.022    0.000    0.055    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:574(__attrs_post_init__)
+60324/21438    0.016    0.000    0.052    0.000 <attrs generated methods pgsn.pgsn_term.App>:16(__eq__)
+     5377    0.006    0.000    0.047    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:463(apply_args_or_none)
+   697824    0.045    0.000    0.045    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:708(<genexpr>)
+    19105    0.023    0.000    0.045    0.000 <attrs generated methods pgsn.pgsn_term.App>:31(__init__)
+   180323    0.021    0.000    0.045    0.000 {built-in method builtins.isinstance}
+    87732    0.029    0.000    0.042    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:3321(__call__)
+1306/1240    0.004    0.000    0.040    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:611(_subst_or_none)
+
+
+         11431558 function calls (8099558 primitive calls) in 2.466 seconds
+
+   Ordered by: internal time
+   List reduced from 164 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+324287/58910    0.515    0.000    1.373    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:701(_traverse)
+1030368/518    0.227    0.000    2.420    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:125(eval_or_none)
+88596/476    0.211    0.000    2.398    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:880(_traverse)
+487595/15806    0.141    0.000    2.284    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:530(_eval_or_none)
+609165/225854    0.102    0.000    1.189    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:718(<lambda>)
+   939940    0.076    0.000    0.076    0.000 {method 'copy' of 'dict' objects}
+324224/58847    0.075    0.000    1.387    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:717(_eval_or_none)
+382788/2856    0.070    0.000    2.390    0.001 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:894(<lambda>)
+   833400    0.064    0.000    0.064    0.000 {method 'values' of 'dict' objects}
+   841872    0.057    0.000    0.057    0.000 {method 'items' of 'dict' objects}
+237404/72070    0.056    0.000    0.058    0.000 <attrs generated methods pgsn.pgsn_term.PGSNClass>:16(__eq__)
+    49284    0.056    0.000    0.249    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:587(evolve)
+   697824    0.045    0.000    0.045    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:708(<genexpr>)
+   328934    0.045    0.000    0.076    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:665(defaults)
+   328523    0.043    0.000    0.064    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:671(methods)
+    87732    0.029    0.000    0.042    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:3321(__call__)
+68011/13678    0.029    0.000    0.105    0.000 <attrs generated methods pgsn.pgsn_term.PGSNObject>:16(__eq__)
+   511851    0.027    0.000    0.027    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:532(<genexpr>)
+   381214    0.026    0.000    0.026    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:884(<genexpr>)
+88596/476    0.024    0.000    2.398    0.005 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:893(_eval_or_none)
+    19161    0.023    0.000    0.035    0.000 <attrs generated methods pgsn.pgsn_term.PGSNObject>:35(__init__)
+    19105    0.023    0.000    0.045    0.000 <attrs generated methods pgsn.pgsn_term.App>:31(__init__)
+    15422    0.022    0.000    0.055    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:574(__attrs_post_init__)
+   180323    0.021    0.000    0.045    0.000 {built-in method builtins.isinstance}
+   323876    0.020    0.000    0.020    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:709(<genexpr>)
+    49284    0.019    0.000    0.031    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/lib/python3.14/site-packages/attr/_make.py:1891(fields)
+   134853    0.019    0.000    0.033    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:855(attributes)
+    15422    0.018    0.000    0.082    0.000 <attrs generated methods pgsn.pgsn_term.Record>:31(__init__)
+   213079    0.018    0.000    0.018    0.000 {built-in method builtins.getattr}
+60324/21438    0.016    0.000    0.052    0.000 <attrs generated methods pgsn.pgsn_term.App>:16(__eq__)
+   265328    0.015    0.000    0.015    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/helpers.py:1(not_none)
+    24630    0.014    0.000    0.272    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:112(evolve)
+    97971    0.014    0.000    0.020    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:858(methods)
+    94303    0.013    0.000    0.013    0.000 {built-in method _abc._abc_instancecheck}
+    94303    0.013    0.000    0.027    0.000 <frozen abc>:117(__instancecheck__)
+     8677    0.013    0.000    0.087    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:226(__call__)
+    20124    0.011    0.000    0.014    0.000 <attrs generated methods pgsn.pgsn_term.Context>:29(__init__)
+22330/20124    0.010    0.000    0.033    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:1426(build)
+    20425    0.009    0.000    0.078    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:94(build)
+44194/23911    0.008    0.000    0.016    0.000 /Users/fakedev/PGSN_Workspace/dev_library/PGSN/src/pgsn/pgsn_term.py:157(free_bound)

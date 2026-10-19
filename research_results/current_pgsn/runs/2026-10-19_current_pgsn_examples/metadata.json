@@ -1,0 +1,71 @@
+{
+  "branch": "research/performance-data-consolidation",
+  "source_commit": "607b369274276d40283597b6e0bea1a6a9ffeb76",
+  "source_dirty": false,
+  "source_status": "",
+  "environment": {
+    "python_version": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "package_version": "0.0.3",
+    "perf_counter": {
+      "implementation": "mach_absolute_time()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 4.166666666666666e-08
+    },
+    "gc_enabled": true,
+    "gc_thresholds": [
+      2000,
+      10,
+      10
+    ],
+    "recursion_limit": 1000
+  },
+  "command": [
+    "experiments/performance/current_pgsn_benchmark.py",
+    "--output",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples"
+  ],
+  "started_at": "2026-10-18T18:02:49.300394+00:00",
+  "step_budget": 1000000,
+  "timeout_seconds": 1800,
+  "diagnostic_timeout_seconds": 3600,
+  "run_order": "all pilots; per-input warmups then measured; counters; profiles; sequential fresh workers",
+  "policy_basis": "pilot worker_total_seconds; process startup excluded",
+  "policy": [
+    {
+      "less_than_s": 0.1,
+      "warmups": 5,
+      "runs": 50
+    },
+    {
+      "less_than_s": 1,
+      "warmups": 3,
+      "runs": 20
+    },
+    {
+      "less_than_s": 10,
+      "warmups": 2,
+      "runs": 10
+    },
+    {
+      "less_than_s": 60,
+      "warmups": 1,
+      "runs": 5
+    },
+    {
+      "less_than_s": "infinity",
+      "warmups": 0,
+      "runs": 3
+    }
+  ],
+  "gc_policy": "default enabled, no explicit collection or threshold changes",
+  "timing_units": "seconds",
+  "output_policy": "Tree.show UTF-8; sorting=False; idhidden=True; ascii-ex",
+  "counter_scope": "initial name removal excluded; same CEK research visit definitions",
+  "profiler_scope": "fully_eval only, including name removal; no counters",
+  "status": "complete",
+  "completed_at": "2026-10-18T20:33:53.601655+00:00"
+}
