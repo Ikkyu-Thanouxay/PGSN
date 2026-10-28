@@ -18,7 +18,7 @@ from benchmark import (identity, captured, arithmetic, evaluate, measure_current
                        measure_cek, time_current, time_cek)
 
 FAMILIES = [('identity', identity), ('captured', captured), ('arithmetic', arithmetic)]
-DEFAULT_OUTPUT = Path(__file__).resolve().parent / 'results/basic_benchmark_validation'
+DEFAULT_OUTPUT = Path(__file__).resolve().parents[2] / 'research_results/cek/basic_validation/2026-10-14'
 
 
 def check(result, expected):
@@ -178,13 +178,13 @@ partial output is retained and existing output directories are never overwritten
 Reproduce from the repository root with a fresh output directory:
 
 ```sh
-python experiments/cek_machine/benchmark_basic_validation.py --warmups 20 --runs 500 --sizes 10 100 200 --output experiments/cek_machine/results/basic_benchmark_validation
+python experiments/cek_machine/benchmark_basic_validation.py --warmups 20 --runs 500 --sizes 10 100 200 --output research_results/cek/basic_validation/<unique-run-id>
 ```
 
 Verify saved statistics without re-measuring:
 
 ```sh
-python experiments/cek_machine/benchmark_basic_validation.py --verify-only --runs 500 --sizes 10 100 200
+python experiments/cek_machine/benchmark_basic_validation.py --verify-only --runs 500 --sizes 10 100 200 --output research_results/cek/basic_validation/<unique-run-id>
 ```
 ''')
 

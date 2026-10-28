@@ -153,3 +153,14 @@ branch and included in the handoff. Push only this new branch to origin.
 
 Stopped before general Builtins, List/Record, XML/GSN CEK, recursive environments,
 SolarWinds CEK, eu_ai_act_full CEK, or Milestone 4.
+
+## 2026-10-28 evidence navigation and path migration
+
+A separate local branch, `research/reorganize-experiment-results`, starts from
+consolidation commit `8cdd09d9b47e17204dd74b5d8beaded08435e628`.
+Existing basic and recursion validation evidence now lives under
+`research_results/cek/`; source scripts and milestone reports remain in place.
+See [old/new paths and current commands](../research_results/path_migration.md).
+Earlier commands in this log and original run artifacts describe historical
+locations. No benchmark measurements or production-code changes are part of
+this reorganization.

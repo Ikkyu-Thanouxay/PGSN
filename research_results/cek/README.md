@@ -1,16 +1,16 @@
 # Current PGSN versus strict-CBV CEK evidence
 
-Canonical data remains in place; nothing is duplicated here.
+Saved CEK datasets are stored below this index. See [migration notes](../path_migration.md) for original paths and current reproduction commands.
 
-Basic benchmark validation: [README](../../experiments/cek_machine/results/basic_benchmark_validation/README.md),
-[metadata.json](../../experiments/cek_machine/results/basic_benchmark_validation/metadata.json),
-[summary.csv](../../experiments/cek_machine/results/basic_benchmark_validation/summary.csv),
-and [raw directory](../../experiments/cek_machine/results/basic_benchmark_validation/raw/).
+Basic benchmark validation: [README](basic_validation/2026-10-14/README.md),
+[metadata.json](basic_validation/2026-10-14/metadata.json),
+[summary.csv](basic_validation/2026-10-14/summary.csv),
+and [raw directory](basic_validation/2026-10-14/raw/).
 The nine raw CSVs contain 500 paired timing samples each (Current and CEK),
 for identity/captured/arithmetic at n=10,100,200; 20 warm-ups precede each case.
 Summary CSV contains statistics/counters; metadata records timing scope and environment.
 
-Recursion validation: [CSV](../../docs/data/cbv_cek_milestone3_validation.csv),
+Recursion validation: [CSV](recursion_validation/2026-10-11/cbv_cek_milestone3_validation.csv),
 [report](../../docs/cbv_cek_milestone3_validation.md),
 [analysis script](../../experiments/cek_machine/analyze_recursion_validation.py),
 [benchmark definition](../../experiments/cek_machine/benchmark_recursion.py).

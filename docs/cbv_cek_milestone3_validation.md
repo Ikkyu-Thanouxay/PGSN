@@ -17,7 +17,9 @@ This is benchmark validation, not Milestone 4.
 ## Reproduction and method
 
 Python 3.14.7; macOS-26.5.2-arm64-arm-64bit-Mach-O; 2026-10-11.
-Python recursion limit remains 1000. From the repository root:
+Python recursion limit remains 1000. The following commands record the original run paths (before reorganization).
+For current paths and safe reproduction commands, see
+[the migration notes](../research_results/path_migration.md). From the repository root:
 
 ```sh
 .venv/bin/python experiments/cek_machine/benchmark_recursion.py --warmups 20 --runs 500 --sizes 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 > docs/data/cbv_cek_milestone3_validation.csv
@@ -27,7 +29,7 @@ Python recursion limit remains 1000. From the repository root:
 Each size has 20 paired warm-ups and 500 paired measured runs. Current runs
 first in each pair. Defaults remain 3 warm-ups and 11 runs. Raw individual
 samples (JSON arrays inside CSV fields), summary statistics, and separate event
-counters are preserved in [the data file](data/cbv_cek_milestone3_validation.csv).
+counters are preserved in [the data file](../research_results/cek/recursion_validation/2026-10-11/cbv_cek_milestone3_validation.csv).
 SD is sample standard deviation; IQR uses inclusive interpolated quartiles.
 All timing statistics are in milliseconds. No samples are trimmed.
 

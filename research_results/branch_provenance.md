@@ -34,5 +34,20 @@ evaluator semantics.
 
 Consolidation branch: `research/performance-data-consolidation`.
 Branch base: `67e0579917eaeafe0acf7dc0e988e932d5e80799`.
-The consolidation adds only research evidence and index files under
-`research_results/`; historical evaluator code is excluded.
+The initial consolidation commit `4e107ec` added research evidence and indexes
+under `research_results/`, without importing historical evaluator code.
+Later commits on the same branch added the current-PGSN harness
+(`607b369274276d40283597b6e0bea1a6a9ffeb76`), its measurements
+(`0fba1d822860b3b3822b97c29814d753dd9a713a`), and midterm support
+(`8cdd09d9b47e17204dd74b5d8beaded08435e628`).
+
+The current run's artifact commit was verified with path history and the result
+commit's tree: `0fba1d822860b3b3822b97c29814d753dd9a713a` first records
+`research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/`.
+This differs from the source/harness commit `607b369...` used for measurement.
+
+The limited reorganization starts from `8cdd09d...` on the separate local branch
+`research/reorganize-experiment-results`. The consolidation branch is preserved.
+See [path migration](path_migration.md) and [evidence hashes](evidence_hashes_sha256.csv).
+The branch graph and remote-state statements above describe the 2026-10-19
+inspection, not a new fetch or new measurement.

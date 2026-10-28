@@ -2,6 +2,8 @@
 
 Functional Programming for Assurance Case Generation
 
+[Research results and experiment history](research_results/README.md): evaluator performance datasets, reports, and reproduction instructions.
+
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 

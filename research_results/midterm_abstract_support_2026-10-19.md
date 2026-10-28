@@ -243,9 +243,9 @@ free_bound単独による483M→5,562という因果断定、全PGSNでのCEK優
 
 ## 根拠への最小限の参照（要旨本文には不要）
 
-- [基本500回検証](../experiments/cek_machine/results/basic_benchmark_validation/README.md)：summaryとraw/の9 CSV。表は各raw 500組の中央値との一致を確認。
+- [基本500回検証](cek/basic_validation/2026-10-14/README.md)：summaryとraw/の9 CSV。表は各raw 500組の中央値との一致を確認。
 - [M2の課題・カウンタ定義](../docs/cbv_cek_milestone2_results.md)、[課題構築コード](../experiments/cek_machine/benchmark.py)、[CEK研究用カウンタ](../experiments/cek_machine/metrics.py)。
-- [再帰500回検証](../docs/cbv_cek_milestone3_validation.md)、[配列付きCSV](../docs/data/cbv_cek_milestone3_validation.csv)、[元M3のn=200説明](../docs/cbv_cek_milestone3_results.md)。
+- [再帰500回検証](../docs/cbv_cek_milestone3_validation.md)、[配列付きCSV](cek/recursion_validation/2026-10-11/cbv_cek_milestone3_validation.csv)、[元M3のn=200説明](../docs/cbv_cek_milestone3_results.md)。
 - [実入力の正準データ・プロファイル](current_pgsn/runs/2026-10-19_current_pgsn_examples/README.md)、[実入力用worker](../experiments/performance/current_pgsn_worker.py)。summaryをraw測定行と照合し、カウンタ・profileの保存JSONも確認。
 - [旧報告](historical/pre_free_bound_2026-07-19/study/cek_machine/baseline_metrics.md)、[旧SolarWinds出力](historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_solarwinds.txt)。両コピーのblob一致を再確認。
 - 旧実装の確認先：`research/cek-baseline-metrics` の `83e932ca0f1fd76ef2f9b85b1550fe783f72ff9c`、出力保存時点 `b853cfd804d4fc317d1a8f589a27e535ecdbc620` の `src/pgsn/pgsn_term.py` / `src/pgsn/cli.py`。旧コードの復元・実行はしていない。
