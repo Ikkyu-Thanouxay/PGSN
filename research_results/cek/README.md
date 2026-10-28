@@ -1,6 +1,15 @@
 # Current PGSN versus strict-CBV CEK evidence
 
+Start with the [results workbook](../PGSN_Research_Results.xlsx) for readable
+tables, units, source filenames and definitions. Timing and memory are separate
+experiments; their cache conditions and units differ.
+
 Saved CEK datasets are stored below this index. See [migration notes](../path_migration.md) for original paths and current reproduction commands.
+
+Cold-memory evidence: [memory folder guide](memory/README.md), with the
+October 28 full run, methodology pilot and reviewed graph links. These measure
+traced live Python blocks in bytes, not total RAM/RSS; cold means first evaluator
+call without evaluator warmups. Controls are retained separately.
 
 Basic benchmark validation: [README](basic_validation/2026-10-14/README.md),
 [metadata.json](basic_validation/2026-10-14/metadata.json),

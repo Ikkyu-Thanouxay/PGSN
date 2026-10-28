@@ -1,5 +1,41 @@
 # PGSN evaluator performance research
 
+**Start by opening [PGSN_Research_Results.xlsx](PGSN_Research_Results.xlsx).**
+Its Overview explains the reading order and limitations; the Glossary explains
+technical terms. Separate sheets present warm synthetic timing (milliseconds),
+fresh-process real-example timing (seconds), cold traced Python memory (bytes),
+operation counts, input statuses, and earlier report-only evidence. Each result
+or table identifies its source filename. Filters and frozen headers help browse
+the tables. Blank values mean unavailable, not zero. The workbook is a reading
+copy of saved evidence; original files remain the authoritative records.
+
+## Short folder guide
+
+- `cek/basic_validation/2026-10-14/`: nine raw timing CSVs, their summary and run
+  metadata; 500 paired samples per case, after 20 warmups.
+- `cek/recursion_validation/2026-10-11/`: timing arrays, saved statistics and
+  separate counters for 16 recursion sizes, with 500 samples per evaluator/size.
+- [Memory folder guide](cek/memory/README.md): the October 28 methodology pilot
+  and full cold-memory run.
+  [Full report](cek/memory/2026-10-28_identity_captured_cold_full_01/README.md),
+  [summary](cek/memory/2026-10-28_identity_captured_cold_full_01/summary.csv),
+  [raw observations](cek/memory/2026-10-28_identity_captured_cold_full_01/raw_samples.csv),
+  [reviewed PNG](cek/memory/2026-10-28_identity_captured_cold_full_01/peak_growth_reviewed.png)
+  and [reviewed SVG](cek/memory/2026-10-28_identity_captured_cold_full_01/peak_growth_reviewed.svg).
+  Prefer the reviewed figures: the initial figures clip one point and remain
+  preserved with the initial report and analysis metadata. Memory means traced
+  live Python blocks, **not total RAM/RSS**; peak growth is peak minus the
+  prepared-input baseline. Cold means first evaluator call, without warmups.
+- `current_pgsn/runs/2026-10-19_current_pgsn_examples/`: real-example raw
+  observations and summaries, plus separate operation counts and profiler
+  diagnostics. All 53 inputs have recorded statuses; 28 completed measurement.
+- `historical/`: preserved older reports, profiler diagnostics and output
+  evidence; use these for historical context, not as substitutes for newer runs.
+- `../docs/`: milestone reports and research plans. `manifest.csv`,
+  `branch_provenance.md`, `path_migration.md` and `evidence_hashes_sha256.csv`
+  explain checkpoints, evidence retention and migration. The existing manifest
+  predates the October 28 memory datasets; their own metadata records provenance.
+
 The research asks where PGSN evaluation spends time, how earlier optimizations
 changed its work, and how an experimental CEK evaluator compares on supported
 programs. CEK evaluates terms using explicit environments and a continuation
@@ -22,6 +58,7 @@ records exact checkpoints, timing boundaries, sample retention and limitations.
 | 2026-10-11 recursion validation | Check scaling with more repetitions; [benchmark](../experiments/cek_machine/benchmark_recursion.py), [analysis](../experiments/cek_machine/analyze_recursion_validation.py) | [CSV: raw arrays, statistics, counters](cek/recursion_validation/2026-10-11/cbv_cek_milestone3_validation.csv) | [Validation report](../docs/cbv_cek_milestone3_validation.md); approximately linear over n=0–150, with 500 samples per evaluator/size; one workload/session |
 | 2026-10-14 basic validation | Check small-case timings with more repetitions; [script](../experiments/cek_machine/benchmark_basic_validation.py) | [Nine raw CSVs](cek/basic_validation/2026-10-14/raw/), [summary](cek/basic_validation/2026-10-14/summary.csv), [metadata](cek/basic_validation/2026-10-14/metadata.json) | [Original run report](cek/basic_validation/2026-10-14/README.md); 500 paired samples per case; fixed PGSN-first order and warm execution |
 | 2026-10-19 current PGSN examples | Measure real inputs in fresh processes; [harness](../experiments/performance/README.md), [coordinator](../experiments/performance/current_pgsn_benchmark.py), [worker](../experiments/performance/current_pgsn_worker.py) | [Raw samples](current_pgsn/runs/2026-10-19_current_pgsn_examples/raw_samples.json), [summary](current_pgsn/runs/2026-10-19_current_pgsn_examples/summary.csv), [metadata](current_pgsn/runs/2026-10-19_current_pgsn_examples/metadata.json), [profiles](current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/), [counters](current_pgsn/runs/2026-10-19_current_pgsn_examples/counters.json) | [Run report](current_pgsn/runs/2026-10-19_current_pgsn_examples/README.md); 24 XML and four Python inputs successfully measured; no full-program CEK comparison |
+| 2026-10-28 cold-memory pilot and full run | Measure traced Python memory on Identity/Captured at n=10,100,200, separately from timing | [Pilot](cek/memory/2026-10-28_identity_n10_pilot_01/README.md); [full raw observations](cek/memory/2026-10-28_identity_captured_cold_full_01/raw_samples.csv), [summary](cek/memory/2026-10-28_identity_captured_cold_full_01/summary.csv), [metadata](cek/memory/2026-10-28_identity_captured_cold_full_01/metadata.json) | [Full report and reviewed graphs](cek/memory/2026-10-28_identity_captured_cold_full_01/README.md); ten observations per evaluator/control per configuration, 180 total; traced live blocks, not RSS; controls are not subtracted |
 
 ## What the evidence supports
 
@@ -43,8 +80,10 @@ agreement. Strict CBV differs from production rewriting semantics. Original
 M2/M3 and September timing series are unavailable; June raw profiles are
 missing. Current-PGSN metadata records a clock discrepancy, a package-version
 label mismatch, and a Python SolarWinds conversion error. See individual reports.
-No saved performance plot or plot-generation script accompanies these datasets;
-the recursion report explains that the earlier slide/plot is absent.
+The October 28 memory run includes initial and reviewed plots and a retained
+plot-correction script in its run folder. The earlier timing datasets have no
+saved performance plots; the recursion report explains that its earlier
+slide/plot is absent.
 
 ## Reproduction and future results
 
@@ -69,3 +108,16 @@ filenames alone do not establish XML/Python output equality.
 See also the [CEK index](cek/README.md), [research plan](../docs/cbv_cek_research_plan.md),
 [research log](../docs/research_log.md), [midterm support](midterm_abstract_support_2026-10-19.md),
 and [evidence hash ledger](evidence_hashes_sha256.csv).
+
+## File preservation and cleanup review
+
+The dated run names and evidence filenames stay in place so existing scripts,
+metadata, hashes and workbook source paths keep resolving. `cek` names the
+experimental evaluator comparison; `current_pgsn` contains production-only
+real-example measurements; `historical` preserves earlier checkpoints.
+No file has been moved, renamed or removed in this readability update.
+
+See [cleanup review](cleanup_review.md) for the exact review candidates and
+the files that must be retained. The workbook's Evidence Index fingerprints
+describe files at workbook creation, before subsequent navigation-document
+edits; they are not a replacement for the original evidence hash ledger.

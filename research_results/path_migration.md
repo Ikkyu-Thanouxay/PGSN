@@ -50,3 +50,31 @@ mkdir research_results/cek/recursion_validation/<unique-run-id>
 Record the source commit and environment before any future run. Consult the
 original reports for timing scope and limitations; changed hardware or software
 will not reproduce identical durations. No new measurements are part of this migration.
+
+## 2026-10-28 readable-workbook navigation update
+
+Branch: `research/results-readable-workbook`; starting HEAD:
+`f0873656789775e3358da5c249a80b8e5ac1f9d7`.
+
+No moves or renames were made in this update, so there are no additional
+old/new path mappings. Existing dated folders and filenames already identify
+the experiment and evidence role. Searches found path references in benchmark
+defaults, experiment documentation, manifest, saved metadata and workbook cells;
+keeping those paths avoids changes to original evidence and scripts.
+
+The existing `PGSN_Research_Results.xlsx` was inspected and retained byte-for-byte
+as the main reading file. The repository README now links directly to it;
+the results and CEK indexes link to the new `cek/memory/README.md` folder guide.
+`cleanup_review.md` records review candidates and why apparent duplicates remain.
+The original migration mappings and hash ledger above are preserved.
+
+The existing manifest paths were checked without modifying the CSV. Its scope
+predates the October 28 memory runs; the new memory guide links their original
+metadata and reports. Workbook source paths remain relative to repository root.
+The workbook Evidence Index is a creation-time fingerprint snapshot: later
+navigation-document edits do not alter or invalidate saved measurements.
+
+Verification for this update checks local README links, manifest paths, workbook
+source paths, the original hash ledger and unchanged evidence/workbook bytes.
+No benchmark evaluation, dependency change or evaluator edit is part of this
+update. No files are removed; cleanup requires separate review.
