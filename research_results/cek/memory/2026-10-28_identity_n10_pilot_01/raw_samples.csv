@@ -1,0 +1,4 @@
+family,size,evaluator,pid,status,correct,evaluated,baseline_bytes,peak_bytes,ending_bytes,peak_growth_bytes,end_growth_bytes
+identity,10,current,53486,ok,True,True,1848,5448,4472,3600,2624
+identity,10,cek,53489,ok,True,True,1848,8568,2408,6720,560
+identity,10,control,53492,ok,,False,1848,2024,2024,176,176

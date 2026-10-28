@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "observations": 3,
+  "isolated_processes": 3,
+  "correct_evaluators": 2,
+  "units": "bytes"
+}

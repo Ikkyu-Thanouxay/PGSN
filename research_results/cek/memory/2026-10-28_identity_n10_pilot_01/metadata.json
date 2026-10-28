@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "pilot_only",
+  "units": "bytes",
+  "created_at_utc": "2026-10-28T11:49:32.568445+00:00",
+  "source_commit": "de436167ebc6cb32752aebef211d4d591cd867bd",
+  "branch": "research/cek-memory-baseline",
+  "source_status": "?? experiments/cek_machine/MEMORY.md\n?? experiments/cek_machine/benchmark_memory.py\n?? experiments/cek_machine/memory_worker.py\n?? experiments/cek_machine/test_memory.py",
+  "source_sha256": {
+    "experiments/cek_machine/benchmark_memory.py": "00371be59f0575b331a0732111cda45917219886cae01e9c47302e80c709f726",
+    "experiments/cek_machine/memory_worker.py": "827844720e0d66a29c5ca192027b4ed20c10df6c70484108ac03b039be61dde2",
+    "experiments/cek_machine/benchmark.py": "c985f800cbc327cd1cf0a8dc649f61237fc4f6cbecb97cda2fdd3b4d28d82d59",
+    "experiments/cek_machine/cbv_cek.py": "47bad3ac16f670e85ea2d5c6a6fb256fca5615f2b4ece72d17fd3f113bf01eb5",
+    "src/pgsn/pgsn_term.py": "92a2d604b17bc43438e0d04afde7657542125821afb04abbf545ca9ea8c029d5"
+  },
+  "command": [
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "experiments/cek_machine/benchmark_memory.py",
+    "--pilot",
+    "--output",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01"
+  ],
+  "cwd": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN",
+  "observations": "identity n=10; one fresh process each: current, cek, control",
+  "tracing": "tracemalloc, one traceback frame, starts before construction",
+  "preparation": "nameless builders; no remove_name conversion; no warmup/pre-evaluation",
+  "gc": "automatic enabled; one gc.collect after input construction, before baseline",
+  "boundary": "complete fully_eval(steps=10000) or CEK evaluate including initial_state and loop",
+  "retained": "input, expected result, and evaluation result held through final read",
+  "control": "same input and function-call boundary, returns input without evaluation",
+  "no_timing": true,
+  "no_rss": true,
+  "worker_timeout_seconds": 60,
+  "limitations": [
+    "traced Python blocks, not total RSS or total allocated bytes",
+    "baseline includes prepared input; measurement bookkeeping adds small overhead",
+    "first evaluation, caches not prewarmed; single observation is not comparative evidence",
+    "source tree may be dirty; source hashes identify uncommitted harness"
+  ]
+}
