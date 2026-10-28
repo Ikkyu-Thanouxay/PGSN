@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "kind": "full_cold_memory",
+  "units": "bytes",
+  "created_at_utc": "2026-10-28T11:59:39.059609+00:00",
+  "source_commit": "4f3a6319091a9225632689aa585a8950c7b08f93",
+  "branch": "research/cek-memory-baseline",
+  "source_dirty": false,
+  "command": [
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "-B",
+    "experiments/cek_machine/benchmark_memory_full.py",
+    "--full",
+    "--output",
+    "research_results/cek/memory/2026-10-28_identity_captured_cold_full_01"
+  ],
+  "cwd": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+  "recursion_limit": 1000,
+  "installed_distributions": [
+    [
+      "Pygments",
+      "2.20.0"
+    ],
+    [
+      "attrs",
+      "26.1.0"
+    ],
+    [
+      "cattrs",
+      "26.1.0"
+    ],
+    [
+      "click",
+      "8.4.1"
+    ],
+    [
+      "graphviz",
+      "0.21"
+    ],
+    [
+      "iniconfig",
+      "2.3.0"
+    ],
+    [
+      "packaging",
+      "26.2"
+    ],
+    [
+      "pgsn",
+      "0.0.3"
+    ],
+    [
+      "pgsn",
+      "0.0.3"
+    ],
+    [
+      "pip",
+      "26.1.2"
+    ],
+    [
+      "pluggy",
+      "1.6.0"
+    ],
+    [
+      "pytest",
+      "8.4.2"
+    ],
+    [
+      "six",
+      "1.17.0"
+    ],
+    [
+      "treelib",
+      "1.8.0"
+    ],
+    [
+      "typing_extensions",
+      "4.15.0"
+    ]
+  ],
+  "python_flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0, warn_default_encoding=0, safe_path=False, int_max_str_digits=4300)",
+  "python_environment": {
+    "PYTHONHASHSEED": null,
+    "PYTHONMALLOC": null,
+    "PYTHONOPTIMIZE": null,
+    "PYTHONTRACEMALLOC": null
+  },
+  "source_sha256": {
+    "experiments/cek_machine/MEMORY.md": "55a113a169ae2b4e08d65e642e601aa3c188264c0ce720a6151cb9444a678bde",
+    "experiments/cek_machine/MEMORY_FULL.md": "8a683193eb23a3986aab77b6f988c8d8bee5ea8d209f4a4b245192af46efe4c8",
+    "experiments/cek_machine/analyze_memory_full.py": "529a05141bad4dac9e017028779ca8a228e189762650748fafef8e07af505dc4",
+    "experiments/cek_machine/analyze_recursion_validation.py": "e3cefbf152aeeb8295e45a525b66a8a0144f8cacdac0aa47a8f4a444da671dc9",
+    "experiments/cek_machine/benchmark.py": "c985f800cbc327cd1cf0a8dc649f61237fc4f6cbecb97cda2fdd3b4d28d82d59",
+    "experiments/cek_machine/benchmark_basic_validation.py": "aa2530e7aba7b7cffd36e145cc6723efde95e53123b0bb781db3762ee98664ab",
+    "experiments/cek_machine/benchmark_memory.py": "00371be59f0575b331a0732111cda45917219886cae01e9c47302e80c709f726",
+    "experiments/cek_machine/benchmark_memory_full.py": "7b152f6fe3e10c4cb300828df0064b1e1f009efc6514289596c6acf2e759463f",
+    "experiments/cek_machine/benchmark_recursion.py": "49181cfd7d8ba914ffb477a54658691a34779a4460a6cf3bd89aa62b799a0b59",
+    "experiments/cek_machine/cbv_cek.py": "47bad3ac16f670e85ea2d5c6a6fb256fca5615f2b4ece72d17fd3f113bf01eb5",
+    "experiments/cek_machine/memory_worker.py": "827844720e0d66a29c5ca192027b4ed20c10df6c70484108ac03b039be61dde2",
+    "experiments/cek_machine/metrics.py": "ceabaf6610b82f6cd4ea59b879facde24da127d22ab31f0fcc8192d816e813c8",
+    "experiments/cek_machine/test_cbv_cek.py": "c8bdf87b3d0361e95e70ddd74ad846122f40af74c0d4be6acdc64ab13d6e195c",
+    "experiments/cek_machine/test_memory.py": "6501d4e08e0eea0dc07c5c32e40e264c783786609cf619335c8adee7a1e643ea",
+    "experiments/cek_machine/test_memory_full.py": "ad0e423fee8ae876b4dc0736af5c33a14c4d53116858027516c882c021e9176b",
+    "experiments/cek_machine/test_metrics.py": "0a88a9b56c46b16e85ef8542f85f1a72d4a2b706de5b737578dae5334bfe5c02",
+    "experiments/cek_machine/test_recursion.py": "d953a9a653b0c3cd5761df7dfd72acc41d6e5321df2876e52ff5165326be1a45",
+    "pyproject.toml": "2f8db4fa6cef621d0dada077a438cc85bcaf905e15ab4f23dead5de1f7a46c36",
+    "requirements.txt": "2cba613b5cde58dd52cbd69b1c0696aa42c019d1d2045c06db6391dccd5c3c54",
+    "src/pgsn/__init__.py": "7a7b179d3b2f4996c803ec683eca327689ac8996362d3e5b5f3e8a1602245883",
+    "src/pgsn/cli.py": "bd308b013e0bccfc6bb9417442de45e1923d327faeda4af758f44c773d327d24",
+    "src/pgsn/config.py": "b3f1938b63e2e10e78cf40ba47f7419a1edbb9dfb50f9233df255355450b6ad9",
+    "src/pgsn/dcom.py": "7803b7317fed2a76e50ae75116c4defd1b25dda1da30e33b4f49d005666d640d",
+    "src/pgsn/debug_info.py": "ebd2b9888a6269728c61d104bd9b337f0ae6f3d49a45d3b9266a9c9a66c9a4eb",
+    "src/pgsn/dsl.py": "f9b16d80e8d7cd9c8a047bcc0d79e77d71b85064cbc8e07e03b0561ce679f5e8",
+    "src/pgsn/gsn.py": "98f6b264066071bc729fc9d02388d29421152d00cefef50ec5a3e95ffab4b2af",
+    "src/pgsn/helpers.py": "ba03ab70b4ffb0b83e6a498f3cc97970d104accfafa2480f5f74f35adaf965d5",
+    "src/pgsn/jail.py": "08789fb051773b9dfcf9df5bda81c38e02fce46f6446e3fe07cfad3fb4263a5f",
+    "src/pgsn/pgsn_term.py": "92a2d604b17bc43438e0d04afde7657542125821afb04abbf545ca9ea8c029d5",
+    "src/pgsn/pgsn_xml.py": "1c01f426ff7ce78cdd5a5d12fbbcb2450c0f82537d84482659cbf29458a1eb8f"
+  },
+  "earlier_evidence_sha256": {
+    "research_results/README.md": "1a1c915f58c4138bf70e79c3ffc45e4bde8904ed896eeb37ebb1509faa537bb0",
+    "research_results/branch_provenance.md": "63146025824b80f4e2fbf94ed1c4b48d92ec019399c1e2a683f87458e502f19d",
+    "research_results/cek/README.md": "2219c640bcc205b008bc71ee0840496b64605bfa4fdbcbca73fae7300617235f",
+    "research_results/cek/basic_validation/2026-10-14/README.md": "686a31fa39a137e4b808cc0bff0029b3a453429db33dc0492b32d49bcedbe373",
+    "research_results/cek/basic_validation/2026-10-14/metadata.json": "9510a450b6bc79bb631ed901db3f6163de8908f179630ff0c5e3d395a711531e",
+    "research_results/cek/basic_validation/2026-10-14/raw/arithmetic_n10.csv": "20e19ae29e0ea6a46ab270bebfd038c83aec86db928e9b384d7629b400cb430a",
+    "research_results/cek/basic_validation/2026-10-14/raw/arithmetic_n100.csv": "c50fcd562c2e5d454c7fe0904e79fb82b7798eae94ac4ab07a1bfbf0711ed881",
+    "research_results/cek/basic_validation/2026-10-14/raw/arithmetic_n200.csv": "26a70b9f6f67332f0ff51453e21aa9169c0ec393c1d0fdb37ca7fcb76185d262",
+    "research_results/cek/basic_validation/2026-10-14/raw/captured_n10.csv": "0680c0b7afb3f037b2cc7b0462694a872aec6699623d6df677cc180ca3780adb",
+    "research_results/cek/basic_validation/2026-10-14/raw/captured_n100.csv": "e486b585686a9d2b85d82ac1c8d5f60c71eddb7a2cd02d94a50c7a8db2a4a96b",
+    "research_results/cek/basic_validation/2026-10-14/raw/captured_n200.csv": "fa94042349b97cf62f0e08bdf751c6eac72b541796d9cd6fc08bbfb92644b7dc",
+    "research_results/cek/basic_validation/2026-10-14/raw/identity_n10.csv": "6f8a2314355f4dff45845ec982cd51822def3db653173a110d9cce16f3d67754",
+    "research_results/cek/basic_validation/2026-10-14/raw/identity_n100.csv": "faad7ebba0abeedc2f31b3225831e9755d9db925d6e00bfe7da7abd2f8419f04",
+    "research_results/cek/basic_validation/2026-10-14/raw/identity_n200.csv": "9636e5754cd19da18082daac5fd73d087232c1638378d15bc6ad68019b9fc69e",
+    "research_results/cek/basic_validation/2026-10-14/summary.csv": "7b463afc9ef40e7e41a8091763db1f73762374385814b1a9acf3ed9682b92a43",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/README.md": "d14430006cb630ab830a9237f0d6bc75878d2534b4db73335a93e2309ff9babf",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/cek.json": "dfcf9ef023c7297c508a1bfc5bdd925be07ffe72041d24176dcdf612a75258a2",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/control.json": "e5fcd9ca8d35c9f4f23491d0162e370a3297433a25f72ff309a7bd445f687a5c",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/current.json": "046cb8d3c1268a5706e16538104b3730cb7b3f432f20c23191ab911aa7328cd4",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/metadata.json": "98f0b96ad0a5586f1cce468268567e8dc37ba32ede87c960d9b215f752792d3d",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/raw_samples.csv": "c7ad755191ec77e450090bb20b19d352d0b247d6c5dd39fb4bbc8e1ba2bb495d",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/raw_samples.json": "893e6be2f6f70ce58acdcc57ea91ff90ff180a2cf6b78f6bae35eac80b1dd1b7",
+    "research_results/cek/memory/2026-10-28_identity_n10_pilot_01/validation.json": "92be90c89ec1e6b874194988a1564728a5cb1cc940f8116dc9324f42a6711242",
+    "research_results/cek/recursion_validation/2026-10-11/cbv_cek_milestone3_validation.csv": "4e4fa4e7dc1fd982816254c3c3af5c5a250b5f2dc0a5aa58773c1af5643f73ac",
+    "research_results/current_pgsn/README.md": "dcf276ecb4a2eec14a7ab408c087a6d3bce5b1963c3c8aa677825f952dd5df15",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/README.md": "b105b1eadd1dee14bf685c712c65425564f1b4c6900ed7d768e600aa6dbcf307",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/counters.csv": "08dec4a58beeb6eca7bf207dfa31c1ebb6c36ee611671977c5f3b7b773c92ed4",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/counters.json": "e023d2f4b037c4482f2a5be284b7e9e9c16bb134851dc7ae8ba7707138d841ac",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/metadata.json": "c55896f65506d2da000b282c3f43e31ec04cda3189f3cde32a7eaee210c8ebea",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/pilot.csv": "6276e1d68f30483c4b74ea9c927b3b5c2f05c8b6294a12219a378e979edd5424",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/pilot.json": "588eb501ebea71f491c4a6a0d645a95ec33407d4c68e60f07373de48ebdcfe01",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_gpai_system.json": "bae8b0c956385f64bb6057dccb9bc05feec236d06c7ba3705137b12be3b27582",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_gpai_system.txt": "6e3abd96a13898c9e3cd073d1e82f285accc253520b25024644dedc98d472f2b",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_medical_ai.json": "33601fcfde64eda88b54afb60d34baea3a68a7c4a7220f5e98b6e92ba0be662b",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_medical_ai.txt": "5a0ad9ec28ef458d11ac8de3a75961ddea5d128caae34905a1a1671abd850b57",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_proctoring.json": "120bf6028f399541da4db33801f76ccd42519ff4a51785d76fc3687d7fe3f993",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_proctoring.txt": "6affafd9622f637794094aecb8d1eac55827591af82526138ed93ab3431e10a9",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_recruitment_ai.json": "1ba810d01edc0d672ac4c44992843b478dbc80ec3933f1ee2eb32ec32f67c4da",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/EU_AI_ACT__case_recruitment_ai.txt": "45bb855c867477745031360fdd91861bb8baf5fefa9f05d3f124ad282d2adfba",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/SolarWinds.json": "f9eb411b1be5ff28c5213a386d7f31e6548b5478891afae006e67479eb1b8d76",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/profiles/SolarWinds.txt": "6933f83fdfb187b569bada06fa734be3f5b4c2011efb7cbb8a473796c972ff0f",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/raw_samples.csv": "827dc6e11ced2e2e0c0289c85c39fa06ae426e3961e125634d9e2f27ed27b3c5",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/raw_samples.json": "dc0c9d5923c284ef3e7a0a3718fa95cf0de91b3723bad7f943273276b4933c67",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/sources.csv": "41a3d88eade1c4bc19b94be0d4a939d36427a620cfea35954cfd055818e6b102",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/summary.csv": "ef49a38b3b614cbb166b815db1b36f0dce6dab7571eff04154508ef9922b6a1c",
+    "research_results/current_pgsn/runs/2026-10-19_current_pgsn_examples/validation.json": "3054b9368f7005ea381c0d6b480e6c80179e4c7e1b870d441bf7cacf660b472b",
+    "research_results/evidence_hashes_sha256.csv": "cd0c8199d4f0b922e45e38a062f156b36e525b75b7c8ed7afabbb0a153d3647c",
+    "research_results/examples.csv": "c251bcf7c155333633f8e3a233a01b10b562bd74296b59caddaecfb7990c45d3",
+    "research_results/historical/environment_evaluator_2026-09-10/README.md": "7794875aec4fe93d434642c1ad68364f53108ec457aee6939950b1f1c1672124",
+    "research_results/historical/environment_evaluator_2026-09-10/experiments/cek_machine/day4_benchmark_output.txt": "3f77cdd0f8cd68a855b02b86fe1af87aeffd755b20ea4a9cb1a81c849cc37424",
+    "research_results/historical/environment_evaluator_2026-09-10/experiments/cek_machine/day4_results.md": "d54e87d24c69b10498fa082147a7325b1acd8b477f26a513ac34700f3578b086",
+    "research_results/historical/pre_free_bound_2026-07-19/README.md": "951f65502234e86a3acc3022818ac4f790eda25d950fcefd1847faa4027b6d71",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-06-25/README.md": "dc8383063dbafc987062f2ed984845c148128217d6a04cb7df4e308b23692d8b",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/cap_a_after.txt": "72691b11eeaf6a974919e7e9e2003fc1b3b140cec6b487679c1941610098f78e",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/cap_a_before.txt": "72691b11eeaf6a974919e7e9e2003fc1b3b140cec6b487679c1941610098f78e",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/gsn_after.txt": "3945fb9212589869b8429310baa22e31e0c40863d126e28761be4b934db870d0",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/gsn_before.txt": "3945fb9212589869b8429310baa22e31e0c40863d126e28761be4b934db870d0",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/map_term_after.txt": "917624daf417fc6b88641c39efc7d17696c2c812dfbb7d44aba6576a34950afe",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/map_term_before.txt": "917624daf417fc6b88641c39efc7d17696c2c812dfbb7d44aba6576a34950afe",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/robot_after.txt": "b512980cf11299e72318825cac59aab2b97ae09827561cee411f413480eb844d",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/baseline_outputs/robot_before.txt": "b512980cf11299e72318825cac59aab2b97ae09827561cee411f413480eb844d",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_cap_a.txt": "429d55ec2753cb10c195592b17254e47c429bf5329c754f1e2ade77b26f9ee6c",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_gsn.txt": "52725c9454919601aa94bee3a6780d9bf71debf3ce27eb3736fefb25563678b3",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_map_term.txt": "90f2bd1ad8fe75169431fcf46f533532c79b2340f04a094afaad12c6711cb18c",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_robot.txt": "9aedeb05b3d0f23819d2e1556e43521d2b6880dd200b73e5b27b6696f99816f6",
+    "research_results/historical/pre_free_bound_2026-07-19/reports/profiler/2026-07-19/raw/profile_solarwinds.txt": "2860090ae4085433f6b66306a7ef318e20018246241c744a03424df9892dacf2",
+    "research_results/historical/pre_free_bound_2026-07-19/study/cek_machine/baseline_metrics.md": "a458a074bb9869fbccd1e3b11e04a9b890fb1f7d04daabb5f4691dda2376980f",
+    "research_results/manifest.csv": "ff58b0c9ca60864ca0d2218afb241263b0f25676b0eb19eb1bcead5b2b80eb95",
+    "research_results/midterm_abstract_support_2026-10-19.md": "dcfd46e0310e8abfd88c83cae11a5800a547c98fa4af91d65c47818537a1039c",
+    "research_results/path_migration.md": "a0349bec3712948feee634d305c70454338f9aa03cf40b29a014cbd30b17cd45"
+  },
+  "families": [
+    "identity",
+    "captured"
+  ],
+  "sizes": [
+    10,
+    100,
+    200
+  ],
+  "runs_per_condition": 10,
+  "expected_observations": 180,
+  "expected_evaluator_observations": 120,
+  "expected_controls": 60,
+  "order": "family then size ascending; repetitions 1-10; alternate Current/CEK order; control last",
+  "isolation": "one fresh subprocess interpreter and freshly built input per observation",
+  "tracing": "tracemalloc.start(1) before construction; reset_peak immediately before one evaluation",
+  "gc": "automatic enabled; one explicit gc.collect after construction, before baseline",
+  "cache_policy": "first evaluation; no evaluator warmup, correctness pre-evaluation, or counter passes",
+  "preparation": "existing nameless Identity/Captured builders; no actual remove_name conversion",
+  "boundary": "complete fully_eval(steps=10000) or complete CEK evaluate including initial_state and loop",
+  "retained": "input, expected result and result retained through final read; correctness checked afterward",
+  "no_timing": true,
+  "no_rss": true,
+  "worker_timeout_seconds": 60,
+  "statistics": "median; inclusive quartiles q1/q3; IQR=q3-q1; min/max; all raw observations retained",
+  "limitations": [
+    "traced live Python blocks, not total process memory or cumulative allocations",
+    "bookkeeping overhead present; controls retained, not automatically subtracted",
+    "one platform/session; two shared workloads and three sizes; no general ranking or asymptotic claim",
+    "cold means first evaluator call, not cold interpreter/OS caches"
+  ]
+}

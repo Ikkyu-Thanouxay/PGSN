@@ -1,0 +1,44 @@
+{
+  "created_at_utc": "2026-10-28T12:00:23.698853+00:00",
+  "command": [
+    "/private/tmp/pgsn-memory-plot-env/bin/python",
+    "experiments/cek_machine/analyze_memory_full.py",
+    "--output",
+    "research_results/cek/memory/2026-10-28_identity_captured_cold_full_01"
+  ],
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "matplotlib": "3.11.2",
+  "plotting_separate_from_measurements": true,
+  "summary_units": "bytes",
+  "graph_units": "KiB",
+  "quartiles": "statistics.quantiles(n=4, method=\"inclusive\")",
+  "artifact_sha256": {
+    "summary.csv": "8cfd15dd92703aa392730f783b50c3c65c380827cf351aebb92aa8ac99d7a06e",
+    "peak_growth.png": "ad03269a1abb6cb80a45d26a2fddbe6e1c520a9dc6c679c477c1d7cb90a7a558",
+    "peak_growth.svg": "76f5fc58282733b28679a27d12430bc155291f16df5a9316dc9f5085ee85a39a",
+    "README.md": "61426cd1e438fc0947487c85b9233f664acba4ae832c3a39e04895e0ed104677",
+    "peak_growth_reviewed.png": "2269281ffe340ce2735ae5427d4aab169e952f8c03eca1869b292bb7acde9b17",
+    "peak_growth_reviewed.svg": "486e84d38d22559d7fcde3b708f1d96c2e043171ecdf35f943462a6096d57456",
+    "README_initial.md": "36e5468183fb38ddc218b7e1af521ae2593f8eca03b09d370b1e1256bd216d3d",
+    "analysis_metadata_initial.json": "463169f251b9e60b5d380e0b5744e4affe2170f1305280b8877967d41268f5ec",
+    "plot_review.json": "bd0d7f57d70d6ad72a378fd7fc82d55fb57d9aa8c260adb0fe5cca207986a07d",
+    "render_reviewed_plot.py": "a33051cf5276a3a3630a585931e35549752f373ec5e87d9430ad58971d2c312a"
+  },
+  "visual_review": {
+    "reason": "shared axis in initial rendering clipped largest Captured point",
+    "command": [
+      "/private/tmp/pgsn-memory-plot-env/bin/python",
+      "-B",
+      "research_results/cek/memory/2026-10-28_identity_captured_cold_full_01/render_reviewed_plot.py"
+    ],
+    "matplotlib": "3.11.2",
+    "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "raw_data_unchanged": true,
+    "summary_unchanged": true,
+    "y_limits_kib": [
+      0,
+      69.4925
+    ],
+    "all_values_visible": true
+  }
+}

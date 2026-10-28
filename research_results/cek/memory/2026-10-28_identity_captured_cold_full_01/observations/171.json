@@ -1,0 +1,41 @@
+{
+  "family": "captured",
+  "size": 200,
+  "evaluator": "control",
+  "status": "ok",
+  "command": [
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "-B",
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/experiments/cek_machine/memory_worker.py",
+    "--family",
+    "captured",
+    "--size",
+    "200",
+    "--evaluator",
+    "control"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "pid": 54293,
+  "correct": null,
+  "evaluated": false,
+  "baseline_bytes": 85104,
+  "peak_bytes": 85280,
+  "ending_bytes": 85280,
+  "peak_growth_bytes": 176,
+  "end_growth_bytes": 176,
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "gc_enabled": true,
+  "gc_thresholds": [
+    2000,
+    10,
+    10
+  ],
+  "recursion_limit": 1000,
+  "result": "unevaluated input",
+  "control_input_preserved": true,
+  "observation": 171,
+  "repetition": 7
+}

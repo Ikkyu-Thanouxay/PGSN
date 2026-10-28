@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "observations": 180,
+  "evaluator_observations": 120,
+  "controls": 60,
+  "correct_evaluations": 120,
+  "errors": 0,
+  "unique_successful_worker_pids": 180,
+  "units": "bytes"
+}

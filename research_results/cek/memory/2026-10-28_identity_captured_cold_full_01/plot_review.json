@@ -1,0 +1,17 @@
+{
+  "reason": "shared axis in initial rendering clipped largest Captured point",
+  "command": [
+    "/private/tmp/pgsn-memory-plot-env/bin/python",
+    "-B",
+    "research_results/cek/memory/2026-10-28_identity_captured_cold_full_01/render_reviewed_plot.py"
+  ],
+  "matplotlib": "3.11.2",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "raw_data_unchanged": true,
+  "summary_unchanged": true,
+  "y_limits_kib": [
+    0,
+    69.4925
+  ],
+  "all_values_visible": true
+}

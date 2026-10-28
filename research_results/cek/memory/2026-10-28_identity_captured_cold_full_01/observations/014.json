@@ -1,0 +1,41 @@
+{
+  "family": "identity",
+  "size": 10,
+  "evaluator": "cek",
+  "status": "ok",
+  "command": [
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+    "-B",
+    "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/experiments/cek_machine/memory_worker.py",
+    "--family",
+    "identity",
+    "--size",
+    "10",
+    "--evaluator",
+    "cek"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "pid": 53822,
+  "correct": true,
+  "evaluated": true,
+  "baseline_bytes": 1848,
+  "peak_bytes": 8568,
+  "ending_bytes": 2408,
+  "peak_growth_bytes": 6720,
+  "end_growth_bytes": 560,
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "executable": "/Users/fakedev/PGSN_Workspace/dev_library/PGSN/.venv/bin/python",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "gc_enabled": true,
+  "gc_thresholds": [
+    2000,
+    10,
+    10
+  ],
+  "recursion_limit": 1000,
+  "result": "Integer(meta_info={}, is_named=False, arity=0, value=7)",
+  "expected": "Integer(meta_info={}, is_named=False, arity=0, value=7)",
+  "observation": 14,
+  "repetition": 5
+}

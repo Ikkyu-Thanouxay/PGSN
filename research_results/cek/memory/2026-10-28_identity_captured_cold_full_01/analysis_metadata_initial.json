@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-10-28T12:00:23.698853+00:00",
+  "command": [
+    "/private/tmp/pgsn-memory-plot-env/bin/python",
+    "experiments/cek_machine/analyze_memory_full.py",
+    "--output",
+    "research_results/cek/memory/2026-10-28_identity_captured_cold_full_01"
+  ],
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "matplotlib": "3.11.2",
+  "plotting_separate_from_measurements": true,
+  "summary_units": "bytes",
+  "graph_units": "KiB",
+  "quartiles": "statistics.quantiles(n=4, method=\"inclusive\")",
+  "artifact_sha256": {
+    "summary.csv": "8cfd15dd92703aa392730f783b50c3c65c380827cf351aebb92aa8ac99d7a06e",
+    "peak_growth.png": "ad03269a1abb6cb80a45d26a2fddbe6e1c520a9dc6c679c477c1d7cb90a7a558",
+    "peak_growth.svg": "76f5fc58282733b28679a27d12430bc155291f16df5a9316dc9f5085ee85a39a",
+    "README.md": "36e5468183fb38ddc218b7e1af521ae2593f8eca03b09d370b1e1256bd216d3d"
+  }
+}
