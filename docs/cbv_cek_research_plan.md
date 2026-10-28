@@ -75,3 +75,30 @@ conclusion or broad semantic equivalence follows from this milestone.
 ## Milestone 2 update (2026-09-22)
 
 The measurement branch starts from current upstream `1afc1909cee32dfc6c686e5e665b07fdd355b639` and restores these four files from Milestone 1 commit `57b288cd78ec552cf1e1fee638ed6b3136824338`. Current builtins use `apply_args_or_none`; free-bound pruning substantially changed the evaluator cost. This milestone measures only successful shared scalar lambda/arithmetic cases. See [Milestone 2 results](cbv_cek_milestone2_results.md) for methodology, counter definitions, results, and limits. No production integration or later feature work is included.
+
+## Basic record support (2026-10-28)
+
+On `research/cek-record-support`, based on `d964044`, the experimental machine
+supports finite records whose fields evaluate to Integer, String, Boolean or
+Constant. This extends the historical Milestone 1 scope above; it does not
+claim full production compatibility. See [implementation](../experiments/cek_machine/cbv_cek.py)
+and [focused tests](../experiments/cek_machine/test_cbv_cek.py).
+
+Every field is evaluated strictly, once in insertion order, before lookup.
+`RecordField` continuations preserve the record's lexical environment between
+fields and restore the enclosing continuation when construction finishes.
+`RecordValue` holds evaluated labelled fields and can pass through lambdas and
+closures. Applying it to a String selects the corresponding primitive value.
+Missing keys raise KeyError; non-String keys raise TypeError. Unsupported field
+values and operations fail explicitly, with no production-evaluator fallback.
+
+Current can select a valid field without evaluating an invalid unselected field;
+strict CEK deliberately evaluates both. Current may retain an unresolved lookup
+where CEK raises an error. Successful shared cases are compared in the tests.
+
+Closure-valued fields, partial-builtin fields, nested record values, lists,
+merging/overwriting, keyword arguments/defaults, classes/objects, XML and GSN
+rendering remain unsupported. RecordValue is not a production Record Term;
+no automatic runtime-to-Term readback was added. No performance claims or new
+measurements accompany this extension; earlier results identify their own source
+checkpoints and are unchanged.

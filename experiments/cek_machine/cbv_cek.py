@@ -2,6 +2,12 @@
 
 Only initial_state performs name removal. step operates on nameless syntax,
 with evaluated values in environments and pending work in explicit frames.
+
+Basic records evaluate every field once, in source insertion order, before
+becoming values (including before lookup). Fields must produce primitive values;
+closures, partial builtins and nested records are outside this milestone.
+RecordValue is experimental runtime data, not a production Record Term. There
+is no automatic readback, record merging, keyword/default or object support.
 """
 from __future__ import annotations
 
@@ -9,7 +15,7 @@ from dataclasses import dataclass
 from typing import TypeAlias
 
 from pgsn.pgsn_term import (
-    Abs, App, Boolean, Constant, Div, Integer, Minus, Mod, Plus, String,
+    Abs, App, Boolean, Constant, Div, Integer, Minus, Mod, Plus, Record, String,
     Term, Times, Variable,
 )
 
@@ -39,7 +45,14 @@ class PartialBuiltin:
     args: tuple[RuntimeValue, ...] = ()
 
 
-RuntimeValue: TypeAlias = Primitive | Closure | PartialBuiltin
+@dataclass(frozen=True)
+class RecordValue:
+    """Evaluated string-labelled primitive fields, retaining insertion order."""
+
+    fields: tuple[tuple[str, Primitive], ...]
+
+
+RuntimeValue: TypeAlias = Primitive | Closure | PartialBuiltin | RecordValue
 Environment: TypeAlias = tuple[RuntimeValue, ...]
 
 
@@ -61,11 +74,22 @@ class AppArgument:
     continuation: Continuation
 
 
-Continuation: TypeAlias = Halt | AppFunction | AppArgument
+@dataclass(frozen=True)
+class RecordField:
+    """Finish one field, then evaluate the remaining fields in their lexical env."""
+
+    label: str
+    remaining: tuple[tuple[str, Term], ...]
+    completed: tuple[tuple[str, Primitive], ...]
+    env: Environment
+    continuation: Continuation
+
+
+Continuation: TypeAlias = Halt | AppFunction | AppArgument | RecordField
 
 
 def is_value(control: Term | RuntimeValue) -> bool:
-    return type(control) in PRIMITIVES or isinstance(control, (Closure, PartialBuiltin))
+    return type(control) in PRIMITIVES or isinstance(control, (Closure, PartialBuiltin, RecordValue))
 
 
 @dataclass(frozen=True)
@@ -93,6 +117,17 @@ def step(state: State) -> State:
     if is_value(control):
         if isinstance(k, Halt):
             return state
+        if isinstance(k, RecordField):
+            if type(control) not in PRIMITIVES:
+                raise UnsupportedTermError(
+                    f'Record field {k.label!r} must evaluate to Integer, String, '
+                    f'Boolean or Constant; got {type(control).__name__}')
+            completed = k.completed + ((k.label, control),)
+            if k.remaining:
+                (label, term), *rest = k.remaining
+                return State(term, k.env,
+                             RecordField(label, tuple(rest), completed, k.env, k.continuation))
+            return State(RecordValue(completed), k.env, k.continuation)
         if isinstance(k, AppFunction):
             return State(k.argument, k.env, AppArgument(control, k.continuation))
         if not isinstance(k, AppArgument):
@@ -100,6 +135,13 @@ def step(state: State) -> State:
         function = k.function
         if isinstance(function, Closure):
             return State(function.body, (control,) + function.env, k.continuation)
+        if isinstance(function, RecordValue):
+            if type(control) is not String:
+                raise TypeError('Record lookup requires a String key')
+            for label, value in function.fields:
+                if label == control.value:
+                    return State(value, (), k.continuation)
+            raise KeyError(f'Unknown record field {control.value!r}')
         if isinstance(function, PartialBuiltin):
             args = function.args + (control,)
             if len(args) < function.builtin.arity:
@@ -122,6 +164,12 @@ def step(state: State) -> State:
         return State(Closure(control.t, env), env, k)
     if isinstance(control, App):
         return State(control.t1, env, AppFunction(control.t2, env, k))
+    if isinstance(control, Record):
+        fields = tuple(control.attributes().items())
+        if not fields:
+            return State(RecordValue(()), env, k)
+        (label, term), *rest = fields
+        return State(term, env, RecordField(label, tuple(rest), (), env, k))
     if type(control) in ARITHMETIC:
         return State(PartialBuiltin(control), env, k)
     raise UnsupportedTermError(f'Unsupported CEK term: {type(control).__name__}')
